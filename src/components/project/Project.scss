@@ -1,0 +1,216 @@
+/* Project */
+
+@import '../../styles/settings.scss';
+
+.Project {
+  // position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  transition: $allTrans;
+  background-color: rgba(80,20,20, 0.7);
+  font-family: $tertiaryFont;
+  opacity: 0;
+  color: #000;
+  @media screen and (min-width: $small) {
+    position: relative;
+    overflow: hidden;
+  }
+  z-index: 9999;
+  .project-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: $white;
+    box-sizing: border-box;
+    -webkit-box-shadow: 1px 3px 34px -5px rgba(0,0,0,0.4);
+    -moz-box-shadow: 1px 3px 34px -5px rgba(0,0,0,0.4);
+    box-shadow: 1px 3px 34px -5px rgba(0,0,0,0.4);
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    @media screen and (min-width: $xsmall) {
+      max-width: 1000px;
+    }
+    @media screen and (min-width: $small) {
+      overflow: initial;
+      padding: 20px;
+    }
+  }
+  &.open {
+    opacity: 1;
+  }
+  .btn-wrapper {
+    // display: none;
+    position: absolute;
+    bottom: 10px;
+    @media screen and (min-width: $small) {
+      display: block;
+      height: 100%;
+      top: calc(50% - 25px);
+      bottom: auto;
+    }
+    &.next {
+      text-align: left;
+      right: 10px;
+      @media screen and (min-width: $small) {
+        right: -75px;
+      }
+    }
+    &.prev {
+      text-align: right;
+      left: 10px;
+      @media screen and (min-width: $small) {
+        left: -75px;
+      }
+    }
+  }
+  .btn-next,
+  .btn-prev {
+    font-size: 50px;
+    font-weight: bold;
+    color: $accentColor;
+    i {
+      padding: 0;
+    }
+    @media screen and (min-width: $small) {
+      font-size: 80px;
+      color: $white;
+      opacity: .6;
+      padding: 0 5%;
+      transition: $allTrans;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .btn-closeProject {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.25rem;
+    font-weight: 300;
+    transition: $allTrans;
+    @media screen and (min-width: $xsmall) {
+      font-size: 1.5rem;
+    }
+  }
+  .project-header {
+    position: relative;
+    border-top: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+    margin: 20px 0;
+    padding: 10px 0;
+  }
+  .project-title {
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+    max-width: 80%;
+  }
+  .project-link {
+    margin-top: 15px;
+    text-decoration: none;
+    font-family: $primaryFont;
+    color: $accentColor;
+    text-transform: lowercase;
+    transition: $allTrans;
+    font-weight: bold;
+    font-size: 1.15rem;
+    line-height: 1;
+    &:hover {
+      color: #000;
+    }
+    i {
+      font-size: .8em;
+    }
+  }
+  .project-meta {
+    margin: .5em 0;
+    font-weight: bold;
+    font-size: .85rem;
+    span {
+      font-weight: normal;
+      font-style: italic;
+    }
+  }
+  .project-description {
+    font-size: .9rem;
+    line-height: 1.3;
+  }
+  .project-images {
+    margin: 20px 0;
+    ul {
+      list-style-type: none;
+      padding: 0;
+      @media screen and (min-width: $xsmall) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+      }
+    }
+    li {
+      margin: 0 auto 20px;
+      width: 100%;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      // @media screen and (min-width: $xsmall) {
+      //   max-width: 50%;
+      // }
+    }
+    img {
+      max-width: 100%;
+      cursor: pointer;
+    }
+  }
+  .project-categories,
+  .project-tools {
+    margin-bottom: 20px;
+    @media screen and (min-width: $xsmall) {
+      margin-bottom: 10px;
+    }
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    h5 {
+      margin: 0;
+      line-height: 1.7;
+      @media screen and (min-width: $xsmall) {
+        margin-right: 5px;
+        float: left;
+      }
+    }
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      @media screen and (min-width: $xsmall) {
+        float: left;
+      }
+      li {
+        display: inline-block;
+        padding: 3px 5px;
+        font-size: .6rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 1;
+        background-color: #000;
+        margin: 0 2px;
+        color: #FFF;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  .project-tools {
+    ul li {
+      background-color: $secondaryColor;
+    }
+  }
+}

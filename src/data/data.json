@@ -1,0 +1,318 @@
+{
+  "portfolio": {
+    "info": {
+      "name": "Ashley Long",
+      "title": "Developer & Interactive Designer",
+      "location": "St. Louis, MO"
+    },
+    "projects": [
+      {
+        "id": 0,
+        "title": "VF Corporation 2014 Online Annual Report",
+        "color": "#feffc3",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "./img/portfolio/vf-corp/vf-thumb2.jpg",
+        "images": [
+          "/vf-corp/vf-01.jpg",
+          "/vf-corp/vf-02.jpg",
+          "/vf-corp/vf-04.jpg",
+          "/vf-corp/vf-05.jpg",
+          "/vf-corp/vf-06.jpg"
+        ],
+        "deliverables": "Website",
+        "description": "Front-end development of an online experience for VF Corporation's 2014 Annual Report, showcasing financial charts created using FusionCharts, brand performance information and an interactive ROI case study",
+        "tools": [
+          "HTML5",
+          "CSS",
+          "JavaScript",
+          "jQuery",
+          "Fusion Charts"
+        ],
+        "client": "VF Corporation",
+        "agency": "FleishmanHillard",
+        "url": null
+      },
+      {
+        "id": 1,
+        "title": "Kraftig.com",
+        "color": "#ed9362",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "./img/portfolio/kraftig/kraftig-thumb.jpg",
+        "images": [],
+        "deliverables": "Wordpress site",
+        "description": "",
+        "tools": [
+          "Wordpress",
+          "JavaScript",
+          "PHP",
+          "SASS"
+        ],
+        "client": "Kraftig",
+        "agency": "FleishmanHillard",
+        "url": null
+      },
+      {
+        "id": 2,
+        "title": "Take A New Look at Foot & Ankle Surgeons",
+        "color": "#ffffff",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "./img/portfolio/acfas/acfas-thumb.jpg",
+        "images": [
+          "/acfas/acfas-01.jpg",
+          "/acfas/acfas-02.jpg",
+          "/acfas/acfas-04.jpg",
+          "/acfas/acfas-05.jpg"
+        ],
+        "deliverables": "Wordpress site",
+        "description": "Front-end development of a responsive Wordpress child theme and physician search tool. This site promotes foot & ankle surgeons and won a 2016 Silver Anvil Award",
+        "tools": [
+          "Wordpress",
+          "JavaScript",
+          "PHP",
+          "SASS"
+        ],
+        "client": "American College of Foot & Ankle Surgeons",
+        "agency": "FleishmanHillard",
+        "url": "http://takeanewlook.org/"
+      },
+      {
+        "id": 3,
+        "title": "AT&T Latino",
+        "color": "#d1abff",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "./img/portfolio/att-latino/esp-thumb.jpg",
+        "images": [
+          "/att-latino/esp-01.jpg",
+          "/att-latino/esp-02.jpg",
+          "/att-latino/esp-03.jpg",
+          "/att-latino/esp-04.jpg",
+          "/att-latino/esp-05.jpg"
+        ],
+        "deliverables": "Static site",
+        "description": "Development of a news, lifestyle, sports and entertainment portal for AT&T Latino. For this site, I built a JSON-based Spanish-language newsroom with filterable articles, as well as social media integration and support documentation for AT&T products",
+        "tools": [
+          "HTML5",
+          "JavaScript",
+          "Custom JSON API",
+          "SASS"
+        ],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": null
+      },
+      {
+        "id": 4,
+        "title": "AT&T About Us Newsroom",
+        "color": "#d3d3d3",
+        "categories": [],
+        "thumbnail": "./img/portfolio/aem-newsroom/newsroom-thumb.jpg",
+        "images": [],
+        "deliverables": "Front-end templates and components for Adobe Experience Manager (AEM)",
+        "description": "",
+        "tools": [
+          "HTML5",
+          "JavaScript",
+          "Custom JSON API",
+          "SASS",
+          "Adobe Experience Manager"
+        ],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": "https://about.att.com"
+      },
+      {
+        "id": 5,
+        "title": "Meraki Yoga Studio Online Schedule",
+        "color": "#ffffff",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "./img/portfolio/meraki/meraki-thumb.jpg",
+        "images": [
+          "/meraki/meraki-01.jpg"
+        ],
+        "deliverables": "Webpage",
+        "description": "Development of a responsive online class schedule utilizing Karmasoft API.",
+        "tools": [
+          "Wordpress",
+          "JavaScript",
+          "Karmasoft JSON API"
+        ],
+        "client": "Meraki Yoga Studio",
+        "agency": "",
+        "url": "http://merakiyogastudio.com/schedule/"
+      },
+      {
+        "id": 6,
+        "title": "AIGA Truman",
+        "color": "#ffbee9",
+        "categories": [
+          "web design"
+        ],
+        "thumbnail": "./img/portfolio/aiga-truman/aiga-thumb.jpg",
+        "images": [
+          "/modot/modot-01.jpg",
+          "/modot/modot-02.jpg",
+          "/modot/modot-03.jpg"
+        ],
+        "deliverables": "Website",
+        "description": "Design and build of an interactive site for Truman State University's AIGA chapter",
+        "tools": [
+          "Adobe Flash"
+        ],
+        "client": "Truman State University",
+        "agency": "",
+        "url": "/retro/aiga/"
+      },
+      {
+        "id": 7,
+        "title": "Discover Monsanto",
+        "color": "#bfd06e",
+        "categories": [],
+        "thumbnail": "./img/portfolio/discover-monsanto/monsanto-thumb.jpg",
+        "images": [],
+        "deliverables": "Wordpress site",
+        "description": "",
+        "tools": [
+          "Wordpress",
+          "PHP",
+          "SASS",
+          "jQuery"
+        ],
+        "client": "Monsanto",
+        "agency": "FleishmanHillard",
+        "url": null
+      },
+      {
+        "id": 8,
+        "title": "Y98 Mistletoe Show",
+        "color": "#9d96f8",
+        "categories": [
+          "branding/identity",
+          "web design",
+          "web development"
+        ],
+        "thumbnail": "./img/portfolio/mistletoe-show/mistle-thumb.jpg",
+        "images": [
+          "/mistletoe-show/mistle-01.jpg",
+          "/mistletoe-show/mistle-02.jpg"
+        ],
+        "deliverables": "Logo, web page, web graphics, HTML email",
+        "description": "Logo, web page and email design for Y98's annual 'Mistletoe Show' holiday concert",
+        "tools": [
+          "Adobe Photoshop",
+          "Adobe Illustrator",
+          "HTML5",
+          "CSS"
+        ],
+        "client": "CBS Radio St. Louis",
+        "agency": "",
+        "url": ""
+      },
+      {
+        "id": 9,
+        "title": "AT&T Global Supply Chain",
+        "color": "#72ddf0",
+        "categories": [],
+        "thumbnail": "./img/portfolio/att-global-supply-chain/gsc-thumb.jpg",
+        "images": [],
+        "deliverables": "Front-end templates and components for AEM site",
+        "description": "",
+        "tools": [],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": null
+      },
+      {
+        "id": 10,
+        "title": "Chemistry of Milk",
+        "color": "#ffffd7",
+        "categories": [
+          "branding/identity",
+          "illustration",
+          "print design",
+          "web design",
+          "web development"
+        ],
+        "thumbnail": "./img/portfolio/chemistry-milk/chem-thumb2.jpg",
+        "images": [
+          "/chemistry-milk/chem-01.jpg",
+          "/chemistry-milk/chem-02.jpg",
+          "/chemistry-milk/chem-03.jpg",
+          "/chemistry-milk/chem-04.jpg"
+        ],
+        "deliverables": "Logo, website, annual report, print advertisements, packaging",
+        "description": "Logo, annual report and illustrated packaging design for the fictional creamery 'Chemistry of Milk'",
+        "tools": [
+          "Adobe Photoshop",
+          "Adobe Illustrator",
+          "Adobe InDesign",
+          "Flash"
+        ],
+        "client": "Student work",
+        "agency": "",
+        "url": "https://www.behance.net/gallery/5657877/Chemistry-of-Milk-Print-Advertisement-Series"
+      },
+      {
+        "id": 11,
+        "title": "Pastiche Magazine",
+        "color": "#f5d05e",
+        "categories": [
+          "branding/identity",
+          "illustration",
+          "print design"
+        ],
+        "thumbnail": "./img/portfolio/pastiche/pastiche-thumb-new.jpg",
+        "images": [
+          "/pastiche/pastiche-01.jpg",
+          "/pastiche/pastiche-02.jpg"
+        ],
+        "deliverables": "Print spread",
+        "description": "Logo, cover and table of contents illustrations for the fictional arts magazine 'Pastiche'",
+        "tools": [
+          "Adobe Photoshop",
+          "Adobe Illustrator",
+          "Adobe InDesign"
+        ],
+        "client": "Student work",
+        "agency": "",
+        "url": ""
+      }
+    ]
+  },
+  "social_links": [
+    {
+      "channel": "Email",
+      "icon": "envelope",
+      "url": "mailto:a.elainelong@gmail.com"
+    },
+    {
+      "channel": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://www.linkedin.com/in/ashleyelong/"
+    },
+    {
+      "channel": "Codepen",
+      "icon": "codepen",
+      "url": "https://codepen.io/aelong/"
+    },
+    {
+      "channel": "Github",
+      "icon": "github",
+      "url": "https://github.com/aelainelong"
+    },
+    {
+      "channel": "Behance",
+      "icon": "behance",
+      "url": "https://www.behance.net/AshleyLong"
+    }
+  ]
+}

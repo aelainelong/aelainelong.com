@@ -1,0 +1,77 @@
+/* App */
+
+@import '../styles/settings.scss';
+
+html, body {
+  background-color: $black;
+}
+body {
+    overflow-x: hidden;
+}
+
+.App {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  transition: background 0.5s ease-in-out;
+
+  &.App-home {
+    background-color: #95dcc0;
+  }
+  &.App-explore {
+    background-color: #70bce3;
+  }
+  &.App-about {
+    background-color: #e39f4d;
+  }
+  &.App-connect {
+    background-color: #eae96d;
+  }
+}
+.App .app-cover {
+  position: absolute;
+  min-height: 100vh;
+  width: 100vw;
+}
+.App .app-wrapper {
+  position: relative;
+  height: 100%;
+}
+// .App button {
+//   cursor: pointer;
+//   background-color: transparent;
+//   border: 0;
+//   &:focus,
+//   &:hover {
+//     outline: 0;
+//   }
+
+//   &.a-enter-ar-button, 
+//   &.a-enter-vr-button {
+//     background-size: 80% 80%;
+//     min-width: 55px;
+//     position: relative;
+//     padding: 0;
+//   }
+
+//   &.a-enter-ar-button:active, 
+//   &.a-enter-ar-button:hover, 
+//   &.a-enter-vr-button:active, 
+//   &.a-enter-vr-button:hover {
+//     background-color: transparent;
+//   }
+// }
+
+// .App .a-enter-ar, 
+// .App .a-enter-vr {
+//   // display: none;
+//   box-sizing: border-box;
+//   padding: 0 20px;
+//   text-align: center;
+//   width: 100%;
+//   right: 0;
+
+//   @media screen and (min-width: $small) {
+//     text-align: right;
+//   }
+// }

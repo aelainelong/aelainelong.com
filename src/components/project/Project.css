@@ -1,0 +1,196 @@
+/* Project */
+/* ======== */
+/* SETTINGS */
+/* ======== */
+/* Palette */
+/* Fonts */
+/* Transitions */
+/* Breakpoints */
+/* Mixins */
+.Project {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  transition: all ease 0.5s;
+  background-color: rgba(80, 20, 20, 0.7);
+  font-family: "Open Sans", Arial, sans-serif;
+  opacity: 0;
+  color: #000;
+  z-index: 9999; }
+  @media screen and (min-width: 1000px) {
+    .Project {
+      position: relative;
+      overflow: hidden; } }
+  .Project .project-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #FFF;
+    box-sizing: border-box;
+    -webkit-box-shadow: 1px 3px 34px -5px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 1px 3px 34px -5px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 3px 34px -5px rgba(0, 0, 0, 0.4);
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px 60px; }
+    @media screen and (min-width: 768px) {
+      .Project .project-wrapper {
+        max-width: 1000px; } }
+    @media screen and (min-width: 1000px) {
+      .Project .project-wrapper {
+        overflow: initial;
+        padding: 20px; } }
+  .Project.open {
+    opacity: 1; }
+  .Project .btn-wrapper {
+    position: absolute;
+    bottom: 10px; }
+    @media screen and (min-width: 1000px) {
+      .Project .btn-wrapper {
+        display: block;
+        height: 100%;
+        top: calc(50% - 25px);
+        bottom: auto; } }
+    .Project .btn-wrapper.next {
+      text-align: left;
+      right: 10px; }
+      @media screen and (min-width: 1000px) {
+        .Project .btn-wrapper.next {
+          right: -75px; } }
+    .Project .btn-wrapper.prev {
+      text-align: right;
+      left: 10px; }
+      @media screen and (min-width: 1000px) {
+        .Project .btn-wrapper.prev {
+          left: -75px; } }
+  .Project .btn-next,
+  .Project .btn-prev {
+    font-size: 50px;
+    font-weight: bold;
+    color: #501414; }
+    .Project .btn-next i,
+    .Project .btn-prev i {
+      padding: 0; }
+    @media screen and (min-width: 1000px) {
+      .Project .btn-next,
+      .Project .btn-prev {
+        font-size: 80px;
+        color: #FFF;
+        opacity: .6;
+        padding: 0 5%;
+        transition: all ease 0.5s; }
+        .Project .btn-next:hover,
+        .Project .btn-prev:hover {
+          opacity: 1; } }
+  .Project .btn-closeProject {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.25rem;
+    font-weight: 300;
+    transition: all ease 0.5s; }
+    @media screen and (min-width: 768px) {
+      .Project .btn-closeProject {
+        font-size: 1.5rem; } }
+  .Project .project-header {
+    position: relative;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    margin: 20px 0;
+    padding: 10px 0; }
+  .Project .project-title {
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+    max-width: 80%; }
+  .Project .project-link {
+    margin-top: 15px;
+    text-decoration: none;
+    font-family: "Comfortaa", sans-serif;
+    color: #501414;
+    text-transform: lowercase;
+    transition: all ease 0.5s;
+    font-weight: bold;
+    font-size: 1.15rem;
+    line-height: 1; }
+    .Project .project-link:hover {
+      color: #000; }
+    .Project .project-link i {
+      font-size: .8em; }
+  .Project .project-meta {
+    margin: .5em 0;
+    font-weight: bold;
+    font-size: .85rem; }
+    .Project .project-meta span {
+      font-weight: normal;
+      font-style: italic; }
+  .Project .project-description {
+    font-size: .9rem;
+    line-height: 1.3; }
+  .Project .project-images {
+    margin: 20px 0; }
+    .Project .project-images ul {
+      list-style-type: none;
+      padding: 0; }
+      @media screen and (min-width: 768px) {
+        .Project .project-images ul {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-gap: 20px; } }
+    .Project .project-images li {
+      margin: 0 auto 20px;
+      width: 100%;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto; }
+    .Project .project-images img {
+      max-width: 100%;
+      cursor: pointer; }
+  .Project .project-categories,
+  .Project .project-tools {
+    margin-bottom: 20px; }
+    @media screen and (min-width: 768px) {
+      .Project .project-categories,
+      .Project .project-tools {
+        margin-bottom: 10px; } }
+    .Project .project-categories:after,
+    .Project .project-tools:after {
+      content: "";
+      display: table;
+      clear: both; }
+    .Project .project-categories h5,
+    .Project .project-tools h5 {
+      margin: 0;
+      line-height: 1.7; }
+      @media screen and (min-width: 768px) {
+        .Project .project-categories h5,
+        .Project .project-tools h5 {
+          margin-right: 5px;
+          float: left; } }
+    .Project .project-categories ul,
+    .Project .project-tools ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0; }
+      @media screen and (min-width: 768px) {
+        .Project .project-categories ul,
+        .Project .project-tools ul {
+          float: left; } }
+      .Project .project-categories ul li,
+      .Project .project-tools ul li {
+        display: inline-block;
+        padding: 3px 5px;
+        font-size: .6rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 1;
+        background-color: #000;
+        margin: 0 2px;
+        color: #FFF; }
+        .Project .project-categories ul li:first-child,
+        .Project .project-tools ul li:first-child {
+          margin-left: 0; }
+  .Project .project-tools ul li {
+    background-color: #501414; }

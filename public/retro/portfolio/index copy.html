@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+
+	<!--META TAGS-->
+	<meta name="keywords" content="Ashley Long, St. Louis design, design, creative, graphic design, web development, website design, interactive, website, branding, brand, Graphic Design St. Louis, Web Design, Website Design, Web development, Website development, Multimedia Design, Graphic Design, Logo Design, Branding, Interactive, Print Design" />
+
+<meta name="description" content="Ashley Long is a graphic and web designer based out of St. Louis, Missouri." />
+
+<meta name="robots" content="index, follow" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+    
+    <title>Ashley Long -- Web & Graphic Designer</title>
+    
+    <!--FAVICON-->
+	<link rel="shortcut icon" href="images/favi.ico" type="image/x-icon" />
+    
+    <!--STYLESHEETS-->
+	<link rel="stylesheet" type="text/css" href="css/stylequeries.css"/>
+    <link rel="stylesheet" type="text/css" href="css/fonts.css"/>
+    
+    <!--JAVASCRIPT-->
+
+    <script type='text/javascript' src='js/jquery.min.js'></script> <script type='text/javascript' src='js/protoFluid3.02.js'></script>
+    
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+        
+        <!--Smooth Scrolling-->
+
+        <script type="text/javascript">
+		
+		var $ = jQuery.noConflict();
+		
+            $(document).ready(function() {
+    $('ul.nav a').bind('click',function(event){
+        var $anchor = $(this);
+ 
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 1300,'easeInOutExpo');
+        /*
+        if you don't want to use the easing effects:
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 1000);
+        */
+        event.preventDefault();
+    });
+});
+        </script> 
+
+	<SCRIPT type="text/javascript">
+	/************************************************************************************************************
+	(C) www.dhtmlgoodies.com, October 2005
+	
+	This is a script from www.dhtmlgoodies.com. You will find this and a lot of other scripts at our website.	
+	
+************************************************************************************************************/	
+	// You can modify these three values
+	var slideshow2_noFading = false;	// Just normal show/hide without fading ?
+	var slideshow2_timeBetweenSlides = 1500;	// Amount of time between each image(1000 = 1 second)
+	var slideshow2_fadingSpeed = 20;	// Speed of fading
+	
+	
+	/* Don't change any of these values */
+	var slideshow2_galleryHeigh;	// Height of galery	
+	var slideshow2_galleryContainer;	// Reference to the gallery div
+	var slideshow2_galleryWidth;	// Width of gallery	
+	var slideshow2_slideIndex = -1;	// Index of current image shown
+	var slideshow2_slideIndexNext = false;	// Index of next image shown
+	var slideshow2_imageDivs = new Array();	// Array of image divs(Created dynamically)
+	var slideshow2_currentOpacity = 100;	// Initial opacity
+	var slideshow2_imagesInGallery = false;	// Number of images in gallery
+	
+	function getGalleryImageSize(imageIndex)
+	{
+		if(imageIndex==slideshow2_imagesInGallery){			
+			showGallery();
+		}else{
+			var imgObj = document.getElementById('galleryImage' + imageIndex);
+			var imgWidth = imgObj.width;
+			var imgHeight = imgObj.height;
+			if(imgWidth>50){						
+				var tmpDiv = document.createElement('DIV');
+				tmpDiv.id = 'galleryDiv' + imageIndex;
+				tmpDiv.style.visibility = 'hidden';
+				tmpDiv.className='imageInGallery';
+				slideshow2_galleryContainer.appendChild(tmpDiv);
+				tmpDiv.appendChild(imgObj);
+				imgObj.style.left = Math.round((slideshow2_galleryWidth - imgWidth)/2)  + "px";
+				imgObj.style.top = Math.round((slideshow2_galleryHeight - imgHeight)/2)  + "px";
+				tmpDiv.style.visibility = 'hidden';
+				slideshow2_imageDivs.push(tmpDiv);
+				imageIndex++;
+				getGalleryImageSize(imageIndex);
+			}else{
+				setTimeout('getGalleryImageSize(' + imageIndex + ')',10);
+			}
+		}		
+	}
+	
+	function showGallery()
+	{
+		if(slideshow2_slideIndex==-1)slideshow2_slideIndex=0; else slideshow2_slideIndex++;	// Index of next image to show
+		if(slideshow2_slideIndex==slideshow2_imageDivs.length)slideshow2_slideIndex=0;
+		slideshow2_slideIndexNext = slideshow2_slideIndex+1;	// Index of the next next image
+		if(slideshow2_slideIndexNext==slideshow2_imageDivs.length)slideshow2_slideIndexNext = 0;
+		
+		slideshow2_currentOpacity=100;	// Reset current opacity
+
+		// Displaying image divs
+		slideshow2_imageDivs[slideshow2_slideIndex].style.visibility = 'visible';
+		if(navigator.userAgent.indexOf('Opera')<0){
+			slideshow2_imageDivs[slideshow2_slideIndexNext].style.visibility = 'visible';
+		}
+		
+		
+		if(document.all){	// IE rules
+			slideshow2_imageDivs[slideshow2_slideIndex].style.filter = 'alpha(opacity=100)';
+			slideshow2_imageDivs[slideshow2_slideIndexNext].style.filter = 'alpha(opacity=1)';
+		}else{
+			slideshow2_imageDivs[slideshow2_slideIndex].style.opacity = 0.99;	// Can't use 1 and 0 because of screen flickering in FF
+			slideshow2_imageDivs[slideshow2_slideIndexNext].style.opacity = 0.01;
+		}		
+		
+
+		setTimeout('revealImage()',slideshow2_timeBetweenSlides);		
+	}
+	
+	function revealImage()
+	{
+		if(slideshow2_noFading){
+			slideshow2_imageDivs[slideshow2_slideIndex].style.visibility = 'hidden';
+			showGallery();
+			return;
+		}
+		slideshow2_currentOpacity--;
+		if(document.all){
+			slideshow2_imageDivs[slideshow2_slideIndex].style.filter = 'alpha(opacity='+slideshow2_currentOpacity+')';
+			slideshow2_imageDivs[slideshow2_slideIndexNext].style.filter = 'alpha(opacity='+(100-slideshow2_currentOpacity)+')';
+		}else{
+			slideshow2_imageDivs[slideshow2_slideIndex].style.opacity = Math.max(0.01,slideshow2_currentOpacity/100);	// Can't use 1 and 0 because of screen flickering in FF
+			slideshow2_imageDivs[slideshow2_slideIndexNext].style.opacity = Math.min(0.99,(1 - (slideshow2_currentOpacity/100)));
+		}
+		if(slideshow2_currentOpacity>0){
+			setTimeout('revealImage()',slideshow2_fadingSpeed);
+		}else{
+			slideshow2_imageDivs[slideshow2_slideIndex].style.visibility = 'hidden';			
+			showGallery();
+		}
+	}
+	
+	function initImageGallery()
+	{
+		slideshow2_galleryContainer = document.getElementById('imageSlideshowHolder');
+		slideshow2_galleryWidth = slideshow2_galleryContainer.clientWidth;
+		slideshow2_galleryHeight = slideshow2_galleryContainer.clientHeight;
+		galleryImgArray = slideshow2_galleryContainer.getElementsByTagName('IMG');
+		for(var no=0;no<galleryImgArray.length;no++){
+			galleryImgArray[no].id = 'galleryImage' + no;
+		}
+		slideshow2_imagesInGallery = galleryImgArray.length;
+		getGalleryImageSize(0);		
+		
+	}
+		
+	</SCRIPT>
+    
+    
+            <!-- /THE SCRIPTS -->
+
+</head>
+
+<body>
+<a id="top"></a>
+
+	<div id="wrapper">
+    
+    		
+
+			<div id="header">
+				<span class="title1">graphic designer</span>
+				<a href="#top"><img src="images/logo.png" alt="Ashley Long" /></a>
+				<span class="title2">web designer</span>
+				
+				<br />
+				<span class="title">web &amp; graphic designer</span>
+				<div id="navigation">
+                	
+                    <ul class="nav">
+                    
+                    	<li><a href="#about">Myself</a></li>
+                        <li><a href="#skills">My Skills</a></li>
+                        <li><a href="#work">My Work</a></li>
+                        <li><a href="#contact">My Number</a></li>
+                    
+                    </ul>
+                
+                </div>
+                
+               	<div id="navigation_mob">
+                	
+                    <ul class="nav">
+                    
+                    	<li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#work">Work</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    
+                    </ul>
+                
+                </div>
+                
+
+			</div>
+            
+            
+            <div id="content">
+                        
+                            
+                <div id="slides" class="panel">
+                            
+                                <div id="imageSlideshowHolder">
+                                    <img src="images/work/Chem_packaging.jpg">	
+                                    <img src="images/work/Mistletoe_eblast.jpg">
+                                    <img src="images/work/Chem_site.jpg">
+                                    <img src="images/work/AIGA_site.jpg">
+            
+                                </div>
+                                
+                                <SCRIPT type="text/javascript">
+                                initImageGallery();
+                                </SCRIPT>
+            
+                </div>
+                
+                <div id="about" class="panel">
+                
+                	<div id="graphic">
+                    <img src="images/about.png" alt="About Ashley" />
+                    
+                    </div>
+                
+                	<section class="bullets">
+                
+                	<h4>The Short & Simple</h4>
+                  	
+                  		<ul>
+                        
+                        <li>I'm a St. Louis-based graphic designer and front-end web developer.</li>
+                        
+                        <li>I love coming up with new and creative ways to display information.</li>
+                        
+                        <li>I design for print & web, and I'm not afraid of a little code (or a lot!).</li>
+                        
+                    	<li>I'm super friendly.</li>
+                        
+                        </ul>
+                    
+                  <br />
+                  
+                  	<h4>I Talk Animatedly About:</h4>
+                  	
+                  		<ul>
+                        
+                        <li>'80s music: New Wave, No Wave, Synthpop & Teeny bop varieties</li>
+                        
+                        <li>How I have watched John Cusack's entire filmography</li>
+                        
+                        <li>Transhumanism</li>
+                        
+                        <li>Milk</li>
+                        
+                        </ul>
+                    
+                
+                	</section>
+                
+                </div>
+                
+                
+                <div id="skills" class="panel">
+                
+                	<div id="center">
+                	<div id="graphic2">
+                    <img src="images/skills.png" alt="Ashley's Skills" />
+                    
+                    </div>
+                
+                
+                	<section class="bullets">
+                  	<h4>Works With</h4>
+                  	
+                  		<ul>
+                        	<li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                            <li>JQuery</li>
+                            <li>ActionScript 3.0</li>
+                            <li>Wordpress CMS</li>
+
+
+                        </ul>
+                    
+                  
+                  </section>
+                  
+                  <section class="bullets">
+                  	<h4>Works In</h4>
+                  	
+                  		<ul>
+                  			<li>TextWrangler</li>
+                        	<li>Adobe Creative Suite</li>
+                            <li>ProtoFluid</li>
+                            <li>Adobe BrowserLab</li>
+							<li>Drop Box</li>
+                            
+
+                        </ul>
+                    
+                    
+                    </section>
+                </div>
+                </div>
+                
+                
+                <div id="work" class="panel"></div>
+                
+                
+                <div id="contact" class="panel">
+                
+                 	<div id="graphic">
+                    <a href="mailto:a.elainelong@gmail.com"><img src="images/sayhi.png" alt="Contact Ashley" /></a>
+                    
+                    <section class="bullets_c">
+                  	
+                  		<ul>
+                        	<li><a href="mailto:a.elainelong@gmail.com">E-mail</a></li>
+                            <li><a href="http://be.net/AshleyLong">Behance</a></li>
+                            <li><a href="http://www.linkedin.com/pub/ashley-long/47/b47/1ab">LinkedIn</a></li>
+                            <li class="mobilesOnly"><a href="tel:3147061123">Telephone</a></li>
+                            <li class="desktopOnly"><a href="callto:3147061123">Tel: 1 + 314.706.1123</a></li>
+
+
+                        </ul>
+                    
+                  
+                  </section>
+                
+                    
+                    </div>
+                
+                
+                
+                </div>
+            
+            
+            </div>
+            
+            	
+            
+            
+            
+            <div id="footer">
+            
+            	<p>&copy; 2012 Ashley Long</p>
+            
+            </div>
+
+	</div>
+
+
+</body>
+</html>
