@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactGA from 'react-ga';
 import Stagger from 'react-css-stagger';
 import PropTypes from 'prop-types';
 
 import './Header.css';
 import Footer from '../footer/Footer';
+import client from '../../data/client.js';
 
 class Header extends React.Component {
   constructor(props){
@@ -14,21 +14,13 @@ class Header extends React.Component {
   handleLinkClick = e => {
     e.preventDefault();
     const view = e.target.getAttribute("data-view");
-
-    if(view === "connect"){
-      this.props.toggleConnect();
-    } else {
-      this.props.updateView(view);
-    }
-
-    // this.props.updateBgColor(this.props.bgColors[view]);
+    this.props.updateView(view);
   }
 
   render() {
-    const portfolioInfo = this.props.portfolioInfo;
-    const socialLinks = this.props.socialLinks;
+    const portfolioInfo = client.getPortfolioInfo();
+    const socialLinks = client.getSocials();
     const connected = this.props.connect;
-    // const bgColors = this.props.bgColors;
     
     return(
       

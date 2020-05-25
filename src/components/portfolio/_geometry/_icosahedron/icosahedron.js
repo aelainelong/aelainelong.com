@@ -1,14 +1,17 @@
 import * as THREE from 'three';
 
-const icosahedronWireframe = () => {
-    // Background icosahedron wireframe //
-    this.color = 0x67418a;
+// ================================
+// Background icosahedron wireframe
+// ================================
+
+const icosahedron = () => {
+    const color = 0x67418a;
 
     // Create base icosahedron geometry
     this.baseGeometry = new THREE.IcosahedronGeometry(20, 3);
 
     // Create base icosahedron material
-    this.baseMaterial = new THREE.MeshPhongMaterial({ color: this.color, wireframe: true, opacity: 0.2, transparent: true });
+    this.baseMaterial = new THREE.MeshPhongMaterial({ color: color, wireframe: true, opacity: 0.2, transparent: true });
 
     // Create mesh from base icosahedron geometry and material
     this.baseMesh = new THREE.Mesh(this.baseGeometry, this.baseMaterial);
@@ -23,7 +26,7 @@ const icosahedronWireframe = () => {
     this.pointsGeometry.setAttribute('position', new THREE.BufferAttribute(this.pointPositions, 3));
 
     // Create points layer material & points layer mesh
-    this.pointsMaterial = new THREE.PointsMaterial({ size: 0.2, color: this.color});
+    this.pointsMaterial = new THREE.PointsMaterial({ size: 0.2, color: color});
     this.pointsMesh = new THREE.Points(this.pointsGeometry, this.pointsMaterial);
 
     // Create new composite 3D object from base icosahedron mesh and points layer mesh
@@ -33,4 +36,4 @@ const icosahedronWireframe = () => {
     return this.wireframe;
 }
 
-export default icosahedronWireframe;
+export default icosahedron();

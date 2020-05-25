@@ -13,7 +13,7 @@
         "categories": [
           "web development"
         ],
-        "thumbnail": "./img/portfolio/vf-corp/vf-thumb2.jpg",
+        "thumbnail": "vf-thumb.jpg",
         "images": [
           "/vf-corp/vf-01.jpg",
           "/vf-corp/vf-02.jpg",
@@ -41,7 +41,7 @@
         "categories": [
           "web development"
         ],
-        "thumbnail": "./img/portfolio/kraftig/kraftig-thumb.jpg",
+        "thumbnail": "kraftig-thumb.jpg",
         "images": [],
         "deliverables": "Wordpress site",
         "description": "",
@@ -62,7 +62,7 @@
         "categories": [
           "web development"
         ],
-        "thumbnail": "./img/portfolio/acfas/acfas-thumb.jpg",
+        "thumbnail": "acfas-thumb.jpg",
         "images": [
           "/acfas/acfas-01.jpg",
           "/acfas/acfas-02.jpg",
@@ -88,7 +88,7 @@
         "categories": [
           "web development"
         ],
-        "thumbnail": "./img/portfolio/att-latino/esp-thumb.jpg",
+        "thumbnail": "att-latino-thumb.jpg",
         "images": [
           "/att-latino/esp-01.jpg",
           "/att-latino/esp-02.jpg",
@@ -113,7 +113,7 @@
         "title": "AT&T About Us Newsroom",
         "color": "#d3d3d3",
         "categories": [],
-        "thumbnail": "./img/portfolio/aem-newsroom/newsroom-thumb.jpg",
+        "thumbnail": "newsroom-thumb.jpg",
         "images": [],
         "deliverables": "Front-end templates and components for Adobe Experience Manager (AEM)",
         "description": "",
@@ -135,7 +135,7 @@
         "categories": [
           "web development"
         ],
-        "thumbnail": "./img/portfolio/meraki/meraki-thumb.jpg",
+        "thumbnail": "meraki-thumb.jpg",
         "images": [
           "/meraki/meraki-01.jpg"
         ],
@@ -157,7 +157,7 @@
         "categories": [
           "web design"
         ],
-        "thumbnail": "./img/portfolio/aiga-truman/aiga-thumb.jpg",
+        "thumbnail": "aiga-thumb.jpg",
         "images": [
           "/modot/modot-01.jpg",
           "/modot/modot-02.jpg",
@@ -177,7 +177,7 @@
         "title": "Discover Monsanto",
         "color": "#bfd06e",
         "categories": [],
-        "thumbnail": "./img/portfolio/discover-monsanto/monsanto-thumb.jpg",
+        "thumbnail": "monsanto-thumb.jpg",
         "images": [],
         "deliverables": "Wordpress site",
         "description": "",
@@ -200,7 +200,7 @@
           "web design",
           "web development"
         ],
-        "thumbnail": "./img/portfolio/mistletoe-show/mistle-thumb.jpg",
+        "thumbnail": "mistle-thumb.jpg",
         "images": [
           "/mistletoe-show/mistle-01.jpg",
           "/mistletoe-show/mistle-02.jpg"
@@ -222,7 +222,7 @@
         "title": "AT&T Global Supply Chain",
         "color": "#72ddf0",
         "categories": [],
-        "thumbnail": "./img/portfolio/att-global-supply-chain/gsc-thumb.jpg",
+        "thumbnail": "att-gsc-thumb.jpg",
         "images": [],
         "deliverables": "Front-end templates and components for AEM site",
         "description": "",
@@ -242,7 +242,7 @@
           "web design",
           "web development"
         ],
-        "thumbnail": "./img/portfolio/chemistry-milk/chem-thumb2.jpg",
+        "thumbnail": "chem-thumb.jpg",
         "images": [
           "/chemistry-milk/chem-01.jpg",
           "/chemistry-milk/chem-02.jpg",
@@ -270,7 +270,7 @@
           "illustration",
           "print design"
         ],
-        "thumbnail": "./img/portfolio/pastiche/pastiche-thumb-new.jpg",
+        "thumbnail": "pastiche-thumb.jpg",
         "images": [
           "/pastiche/pastiche-01.jpg",
           "/pastiche/pastiche-02.jpg"

@@ -31,7 +31,7 @@ const client = {
     const images = imagePaths.map(path => process.env.PUBLIC_URL + '/img/portfolio' + path);
     return Array.from(new Set(images));
   },
-  getAllSocial(){
+  getSocials(){
     return allSocialLinks;
   }
 }

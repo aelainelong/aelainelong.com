@@ -1,6 +1,6 @@
 /* App */
 
-@import '../styles/settings.scss';
+@import '../assets/styles/settings.scss';
 
 html, body {
   background-color: $black;
@@ -15,16 +15,22 @@ body {
   width: 100vw;
   transition: background 0.5s ease-in-out;
 
-  &.App-home {
+  &.App-home,
+  &[data-active-view="home"] {
     background-color: #95dcc0;
   }
-  &.App-explore {
+  &.App-explore,
+  &.App-explore[data-active-view="explore"] {
     background-color: #70bce3;
   }
-  &.App-about {
+  &.App-about.App-connect[data-active-view="about"],
+  &.App-about[data-active-view="connect"],
+  &.App-about[data-active-view="about"] {
     background-color: #e39f4d;
   }
-  &.App-connect {
+  &.App-connect.App-about[data-active-view="connect"],
+  &.App-connect[data-active-view="about"],
+  &.App-connect[data-active-view="connect"] {
     background-color: #eae96d;
   }
 }

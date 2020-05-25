@@ -2,8 +2,6 @@ import React from 'react';
 import ReactGA from 'react-ga';
 import * as Preloader from 'react-preloaded';
 
-
-import client from '../data/client.js';
 import Loading from '../components/loading/Loading';
 import Header from '../components/header/Header';
 import Portfolio from '../components/portfolio/Portfolio';
@@ -15,9 +13,9 @@ class App extends React.Component {
     super(props);
 
     this.bgColorsTop = {
-      home: "#95dcc0",
+      home: "#83e2bd",
       explore: "#70bce3",
-      about: "#e39f4d",
+      about: "#e79d43",
       connect: "#eae96d"
     }
 
@@ -26,7 +24,7 @@ class App extends React.Component {
     }
 
     this.state = {
-      home: true,
+      active: "home",
       explore: false,
       about: false,
       connect: false,
@@ -40,30 +38,29 @@ class App extends React.Component {
   }
 
   updateView = view => {
-    if(view !== "home"){
-      this.setState(() => ({ home: false }));
-      this.setState(() => ({ [view]: !this.state[view] }));
-    } else {
-      this.setState(() => ({ home: true }));
+    if (view !== this.state.active) {
+      this.setState(() => ({ active: view }));
     }
-  }
 
-  toggleConnect = () => {
-    this.setState(() => ({ connect: !this.state.connect }));
+    if (view !== "home") {
+      this.setState(() => ({ [view]: !this.state[view] }));
+    } else if(this.state.explore) {
+      this.setState(() => ({ explore: false }));
+    }
+    // if (view === "home" && !this.state.explore){
+    //   //
+    // } else if(view === "home") {
+    //   this.setState(() => ({ explore: !this.state.explore }));
+    // } else {
+      
+    // }
   }
   
   render() {
-    const portfolioInfo = client.getPortfolioInfo();
-    const socialLinks = client.getAllSocial();
-    const allProjects = client.getAllProjects();
-    const allCategories = client.getAllCategories();
-    const allImages = client.getAllImages();
-    
-    const { getCategoryProjects, getProjectByID } = client;
     const Preload = Preloader.Preload;
     
     return (
-      <div className="App" className={`App ${this.state.home ? `App-home` : `App-explore`} ${this.state.connect ? `App-connect` : ``} ${this.state.about ? `App-about` : ``}`}>
+      <div className="App" data-active-view={this.state.active} className={`App ${this.state.explore ? `App-explore` : `App-home`} ${this.state.connect ? `App-connect` : ``} ${this.state.about ? `App-about` : ``}`}>
         {/* <Preload
           loadingIndicator={Loading}
           images={allImages}
@@ -74,15 +71,9 @@ class App extends React.Component {
           mountChildren={true}
         >  */}
           <div className="app-cover" style={{ background: `linear-gradient(to bottom, rgba(0, 0, 0, 0), ${this.state.bgColorBottom})` }}></div>
-        <div className="app-wrapper">
-          <Header portfolioInfo={portfolioInfo} updateView={this.updateView} toggleConnect={this.toggleConnect} connect={this.state.connect} socialLinks={socialLinks} />
-            <Portfolio
-              home={this.state.home}
-              allProjects={allProjects} 
-              getCategories={allCategories}
-              getCategoryProjects={getCategoryProjects} 
-              getProjectByID={getProjectByID}
-            />
+          <div className="app-wrapper">
+            <Header updateView={this.updateView} toggleConnect={this.toggleConnect} connect={this.state.connect} />
+            <Portfolio explore={this.state.explore} />
           </div>
         {/* </Preload> */}
       </div>
