@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 import Scene from './_scene/Scene';
-import ToolTip from './_tooltip/ToolTip';
 import Project from './_project/Project';
 
 import './Portfolio.css';
@@ -15,7 +14,6 @@ class Portfolio extends React.Component {
     super(props);
     
     this.state = {
-      portfolioReady: false,
       portfolioOpen: false,
       portfolioSize: client.getAllProjects().length,
       portfolioStart: false,
@@ -29,10 +27,6 @@ class Portfolio extends React.Component {
   componentWillUnmount(){
     // Change portfolio state to closed
     this.setState({ portfolioOpen: false });
-  }
-
-  togglePortfolioReady = () => {
-    this.setState(() => ({ portfolioReady: !this.state.portfolioReady }));
   }
 
   // Trigger open event upon project selection
@@ -168,8 +162,7 @@ class Portfolio extends React.Component {
   
     return(
       <div className={ portfolioOpen ? `Portfolio open` : `Portfolio` }>
-        <Scene explore={this.props.explore} projects={projects} togglePortfolioReady={this.togglePortfolioReady} />
-        {this.state.portfolioReady ? <ToolTip /> : null }
+        <Scene explore={this.props.explore} projects={projects} />
         {/* { currentProject ? <Project projectInfo={projectInfo} handleProjectClose={handleProjectClose} traverseProjects={traverseProjects} portfolioProgress={portfolioProgress} /> : null } */}
       </div>
     );

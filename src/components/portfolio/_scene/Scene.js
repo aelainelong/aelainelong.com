@@ -3,14 +3,20 @@ import ReactDOM from 'react-dom';
 
 import * as THREE from 'three';
 import TWEEN from '@tweenjs/tween.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { DragControls } from 'three/examples/jsm/controls/DragControls';
 
+import ToolTip from '../_tooltip/ToolTip';
 import dodecahedron from '../_geometry/_dodecahedron/dodecahedron';
 import icosahedron from '../_geometry/_icosahedron/icosahedron';
 
 class Scene extends React.Component {
     constructor(props){
         super(props);
+
+        this.state = {
+            ready: false
+        }
 
         this.maxZoom = 4.5;
         this.minZoom = 1;
@@ -45,22 +51,25 @@ class Scene extends React.Component {
         // Add fog!
         this.scene.fog = new THREE.Fog(0x67418a, 7, 20);
 
-        // Attach controls to enable group rotation on drag
-        this.controls = new OrbitControls(this.camera, this.canvas);
-        this.controls.enablePan = false;
-        this.controls.enableKeys = true;
-        this.controls.maxDistance = this.maxZoom;
+        // Attach controls to enable camera and group rotation / dragging behaviors
+        // this.cameraControls = new OrbitControls(this.camera, this.canvas);
+        this.dodecahedronControls = new DragControls(this.dodecahedron, this.camera, this.canvas);
+        this.dodecahedronControls.addEventListener("dragstart", this.handleMouseDown);
+        this.dodecahedronControls.addEventListener("dragend", this.handleMouseUp);
+        // this.dodecahedronControls.addEventListener("hoveron", );
+        // this.dodecahedronControls.addEventListener("hoveroff", );
+        // this.dodecahedronControls.enablePan = false;
+        // this.dodecahedronControls.enableKeys = true;
+        //this.dodecahedronControls.maxDistance = this.maxZoom;
 
         // Add raycaster to catch mouse click events on the project faces
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
         //window.addEventListener('click', this.handleMouseClick, false);
 
-        // Add window and canvas event handlers
+        // Add other window / canvas event handlers
         window.addEventListener('resize', this.onWindowResize, false);
         //this.canvas.addEventListener('mousemove', this.handleMouseMove);
-        this.canvas.addEventListener('mousedown', this.handleMouseDown);
-        this.canvas.addEventListener('mouseup', this.handleMouseUp);
 
         // Add Axes Helper
         // const axesHelper = new THREE.AxesHelper(25);
@@ -72,24 +81,35 @@ class Scene extends React.Component {
     }
 
     // Update app view
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (prevState.ready !== this.state.ready) {
+            
+    //     }
+
+        
+    //     return false;
+    // }
+
     componentDidUpdate(prevProps, prevState) {
         console.log("Component did update.");
+
+        // Move our camera in/out if we have entered/exited 'explore' mode
         if (prevProps.explore !== this.props.explore) {
-            this.updateCameraPosition();
+            this.updateCameraPosition(); 
+        }
+
+        // Turn our dodecahedron controls on/off if we have completed an update to the camera positioning
+        if(prevState.ready !== this.state.ready){
+            this.toggleControls();
         }
     }
 
-    // Clean up our scene listeners when Scene unmounts
+    // Clean up our scene controls and window event listeners when Scene unmounts
     componentWillUnmount(){
-        this.dispose();
-    }
-
-    dispose = () => {
         // Remove all event listeners from the window and canvas objects
-        window.removeEventListener('click', this.handleMouseClick);
+        this.dodecahedronControls.dispose();
         window.removeEventListener('resize', this.onWindowResize);
-        this.canvas.removeEventListener('mousedown', this.handleMouseDown);
-        this.canvas.removeEventListener('mouseup', this.handleMouseUp);
+        //window.removeEventListener('click', this.handleMouseClick);
 
         // Remove the model controls
 
@@ -126,10 +146,19 @@ class Scene extends React.Component {
 
 
         // Render scene
-        this.controls.update();
+        //this.cameraControls.update();
         TWEEN.update();
         const thisAnimation = requestAnimationFrame(this.animate);
         this.renderScene();
+    }
+
+    // Get our scene ready for mouse interactions (dragging / hovering / clicking)
+    toggleControls = () => {
+        if(this.state.ready){
+            this.dodecahedronControls.activate();
+        } else {
+            this.dodecahedronControls.deactivate();
+        }
     }
 
     // Update our threeJS scene on window resize
@@ -146,11 +175,6 @@ class Scene extends React.Component {
         } else {
             this.animateToHome();
         }
-    }
-
-    // Activate/Deactivate the portfolio
-    handlePortfolioReady = () => {
-        this.props.togglePortfolioReady();
     }
 
     animateToHome = () => {
@@ -193,11 +217,12 @@ class Scene extends React.Component {
         const tweenB = new TWEEN.Tween(cameraStart)
             .to(cameraEnd, 2000)
             .easing(TWEEN.Easing.Linear.None)
+            .onStart(() => {
+                // Turn off the scene's ready state
+                this.setState(() => ({ ready: false }));
+            })
             .onComplete(() => {
                 this.camera.updateProjectionMatrix();
-
-                // Toggle the portfolio tooltip
-                this.handlePortfolioReady();
             })
             .start();
 
@@ -215,6 +240,7 @@ class Scene extends React.Component {
         // Tween our camera transition from the home screen to Explore mode
         const cameraStart = this.camera.position,
             cameraEnd = new THREE.Vector3(2, 0, 4);
+        this.camera.position.set(new THREE.Vector3(2, 0, 4));
 
         new TWEEN.Tween(cameraStart)
             .to(cameraEnd, 5000)
@@ -222,13 +248,10 @@ class Scene extends React.Component {
             .easing(TWEEN.Easing.Linear.None)
             .onComplete(() => {
                 this.camera.updateProjectionMatrix();
-
-                // Toggle the portfolio tooltip
-                this.handlePortfolioReady();
+                // Turn on the scene's ready state
+                this.setState(() => ({ ready: true }));
             })
             .start();
-
-            
 
         // Chain our tweens together
         // tweenA.chain(tweenB);
@@ -273,7 +296,9 @@ class Scene extends React.Component {
 
     render(){
         return (
-            <div></div>
+            <div>
+                {this.state.ready ? `<div>Here we are pooping something into the page.</div>` : ``}
+            </div>
         );
     }
 }
