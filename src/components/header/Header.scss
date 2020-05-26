@@ -56,8 +56,12 @@
       font-size: 2.0rem;
       margin: 30px 0 0;
 
-      @media screen and (min-width: $large) {
+      @media screen and (min-width: $large) and (max-width: $xlarge - 1) {
         margin: 0;
+        font-size: 2.15rem;
+      }
+
+      @media screen and (min-width: $xlarge) {
         font-size: 2.25rem;
       }
     }
@@ -69,7 +73,11 @@
       font-size: 0.85rem;
       font-family: $primaryFont;
 
-      @media screen and (min-width: $large) {
+      @media screen and (min-width: $large) and (max-width: $xlarge - 1) {
+        font-size: 0.91rem;
+      }
+
+      @media screen and (min-width: $xlarge) {
         font-size: 0.95rem;
       }
     }

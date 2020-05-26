@@ -18,6 +18,24 @@
     cursor: help;
     z-index: 999;
 
+    .ToolTipIn,
+    .ToolTipIn-enter {
+      transition: all .4s ease-in-out;
+      transform: translate(0, -40%);
+      opacity: 0;
+    }
+    // .ToolTipIn-enter.socialIn-enter-active {
+    //   transform: translate(0, 0);
+    //   opacity: 1;
+    // }
+    // .ToolTipIn-leave {
+    //   transform: translate(0, 0);
+    //   opacity: 1;
+    // }
+    // .ToolTipIn-leave-active {
+    //   opacity:0;
+    // }
+
     @media (min-width: $large) {
       bottom: 8vh;
     }

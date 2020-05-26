@@ -1,0 +1,692 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* CSS reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0;
+}
+input{
+	border:1px solid #b0b0b0;
+	padding:3px 5px 4px;
+	color:#979797;
+	width:190px;
+}
+address,caption,cite,code,dfn,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+	
+/* now onto the rest of the CSS */	
+/* universals */	
+html, body {
+
+height: 100%;
+font-family: Proxima_nova, Helvetica, Arial, sans-serif;
+color: #666666;
+font-size: 20px;
+line-height: 23px;
+background-color: #f5f5f3;
+margin:0;
+padding:0; 
+
+
+}
+
+a {
+
+font-family: 'avenir', 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+text-decoration: none;
+color: #556661;
+color: rgba(77,92,70,1.0);
+
+
+}
+
+a:hover {
+
+text-decoration: none;
+color: #556661;
+
+}
+
+p {
+
+text-shadow: 0px 2px 2px rgba(255,255,255,0.8);
+}
+
+.indent {
+
+text-indent: 32px;
+
+}
+
+blockquote {
+
+font-size: 15px;
+line-height: 17px;
+font-style: italic;
+
+}
+
+div.list ul {
+
+list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  display: inline;
+
+}
+
+section.copy ul {
+
+list-style:square;
+  margin-left: 20px;
+  padding: 0;
+
+}
+
+div.list li {
+
+display: inline;
+padding: 5px;
+
+}
+
+hr {
+
+color: #aed6da;
+height: 1px;
+border: dashed 1px;
+
+}
+
+h1 {
+
+text-align: center;
+
+}
+
+h2, h4 {
+
+text-align: left;
+text-indent: 42px;
+color: #CC6666;
+font-family: 'avenir', 'Helvetica', 'Arial Narrow', Arial, sans-serif;
+text-transform: uppercase;
+}
+
+.copy1 {
+
+width: 350px;
+padding: 0;
+display: inline-block;
+float: left;
+
+}
+
+.copy {
+
+width: 250px;
+padding: 0;
+display: inline-block;
+
+
+}
+
+.position {
+
+height: 100%;
+
+
+}
+
+.inner {
+
+padding-top: 5px;
+width: 600px;
+margin-left: 50%;
+left: -300px;
+position: relative;
+height: 600px;
+vertical-align: top;
+
+}
+
+.inner_home {
+
+width: 100%;
+position: absolute;
+text-align: center;
+margin-top: 5%;
+
+}
+
+.name {
+
+width: 100%;
+color: #558a8f;
+/*color: #80905b;*/
+font-family: 'great_vibesregular', 'ballparkweiner', 'marmellata' ;
+font-style: italic;
+font-size: 150px;
+line-height: 200px;
+text-shadow: 2px 2px 2px rgba(255,255,255,1);
+text-transform: none;
+
+
+}
+.slogan {
+
+text-align: center;
+color: #CC6666;
+font-family: 'avenir', 'Helvetica', 'Arial Narrow', Arial, sans-serif;
+text-shadow: 2px 2px 2px rgba(255,255,255,1);
+text-transform: uppercase;
+display: block;
+margin-top: -15px;
+
+}
+
+
+
+.fancy {
+
+color: #729da1;
+/*color: #80905b;*/
+font-family: 'great_vibesregular', 'ballparkweiner', 'marmellata' ;
+font-style: italic;
+font-size: 100px;
+text-shadow: 2px 2px 2px rgba(255,255,255,1);
+text-transform: none;
+
+}
+
+.blue  {
+
+color: #729da1;
+font-family: 'great_vibesregular', 'ballparkweiner', 'marmellata' ;
+font-style: italic;
+font-size: 150px;
+line-height: 200px;
+text-shadow: 2px 2px 2px rgba(255,255,255,1);
+text-transform: none;
+
+}
+
+#beamup {
+
+padding: 0;
+list-style-type: none;
+position: relative;
+
+}
+
+#container {
+
+width: 100%;
+min-height:100%;
+position:relative;
+
+}
+
+#back-top {
+
+bottom: 180px;
+
+}
+
+#option1 {
+
+bottom: 130px;
+
+}
+
+#option2 {
+
+bottom: 80px;
+
+}
+
+
+.tabs {
+
+z-index: 40;
+padding-left: 25px;
+position: fixed;
+background: url(../images/bkgs/boxbkg.png) repeat;
+border: solid #ffffff;
+border-width: 10px 10px 10px 0px;
+-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px 4px 4px 4px;
+	-webkit-box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+
+
+}
+
+#connect {
+
+margin: 0;
+padding-left: 25px;
+z-index: 40;
+position: fixed;
+width: 430px;
+bottom: 30px;
+background: url(../images/bkgs/boxbkg.png) repeat;
+border: solid #ffffff;
+border-width: 10px 10px 10px 0px;
+-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px 4px 4px 4px;
+	-webkit-box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+
+}
+
+#menu {
+
+position: fixed;
+bottom: 0px;
+
+
+}
+
+#menu a, span {
+
+color: #7d7d7d;
+font-size: 16px;
+text-transform: uppercase;
+}
+
+#menu a:hover {
+
+text-decoration: none;
+color: #CC6666;
+
+}
+
+.pink {
+
+color: #CC6666;
+
+}
+
+
+.panel {
+
+height: 1500px;
+width: 100%;
+padding-top: 50px;
+
+
+}
+
+#home {
+
+z-index: 40;
+position: relative;
+
+}
+
+#about {
+
+z-index: 40;
+position: relative;
+
+}
+
+#port {
+
+z-index: 40;
+position: relative;
+
+}
+
+#wrapper {
+
+margin: 0 auto;
+
+}
+
+#footer {
+
+background: url(../images/bkgs/booktop.jpg) 55% no-repeat;
+width: 100%;
+height: 368px;
+position: fixed;
+bottom:-50px;
+left:0;
+
+
+}
+
+
+
+/*
+
+#header {
+
+z-index: 11;
+background: url(../images/bkgs/stich.png) repeat-x;
+width: 100%;
+height: 42px;
+position: fixed;
+top:0;
+left:0;
+display: none;
+
+} */
+
+
+
+
+img {
+max-width: 100%;
+}
+
+.list {
+
+	display: inline;  
+	margin: 0 auto;
+	padding-top: 10px;
+
+}
+
+.icon {
+
+opacity: 0.5;
+
+}
+
+.icon:hover {
+
+opacity: 1;
+
+}
+
+a.top {
+
+border-bottom: none;
+
+}
+
+
+/* CODROPS LIGHTBOX EFFECTS */
+
+/* style3.css */
+
+.lb-album{
+	
+	width: 100%;
+	display: block;
+	margin-top: 0;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 65px;
+	font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+	
+}
+
+.lb-album li{
+	list-style-type: none;
+	float: left;
+	padding: 5px;
+	
+}
+.lb-album li > a,
+.lb-album li > a img{
+	display: block;
+}
+.lb-album li > a{
+	width: 150px;
+	height: 150px;
+	position: relative;
+	padding: 5px;
+	background: #ffffff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px 4px 4px 4px;
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+}
+.lb-album li > a span{
+	position: absolute;
+	padding-top: 40%;
+	width: 150px;
+	height: 150px;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+	line-height: 22px;
+	color: rgba(74,86,68,0.8);
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.6);
+	font-size: 20px;
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	background: rgb(241,210,194);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,0.9) 0%, rgba(244,245,240,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.9)), color-stop(100%,rgba(244,245,240,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.9) 0%,rgba(244,245,240,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,0.9) 0%,rgba(244,245,240,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,0.9) 0%,rgba(244,245,240,1) 100%);
+	background: radial-gradient(center, ellipse cover, rgba(255,255,255,0.9) 0%,rgba(244,245,240,1) 100%);
+	-webkit-transition: opacity 0.3s linear;
+	-moz-transition: opacity 0.3s linear;
+	-o-transition: opacity 0.3s linear;
+	-ms-transition: opacity 0.3s linear;
+	transition: opacity 0.3s linear;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 5px 5px 5px 5px;
+}
+.lb-album li > a:hover span{
+	opacity: 1;
+	filter: alpha(opacity=99); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=99)"; /*IE8*/
+}
+.lb-overlay{
+z-index: 99;
+	width: 0px;
+	height: 0px;
+	position: fixed;
+	overflow: hidden;
+	left: 0px;
+	top: 0px;
+	padding: 0px;
+	text-align: center;
+	background: rgb(241,210,194);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,0.8) 0%, rgba(244,245,240,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.56)), color-stop(100%,rgba(244,245,240,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.8) 0%,rgba(244,245,240,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,0.8) 0%,rgba(244,245,240,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,0.8) 0%,rgba(244,245,240,1) 100%);
+	background: radial-gradient(center, ellipse cover, rgba(255,255,255,0.8) 0%,rgba(244,245,240,1) 100%);
+}
+.lb-overlay > div{
+	position: relative;
+	color: rgba(27,54,81,0.8);
+	width: 600px;
+	height: 80px;
+	margin-top: 30px;
+	margin-left: 50%;
+	left: -300px;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.6);
+}
+.lb-overlay div h3 {
+	padding: 0px 20px;
+	width: 300px;
+	height: 60px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.lb-overlay div p {
+
+padding: 0px 20px;
+	width: 200px;
+	height: 60px;
+	margin-left: auto;
+	margin-right: auto;
+
+
+}
+
+.lb-overlay div h3{
+
+color: #CC6666;
+height: 60px;
+font-family: 'avenir', 'Helvetica', 'Arial Narrow', Arial, sans-serif;
+text-transform: uppercase;
+padding-top: 10px;
+	font-size: 20px;
+	float: left;
+	text-align: right;
+	border-right: 1px solid rgba(27,54,81,0.4);
+}
+.lb-overlay div h3 span,
+.lb-overlay div p{
+padding-top: 10px;
+	font-size: 16px;
+	font-family: Constantia, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+	font-style: italic;
+}
+.lb-overlay div h3 span{
+	display: block;
+	line-height: 6px;
+}
+.lb-overlay div p{
+	font-size: 15px;
+	text-transform: none;
+	text-align: left;
+	float: left;
+	width: 260px;
+	padding-top: 15px;
+}
+.lb-overlay a.lb-close{
+	background: #ffffff;
+	z-index: 1001;
+	color: #C4C4C4;
+	position: absolute;
+	top: 35px;
+	left: 50%;
+	margin-left: -35px;
+	font-size: 14px;
+	line-height: 25px;
+	text-align: center;
+	width: 70px;
+	height: 24px;
+	overflow: hidden;
+	
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-moz-border-radius: 40px;
+	-webkit-border-radius: 40px;
+	border-radius: 40px 40px 40px 40px;
+}
+.lb-overlay img{
+	/* height: 100%; For Opera max-height does not seem to work */
+	max-height: 90%;
+	position: relative;
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	-webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+	-moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+	box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+	-webkit-transition: opacity 0.5s linear;
+	-moz-transition: opacity 0.5s linear;
+	-o-transition: opacity 0.5s linear;
+	-ms-transition: opacity 0.5s linear;
+	transition: opacity 0.5s linear;
+}
+.lb-prev, .lb-next{
+	text-indent: -9000px;
+	position: absolute;
+	top: -15px;
+	width: 24px;
+	height: 25px;
+	left: 50%;
+	opacity: 0.8;
+	filter: alpha(opacity=80); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=80)"; /*IE8*/
+}
+.lb-prev:hover, .lb-next:hover{
+	opacity: 1;
+	filter: alpha(opacity=99); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=99)"; /*IE8*/
+}
+.lb-prev{
+	margin-left: -30px;
+	background: transparent url(../images/arrows.png) no-repeat top left;
+}
+.lb-next{
+	margin-left: 6px;
+	background: transparent url(../images/arrows.png) no-repeat top right;
+}
+.lb-overlay:target {
+	width: auto;
+	height: auto;
+	bottom: 0px;
+	right: 0px;
+	padding: 80px 100px 120px 100px;
+}
+.lb-overlay:target img,
+.lb-overlay:target a.lb-close{
+	opacity: 1;
+	filter: alpha(opacity=99); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=99)"; /*IE8*/
+}
+/* 
+	100% Height for Opera as the max-height seems to be ignored, not optimal for large screens 
+	http://bricss.net/post/11230266445/css-hack-to-target-opera 
+*/
+x:-o-prefocus, .lb-overlay img {
+    height: 100%;
+}
+
+
+/* browser support stuff from demo.css */
+
+.support-note span{
+	color: #ac375d;
+	font-size: 16px;
+	display: none;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px 0;
+}
+.no-cssanimations .support-note span.no-cssanimations,
+.no-csstransforms .support-note span.no-csstransforms,
+.no-csstransforms3d .support-note span.no-csstransforms3d,
+.no-csstransitions .support-note span.no-csstransitions{
+	display: block;
+}

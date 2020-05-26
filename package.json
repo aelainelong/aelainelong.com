@@ -11,6 +11,7 @@
     "react-ga": "^2.3.5",
     "react-preloaded": "^1.0.0",
     "react-scripts": "1.0.17",
+    "react-transition-group": "2.7.0",
     "three": "^0.116.1",
     "three.meshline": "^1.2.0"
   },

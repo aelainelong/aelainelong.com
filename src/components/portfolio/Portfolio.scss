@@ -7,19 +7,34 @@
 // $largeCirc: 100px;
 
 .Portfolio,
-.Portfolio canvas {
+.Scene,
+.scene-wrapper,
+canvas {
   width: 100vw !important;
   height: 100vh !important;
-  cursor: move;
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
+}
 
-  &:active,
-  &.active-grab {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
+.Scene {
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 1;
+
+  canvas {
+    pointer-events: none; }
+
+  &.Scene-ready canvas {
+    pointer-events: all;
+    cursor: grab !important;
+    cursor: -moz-grab !important;
+    cursor: -webkit-grab !important;
+
+    &:active,
+    &.active-grab {
+      cursor: grabbing !important;
+      cursor: -moz-grabbing !important;
+      cursor: -webkit-grabbing !important;
+    }
   }
 }
 

@@ -9,11 +9,11 @@
   z-index: 999;
   transition: bottom 2s ease;
 
-  @media screen and (min-width: $small) {
-    .App-home & {
-      // bottom: 35vh;
-    }
-  }
+  // @media screen and (min-width: $small) {
+  //   .App-home & {
+  //     // bottom: 35vh;
+  //   }
+  // }
 }
 .Footer .social {
   margin: 0;

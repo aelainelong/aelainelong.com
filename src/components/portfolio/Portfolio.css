@@ -8,19 +8,28 @@
 /* Breakpoints */
 /* Mixins */
 .Portfolio,
-.Portfolio canvas {
+.Scene,
+.scene-wrapper,
+canvas {
   width: 100vw !important;
-  height: 100vh !important;
-  cursor: move;
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab; }
-  .Portfolio:active, .Portfolio.active-grab,
-  .Portfolio canvas:active,
-  .Portfolio canvas.active-grab {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing; }
+  height: 100vh !important; }
+
+.Scene {
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  z-index: 1; }
+  .Scene canvas {
+    pointer-events: none; }
+  .Scene.Scene-ready canvas {
+    pointer-events: all;
+    cursor: grab !important;
+    cursor: -moz-grab !important;
+    cursor: -webkit-grab !important; }
+    .Scene.Scene-ready canvas:active, .Scene.Scene-ready canvas.active-grab {
+      cursor: grabbing !important;
+      cursor: -moz-grabbing !important;
+      cursor: -webkit-grabbing !important; }
 
 .Portfolio {
   position: absolute;

@@ -19,12 +19,15 @@ const dodecahedron = (projects) => {
     // Create mesh from base dodecahedron geometry and material
     const dodecahedron = new THREE.LineSegments(edges, material);
 
-    // Build the project faces to sit on top of the dodecahedron
-    projects = projects.map(project => new ProjectFace(project));
+    // Build the project faces to sit on top of the dodecahedron and add them to their own group
+    const projectGroup = new THREE.Group();
+    projects = projects.map(project => {
+        const projectFace = new ProjectFace(project);
+        projectGroup.add(projectFace);
+    });
 
     // Add the dodecahedron and its custom faces to the main group
-    group.add(dodecahedron);
-    projects.forEach(project => group.add(project));
+    group.add(dodecahedron, projectGroup);
 
     // Motion
     // rotateLeft = () => {

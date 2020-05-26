@@ -14,13 +14,16 @@ class Scene extends React.Component {
     constructor(props){
         super(props);
 
+        this.sceneWrapper = React.createRef();
+
         this.state = {
             ready: false
         }
 
-        this.maxZoom = 4.5;
         this.minZoom = 1;
-        this.rotationSpeed = 0.0025;
+        this.maxZoom = 4.5;
+        this.dodecaRotationSpeed = 0.0025;
+        this.icosaRotationSpeed = 0.0025;
     }
 
     // Set up our threeJS portfolio scene //
@@ -41,26 +44,38 @@ class Scene extends React.Component {
         this.renderer.gammaFactor = 2.2;
         this.renderer.gammaOutput = true;
         this.canvas = this.renderer.domElement;
-        ReactDOM.findDOMNode(this).appendChild(this.canvas); // this.mount.appendChild(this.canvas);
+        this.sceneWrapper.current.appendChild(this.canvas);
 
         // Add our portfolio dodecahedron and the background icosahedron to the scene
         this.dodecahedron = dodecahedron(this.props.projects);
         this.icosahedron = icosahedron;
         this.scene.add(this.dodecahedron, this.icosahedron);
 
+        // Take snapshots of our starting quaternions for reference when we run our rotational tweens later
+        this.originalDodecahedronQuaternion = this.dodecahedron.quaternion.clone();
+        this.originalCameraQuaternion = this.camera.quaternion.clone();
+        //console.log(this.originalCameraQuaternion);
+        this.originalCameraRotation = this.camera.rotation.clone();
+        //console.log(this.originalCameraRotation);
+
         // Add fog!
         this.scene.fog = new THREE.Fog(0x67418a, 7, 20);
 
         // Attach controls to enable camera and group rotation / dragging behaviors
-        // this.cameraControls = new OrbitControls(this.camera, this.canvas);
+        this.orbitControls = new OrbitControls(this.camera, this.canvas);
+        this.orbitControls.target = this.dodecahedron.position;
+        this.orbitControls.autoRotate = true;
+        this.orbitControls.autoRotateSpeed = this.dodecaRotationSpeed;
+        this.orbitControls.enablePan = false;
+        this.orbitControls.enableZoom = false;
+        this.orbitControls.enableKeys = true;
+        this.orbitControls.maxDistance = this.maxZoom;
+
         this.dodecahedronControls = new DragControls(this.dodecahedron, this.camera, this.canvas);
         this.dodecahedronControls.addEventListener("dragstart", this.handleMouseDown);
         this.dodecahedronControls.addEventListener("dragend", this.handleMouseUp);
         // this.dodecahedronControls.addEventListener("hoveron", );
         // this.dodecahedronControls.addEventListener("hoveroff", );
-        // this.dodecahedronControls.enablePan = false;
-        // this.dodecahedronControls.enableKeys = true;
-        //this.dodecahedronControls.maxDistance = this.maxZoom;
 
         // Add raycaster to catch mouse click events on the project faces
         this.raycaster = new THREE.Raycaster();
@@ -69,26 +84,19 @@ class Scene extends React.Component {
 
         // Add other window / canvas event handlers
         window.addEventListener('resize', this.onWindowResize, false);
-        //this.canvas.addEventListener('mousemove', this.handleMouseMove);
+
+        // Set a constant quaternion for our explore mode transitions
+        this.endingEuler = new THREE.Euler(0, 2.15, 0);
+        this.endingEulerV3 = this.endingEuler.toVector3();
 
         // Add Axes Helper
-        // const axesHelper = new THREE.AxesHelper(25);
-        // this.scene.add(axesHelper);
+        const axesHelper = new THREE.AxesHelper(25);
+        this.scene.add(axesHelper);
 
         // Start scene
         // this.renderScene(); // load static
         this.animate(); // load w/ rotation
     }
-
-    // Update app view
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     if (prevState.ready !== this.state.ready) {
-            
-    //     }
-
-        
-    //     return false;
-    // }
 
     componentDidUpdate(prevProps, prevState) {
         console.log("Component did update.");
@@ -141,23 +149,36 @@ class Scene extends React.Component {
         }
 
         // Set rotation parameters
-        //this.dodecahedron.rotation.y -= this.rotationSpeed; // rotate the polyhedron around the y axis
-        //this.icosahedron.rotation.y += this.rotationSpeed; // rotate background wireframe around the y axis
+        //this.dodecahedron.rotation.y -= this.dodecaRotationSpeed; // rotate the polyhedron around the y axis
+        this.icosahedron.rotation.y += this.icosaRotationSpeed; // rotate background wireframe around the y axis
 
 
         // Render scene
-        //this.cameraControls.update();
         TWEEN.update();
-        const thisAnimation = requestAnimationFrame(this.animate);
+        this.orbitControls.update();
+
+        requestAnimationFrame(this.animate);
         this.renderScene();
+    }
+
+    turnInteractionsOn = () => {
+        // Turn on the scene's ready state to enable mouse interactions
+        this.setState(() => ({ ready: true }));
+    }
+
+    turnInteractionsOff = () => {
+        // Turn off the scene's ready state to disable mouse interactions
+        this.setState(() => ({ ready: false }));
     }
 
     // Get our scene ready for mouse interactions (dragging / hovering / clicking)
     toggleControls = () => {
         if(this.state.ready){
             this.dodecahedronControls.activate();
+            this.canvas.addEventListener('mousemove', this.handleMouseMove);
         } else {
             this.dodecahedronControls.deactivate();
+            this.canvas.removeEventListener('mousemove', this.handleMouseMove);
         }
     }
 
@@ -178,85 +199,99 @@ class Scene extends React.Component {
     }
 
     animateToHome = () => {
+        // PROJECT FACES //
+        // Grow and fade in our project faces
+        for (let i = 0; i < this.dodecahedron.children[1].children.length; i++) {
+            const projectFace = this.dodecahedron.children[1].children[i];
+            projectFace.advance();
+        }
 
-        // Tween our dodecahedron to face the camera
-        const qStart = this.dodecahedron.quaternion; // current rotation of dodecahedron
-        // const qStartEuler = new THREE.Euler();
-        // qStartEuler.setFromQuaternion(qStart);
-        // const qStartVector3 = qStartEuler.toVector3();
+        // DODECAHEDRON //
+        // Rotation
+        // const dodecaStart = this.dodecahedron.quaternion;
+        // const dodecaEnd = this.originalDQ;
 
-        console.log(qStart);
-
-        const qEnd = new THREE.Quaternion();
-        qEnd.set(qStart.x, 2.2, qStart.z, qStart.w);
-        // const qEndEuler = new THREE.Euler(0, 2.15, 0);
-        // const qEndVector3 = qEndEuler.toVector3();
-
-        // console.log(qStartVector3);
-        // console.log(qEndVector3);
-
-        //qEnd.setFromUnitVectors(qStartVector3, qEndVector3);
-
-        // const polyStart = new THREE.Vector3(); // Vector 3 extracted from the quaternion
-        // const polyQuaternion = new THREE.Quaternion().setFromUnitVectors(polyStart, polyEnd);
-
-        const tweenA = new TWEEN.Tween({ t: 0 }).to({ t: 1 }, 2000)
-            .easing(TWEEN.Easing.Linear.None)
-            .onUpdate((tween) => { qStart.slerp(this.camera.quaternion, tween.t) })
-            .start();
-
-        // const tweenA = new TWEEN.Tween(this.dodecahedron.rotation)
-        //     .to({ x: 0, y: 2.2, z: 0 }, 1000)
-        //     .easing(TWEEN.Easing.Quadratic.Out)
+        // const dodecaRotation = new TWEEN.Tween({ t: 0 }).to({ t: 1 }, 5000)
+        //     .easing(TWEEN.Easing.Quadratic.In)
+        //     .onUpdate((tween) => { dodecaStart.slerp(dodecaEnd, tween.t) })
         //     .start();
 
-        // Tween our camera transition from Explore mode back to the home screen
-        const cameraStart = this.camera.position,
-            cameraEnd = new THREE.Vector3(this.minZoom, 0, 0);
-
-        const tweenB = new TWEEN.Tween(cameraStart)
-            .to(cameraEnd, 2000)
-            .easing(TWEEN.Easing.Linear.None)
-            .onStart(() => {
-                // Turn off the scene's ready state
-                this.setState(() => ({ ready: false }));
-            })
+        // CAMERA //
+        // Rotation
+        const cameraRotStart = this.camera.quaternion,
+            cameraRotEnd = this.originalCameraQuaternion;
+        const cameraRotation = new TWEEN.Tween(cameraRotStart)
+            .to(cameraRotEnd, 500)
+            .easing(TWEEN.Easing.Quadratic.InOut);
+        
+        // Position
+        const cameraPosStart = this.camera.position,
+            cameraPosEnd = new THREE.Vector3(this.minZoom, 0, 0);
+        const cameraPosition = new TWEEN.Tween(cameraPosStart)
+            .to(cameraPosEnd, 2000)
+            .easing(TWEEN.Easing.Cubic.Out)
             .onComplete(() => {
                 this.camera.updateProjectionMatrix();
-            })
-            .start();
-
-        // Chain our tweens together
-        //tweenA.chain(tweenB);
+            });
+        
+        // SEQUENCE //
+        cameraPosition.onStart(this.turnInteractionsOff);
+        cameraPosition.start();
+        // Compare the camera's starting and ending quaternions
+        // If they don't match, run both the rotational and positional tweens
+        // Otherwise, just run the positional tween
+        //console.log(this.originalCameraQuaternion, this.camera.quaternion);
+        // if (!utils.equivalentQuaternions(this.camera.rotation, this.originalCameraRotation)){
+        //     //console.log("We have rotation and position to reset.");
+        //     cameraRotation.chain(cameraPosition);
+        //     cameraRotation.onStart(this.turnInteractionsOff);
+        //     //cameraRotation.start();
+        // } else {
+        //     //console.log("We only have position to reset.");
+        //     cameraPosition.onStart(this.turnInteractionsOff);
+        //     cameraPosition.start();
+        // }
     }
 
     animateToExplore = () => {
+        // PROJECT FACES //
+        // Shrink and fade out our project faces
+        for (let i = 0; i < this.dodecahedron.children[1].children.length; i++) {
+            const projectFace = this.dodecahedron.children[1].children[i];
+            projectFace.retreat();
+        }
+
         // Tween our dodecahedron to face the camera
-        new TWEEN.Tween(this.dodecahedron.rotation)
-            .to({ x: 0, y: 2.2, z: 0 }, 1000)
-            .easing(TWEEN.Easing.Linear.None)
-            .start();
+        // const qStart = this.camera.quaternion; // current rotation of dodecahedron
+        // const qStartingEuler = new THREE.Euler(0, 0, 0);
+        // qStartingEuler.setFromQuaternion(qStart);
+        // const qStartingEulerV3 = qStartingEuler.toVector3();
+
+        // const qEnd = new THREE.Quaternion();
+        // qEnd.setFromUnitVectors(qStartingEulerV3, this.endingEulerV3);
+
+        // const tweenA = new TWEEN.Tween({ t: 0 }).to({ t: 1 }, 5000)
+        //     .easing(TWEEN.Easing.Quadratic.Out)
+        //     .onUpdate((tween) => { qStart.slerp(qEnd, tween.t) })
+        //     .start();
 
         // Tween our camera transition from the home screen to Explore mode
         const cameraStart = this.camera.position,
-            cameraEnd = new THREE.Vector3(2, 0, 4);
-        this.camera.position.set(new THREE.Vector3(2, 0, 4));
+            cameraEnd = new THREE.Vector3(this.maxZoom, 0, 0);
 
         new TWEEN.Tween(cameraStart)
             .to(cameraEnd, 5000)
             .delay(500)
-            .easing(TWEEN.Easing.Linear.None)
+            .easing(TWEEN.Easing.Quadratic.InOut)
             .onComplete(() => {
                 this.camera.updateProjectionMatrix();
-                // Turn on the scene's ready state
-                this.setState(() => ({ ready: true }));
+                this.turnInteractionsOn();
             })
             .start();
 
         // Chain our tweens together
         // tweenA.chain(tweenB);
     }
-
 
     // Raycasting event handler
     handleMouseClick = e => {
@@ -278,26 +313,27 @@ class Scene extends React.Component {
 
     // Set grabby cursor when grabbing
     handleMouseDown = e => {
+        e.preventDefault();
         this.canvas.classList.add("active-grab");
     }
 
     // Remove grabby cursor when no longer grabbing
     handleMouseUp = e => {
+        e.preventDefault();
         this.canvas.classList.remove("active-grab");
     }
 
-    // Add subtle shift of the background wireframe icosahedron
+    // Add subtle shift of the background icosahedron wireframe on mouse move (this is extra, but it looks nice)
     handleMouseMove = e => {
-        const mouse = new THREE.Vector3();
-        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-        mouse.z = 0;
+        this.icosahedron.rotation.y += e.movementX * 0.0005;
+        this.icosahedron.rotation.z -= e.movementY * 0.0005;
     }
 
     render(){
         return (
-            <div>
-                {this.state.ready ? `<div>Here we are pooping something into the page.</div>` : ``}
+            <div className={`Scene ${ this.state.ready ? `Scene-ready` : ``}`}>
+                <div className="scene-wrapper" ref={this.sceneWrapper}></div>
+                {this.state.ready ? <ToolTip ref={this.toolTip} /> : null}
             </div>
         );
     }
