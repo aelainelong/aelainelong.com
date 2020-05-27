@@ -5,7 +5,7 @@ import ProjectFace from './_projectFace';
 // Dodecahedron project interface
 // ==============================
 
-const geometry = new THREE.DodecahedronGeometry(2);
+const geometry = new THREE.DodecahedronGeometry(2.25);
 const dodecahedron = (projects) => {
     // Create group to hold our base geometry + custom project faces //
     const group = new THREE.Group();
@@ -23,11 +23,12 @@ const dodecahedron = (projects) => {
     const projectGroup = new THREE.Group();
     projects = projects.map(project => {
         const projectFace = new ProjectFace(project);
-        projectGroup.add(projectFace);
+        return projectGroup.add(projectFace);
     });
 
     // Add the dodecahedron and its custom faces to the main group
     group.add(dodecahedron, projectGroup);
+    group.name = "Dodecahedron";
 
     // Motion
     // rotateLeft = () => {

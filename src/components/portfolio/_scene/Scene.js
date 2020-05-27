@@ -23,7 +23,7 @@ class Scene extends React.Component {
         this.minZoom = 1;
         this.maxZoom = 4.5;
         this.dodecaRotationSpeed = 0.0025;
-        this.icosaRotationSpeed = 0.0025;
+        this.icosaRotationSpeed = 0.0020;
     }
 
     // Set up our threeJS portfolio scene //
@@ -74,13 +74,13 @@ class Scene extends React.Component {
         this.dodecahedronControls = new DragControls(this.dodecahedron, this.camera, this.canvas);
         this.dodecahedronControls.addEventListener("dragstart", this.handleMouseDown);
         this.dodecahedronControls.addEventListener("dragend", this.handleMouseUp);
-        // this.dodecahedronControls.addEventListener("hoveron", );
-        // this.dodecahedronControls.addEventListener("hoveroff", );
+        // this.dodecahedronControls.addEventListener("hoveron", this.handleHoverOn);
+        // this.dodecahedronControls.addEventListener("hoveroff", this.handlehoverOff);
 
         // Add raycaster to catch mouse click events on the project faces
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
-        //window.addEventListener('click', this.handleMouseClick, false);
+        //this.mouse = new THREE.Vector2(), this.INTERSECTED;
 
         // Add other window / canvas event handlers
         window.addEventListener('resize', this.onWindowResize, false);
@@ -90,12 +90,53 @@ class Scene extends React.Component {
         this.endingEulerV3 = this.endingEuler.toVector3();
 
         // Add Axes Helper
-        const axesHelper = new THREE.AxesHelper(25);
-        this.scene.add(axesHelper);
+        // const axesHelper = new THREE.AxesHelper(25);
+        // this.scene.add(axesHelper);
 
         // Start scene
         // this.renderScene(); // load static
         this.animate(); // load w/ rotation
+
+        // Animate To Home
+        const cameraPosStart = this.camera.position,
+            cameraPosEnd = new THREE.Vector3(this.minZoom, 0, 0);
+
+        this.animateToHome = new TWEEN.Tween(cameraPosStart)
+            .to(cameraPosEnd, 4000)
+            .easing(TWEEN.Easing.Cubic.Out)
+            .onStart(() => {
+                this.turnInteractionsOff();
+                this.advanceAllProjects();
+            })
+            .onStop(() => {
+                //console.log("ANIMATION TO HOME STOPPED.");
+                this.retreatAllProjects();
+            })
+            .onComplete(() => {
+                this.camera.updateProjectionMatrix();
+                //console.log("ANIMATION TO HOME IS DONE");
+            });
+
+        // Animate to Explore
+        const cameraStart = this.camera.position,
+            cameraEnd = new THREE.Vector3(this.maxZoom, 0, 0);
+
+        this.animateToExplore = new TWEEN.Tween(cameraStart)
+            .to(cameraEnd, 4000)
+            .delay(500)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .onStop(() => {
+                //console.log("ANIMATION TO EXPLORE STOPPED.");
+                this.advanceAllProjects();
+            })
+            .onComplete(() => {
+                this.retreatAllProjects();
+                this.camera.updateProjectionMatrix();
+                this.turnInteractionsOn();
+                //console.log("ANIMATION TO EXPLORE IS DONE.");
+            });
+
+        console.log(this.dodecahedron);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -117,7 +158,6 @@ class Scene extends React.Component {
         // Remove all event listeners from the window and canvas objects
         this.dodecahedronControls.dispose();
         window.removeEventListener('resize', this.onWindowResize);
-        //window.removeEventListener('click', this.handleMouseClick);
 
         // Remove the model controls
 
@@ -125,14 +165,34 @@ class Scene extends React.Component {
         // this.stopRotation();
 
         // Remove the threeJS scene from the DOM
-        ReactDOM.findDOMNode(this).removeChild(this.canvas); // this.mount.removeChild(this.canvas);
+        this.sceneWrapper.current.removeChild(this.canvas); // this.mount.removeChild(this.canvas);
     }
 
     // Render method for the threeJS scene
     renderScene = () => {
         // Get the objects which intersect the picking ray
-        //this.raycaster.setFromCamera(this.mouse, this.camera);
-        //this.intersects = this.raycaster.intersectObjects(this.group.children, true);
+        // this.raycaster.setFromCamera(this.mouse, this.camera);
+        //this.intersects = this.raycaster.intersectObject(this.dodecahedron, true);
+        
+        // this.intersects = this.raycaster.intersectObjects(this.dodecahedron.children[1].children, true);
+
+        // if (this.intersects.length > 0) {
+        //     console.log("We have intersects!");
+        //     if (this.INTERSECTED != this.intersects[0].object) {
+        //         if (this.INTERSECTED) {
+        //             //this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+        //         }
+        //         this.INTERSECTED = this.intersects[0].object;
+        //         //this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+        //         //this.INTERSECTED.material.emissive.setHex(0xff0000);
+        //     }
+        // } else {
+        //     //console.log("No intersects.");
+        //     if (this.INTERSECTED){
+        //         //this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+        //     }
+        //     this.INTERSECTED = null;
+        // }
 
         // Render the scene
         this.renderer.render(this.scene, this.camera);
@@ -149,9 +209,8 @@ class Scene extends React.Component {
         }
 
         // Set rotation parameters
-        //this.dodecahedron.rotation.y -= this.dodecaRotationSpeed; // rotate the polyhedron around the y axis
+        this.dodecahedron.rotation.y -= this.dodecaRotationSpeed; // rotate the polyhedron around the y axis
         this.icosahedron.rotation.y += this.icosaRotationSpeed; // rotate background wireframe around the y axis
-
 
         // Render scene
         TWEEN.update();
@@ -161,14 +220,41 @@ class Scene extends React.Component {
         this.renderScene();
     }
 
+    // Update camera position
+    updateCameraPosition = e => {
+        if (this.props.explore) {
+            this.animateToHome.stop();
+            this.animateToExplore.start();
+        } else {
+            this.animateToExplore.stop();
+            this.animateToHome.start();
+        }
+    }
+
+    // Turn on the scene's ready state to enable mouse interactions
     turnInteractionsOn = () => {
-        // Turn on the scene's ready state to enable mouse interactions
         this.setState(() => ({ ready: true }));
     }
 
+    // Turn off the scene's ready state to disable mouse interactions
     turnInteractionsOff = () => {
-        // Turn off the scene's ready state to disable mouse interactions
         this.setState(() => ({ ready: false }));
+    }
+
+    // Grow and fade in our project faces
+    advanceAllProjects = () => {
+        for (let i = 0; i < this.dodecahedron.children[1].children.length; i++) {
+            const projectFace = this.dodecahedron.children[1].children[i];
+            projectFace.advance();
+        }
+    }
+
+    // Shrink and fade out our project faces
+    retreatAllProjects = () => {
+        for (let i = 0; i < this.dodecahedron.children[1].children.length; i++) {
+            const projectFace = this.dodecahedron.children[1].children[i];
+            projectFace.retreat();
+        }
     }
 
     // Get our scene ready for mouse interactions (dragging / hovering / clicking)
@@ -176,9 +262,12 @@ class Scene extends React.Component {
         if(this.state.ready){
             this.dodecahedronControls.activate();
             this.canvas.addEventListener('mousemove', this.handleMouseMove);
+            this.canvas.addEventListener('click', this.handleMouseClick, false);
         } else {
+            this.retreatAllProjects();
             this.dodecahedronControls.deactivate();
             this.canvas.removeEventListener('mousemove', this.handleMouseMove);
+            this.canvas.removeEventListener('click', this.handleMouseClick, false);
         }
     }
 
@@ -189,129 +278,56 @@ class Scene extends React.Component {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    // Update camera position
-    updateCameraPosition = (e) => {
-        if (this.props.explore) {
-            this.animateToExplore();
-        } else {
-            this.animateToHome();
-        }
-    }
-
-    animateToHome = () => {
-        // PROJECT FACES //
-        // Grow and fade in our project faces
-        for (let i = 0; i < this.dodecahedron.children[1].children.length; i++) {
-            const projectFace = this.dodecahedron.children[1].children[i];
-            projectFace.advance();
-        }
-
-        // DODECAHEDRON //
-        // Rotation
-        // const dodecaStart = this.dodecahedron.quaternion;
-        // const dodecaEnd = this.originalDQ;
-
-        // const dodecaRotation = new TWEEN.Tween({ t: 0 }).to({ t: 1 }, 5000)
-        //     .easing(TWEEN.Easing.Quadratic.In)
-        //     .onUpdate((tween) => { dodecaStart.slerp(dodecaEnd, tween.t) })
-        //     .start();
-
-        // CAMERA //
-        // Rotation
-        const cameraRotStart = this.camera.quaternion,
-            cameraRotEnd = this.originalCameraQuaternion;
-        const cameraRotation = new TWEEN.Tween(cameraRotStart)
-            .to(cameraRotEnd, 500)
-            .easing(TWEEN.Easing.Quadratic.InOut);
-        
-        // Position
-        const cameraPosStart = this.camera.position,
-            cameraPosEnd = new THREE.Vector3(this.minZoom, 0, 0);
-        const cameraPosition = new TWEEN.Tween(cameraPosStart)
-            .to(cameraPosEnd, 2000)
-            .easing(TWEEN.Easing.Cubic.Out)
-            .onComplete(() => {
-                this.camera.updateProjectionMatrix();
-            });
-        
-        // SEQUENCE //
-        cameraPosition.onStart(this.turnInteractionsOff);
-        cameraPosition.start();
-        // Compare the camera's starting and ending quaternions
-        // If they don't match, run both the rotational and positional tweens
-        // Otherwise, just run the positional tween
-        //console.log(this.originalCameraQuaternion, this.camera.quaternion);
-        // if (!utils.equivalentQuaternions(this.camera.rotation, this.originalCameraRotation)){
-        //     //console.log("We have rotation and position to reset.");
-        //     cameraRotation.chain(cameraPosition);
-        //     cameraRotation.onStart(this.turnInteractionsOff);
-        //     //cameraRotation.start();
-        // } else {
-        //     //console.log("We only have position to reset.");
-        //     cameraPosition.onStart(this.turnInteractionsOff);
-        //     cameraPosition.start();
-        // }
-    }
-
-    animateToExplore = () => {
-        // PROJECT FACES //
-        // Shrink and fade out our project faces
-        for (let i = 0; i < this.dodecahedron.children[1].children.length; i++) {
-            const projectFace = this.dodecahedron.children[1].children[i];
-            projectFace.retreat();
-        }
-
-        // Tween our dodecahedron to face the camera
-        // const qStart = this.camera.quaternion; // current rotation of dodecahedron
-        // const qStartingEuler = new THREE.Euler(0, 0, 0);
-        // qStartingEuler.setFromQuaternion(qStart);
-        // const qStartingEulerV3 = qStartingEuler.toVector3();
-
-        // const qEnd = new THREE.Quaternion();
-        // qEnd.setFromUnitVectors(qStartingEulerV3, this.endingEulerV3);
-
-        // const tweenA = new TWEEN.Tween({ t: 0 }).to({ t: 1 }, 5000)
-        //     .easing(TWEEN.Easing.Quadratic.Out)
-        //     .onUpdate((tween) => { qStart.slerp(qEnd, tween.t) })
-        //     .start();
-
-        // Tween our camera transition from the home screen to Explore mode
-        const cameraStart = this.camera.position,
-            cameraEnd = new THREE.Vector3(this.maxZoom, 0, 0);
-
-        new TWEEN.Tween(cameraStart)
-            .to(cameraEnd, 5000)
-            .delay(500)
-            .easing(TWEEN.Easing.Quadratic.InOut)
-            .onComplete(() => {
-                this.camera.updateProjectionMatrix();
-                this.turnInteractionsOn();
-            })
-            .start();
-
-        // Chain our tweens together
-        // tweenA.chain(tweenB);
-    }
-
     // Raycasting event handler
     handleMouseClick = e => {
         e.preventDefault();
-        this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-        this.mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
 
-        // if (this.intersects.length > 0) {
-        //   this.intersects.forEach((intersection, index) => {
-        //     if(!index === 0){
-        //       console.log(intersection);
-        //       intersection.object.material.opacity = 0.95;
-        //     }
-        //   });
-        // } else {
-        //   console.log("Nothing to see here.");
-        // }
+        // Update our mouse positioning for the raycaster
+        this.mouse.x = (e.clientX / this.renderer.domElement.clientWidth) * 2 - 1;
+        this.mouse.y = -(e.clientY / this.renderer.domElement.clientHeight) * 2 + 1;
+
+        // Tell our raycaster what to look for
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+        const intersects = this.raycaster.intersectObjects(this.dodecahedron.children[1].children, true);
+
+        if (intersects.length > 0) {
+            const clickedProject = intersects[0].object.parent;
+            console.log("Selected project:", clickedProject);
+
+            // // Make sure all projects are retreated from dodecahedron surface
+            this.retreatAllProjects();
+
+            // Activate only the selected project
+            if(!clickedProject.active){
+                // Update the active project's active flag
+                clickedProject.active = true;
+                clickedProject.advance();
+                clickedProject.showTitle();  
+            } else {
+                clickedProject.active = false;
+                clickedProject.retreat();
+                clickedProject.hideTitle();
+
+                // Rotate the camera and project to face each other's directions
+                // const cameraDir = new THREE.Vector3(0, 0, -1);
+                // cameraDir.applyQuaternion(this.camera.quaternion);
+                // cameraDir.add(this.camera.position);
+
+                // const dodecahedronDir = new THREE.Vector3(0, 0, -1);
+                // dodecahedronDir.applyQuaternion(this.dodecahedron.quaternion);
+
+                // const projectDir = new THREE.Vector3(0, 0, -1);
+                // projectDir.applyQuaternion(clickedProject.quaternion);
+                // projectDir.add(clickedProject.position);
+
+                //clickedProject.localToWorld(projectDir);
+                //this.camera.applyQuaternion(this.dodecahedron.quaternion);
+                //this.camera.lookAt(clickedProject.tVector);
+            }
+        }
     }
 
-    // Set grabby cursor when grabbing
+    // Set grabby cursor when grabbing and update our raycaster
     handleMouseDown = e => {
         e.preventDefault();
         this.canvas.classList.add("active-grab");
@@ -323,8 +339,11 @@ class Scene extends React.Component {
         this.canvas.classList.remove("active-grab");
     }
 
-    // Add subtle shift of the background icosahedron wireframe on mouse move (this is extra, but it looks nice)
+    // Add subtle shift of the background and update our raycaster mouse movements
     handleMouseMove = e => {
+        e.preventDefault();
+
+        // Add subtle vertical and horizontal shift to the background
         this.icosahedron.rotation.y += e.movementX * 0.0005;
         this.icosahedron.rotation.z -= e.movementY * 0.0005;
     }

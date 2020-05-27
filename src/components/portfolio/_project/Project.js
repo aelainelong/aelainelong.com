@@ -23,7 +23,7 @@ class Project extends React.Component {
   
   // Update portfolio progress prior to mounting 
   componentWillMount(){
-    console.log("Receiving initial props now. Do something.");
+    //console.log("Receiving initial props now. Do something.");
   }
   
   // Update project state upon mounting
@@ -31,6 +31,46 @@ class Project extends React.Component {
     setTimeout(function(){
       this.setState({ projectOpen: true });
     }.bind(this), 200);
+
+    // Portfolio Progress
+    const { atEnd } = this.state;
+
+    // Project click events
+    const handleClose = this.handleClose;
+    const handleLinkClick = this.handleLinkClick;
+
+    // Project meta info
+    const projectOpen = this.state.projectOpen;
+    const projectInfo = this.props.projectInfo;
+
+    const projectImages = projectInfo.images;
+    const projImageList = projectImages.map((image, index) => {
+      return (
+        <li key={`image-` + index}>
+          <ReactFancyBox
+            thumbnail={process.env.PUBLIC_URL + '/img/portfolio' + image}
+            image={process.env.PUBLIC_URL + '/img/portfolio' + image} />
+        </li>
+      )
+    });
+
+    const projectCategories = projectInfo.categories;
+    const projCatList = projectCategories.map((category, index) => {
+      return (
+        <li key={`category-` + index}>
+          <span>{category}</span>
+        </li>
+      )
+    });
+
+    const projectTools = projectInfo.tools;
+    const projToolList = projectTools.map((tool, index) => {
+      return (
+        <li key={`tool-` + index}>
+          <span>{tool}</span>
+        </li>
+      )
+    });
   }
   
   // Update project state upon unmounting
@@ -82,57 +122,18 @@ class Project extends React.Component {
   }
   
   render(){
-    // Portfolio Progress
-    const { atEnd } = this.state;
-    
-    // Project click events
-    const handleClose = this.handleClose;
-    const handleLinkClick = this.handleLinkClick;
-    
-    // Project meta info
-    const projectOpen = this.state.projectOpen;
-    const projectInfo = this.props.projectInfo;
-    
-    const projectImages = projectInfo.images;
-    const projImageList = projectImages.map((image, index) => {
-      return(
-        <li key={`image-`+ index}>
-          <ReactFancyBox
-            thumbnail={process.env.PUBLIC_URL + '/img/portfolio' + image}
-            image={process.env.PUBLIC_URL + '/img/portfolio' + image} />
-        </li>
-      )
-    });
-    
-    const projectCategories = projectInfo.categories;
-    const projCatList = projectCategories.map((category, index) => {
-      return(
-        <li key={`category-`+ index}>
-          <span>{category}</span>
-        </li>
-      )
-    });
-    
-    const projectTools = projectInfo.tools;
-    const projToolList = projectTools.map((tool, index) => {
-      return(
-        <li key={`tool-`+ index}>
-          <span>{tool}</span>
-        </li>
-      )
-    });
-    
     return(
-      <div className={projectOpen ? `Project open` : `Project`}>
-        <div className="project-wrapper">
+      <div className={this.state.projectOpen ? `Project open` : `Project`}>
+        <div className="project-cover"></div>
+        {/* <div className="project-wrapper">
           <div className="project-header">
             <h3 className="project-title">{projectInfo.title}</h3>
-            { projectInfo.url ? <a href={projectInfo.url} className="project-link" target="_blank" title={projectInfo.title} rel="noopener noreferrer" onClick={(e) => handleLinkClick(e)}><i className="fa fa-external-link" aria-hidden="true"></i> Visit site</a> : null }
+            {projectInfo.url ? <a href={projectInfo.url} className="project-link" target="_blank" title={projectInfo.title} rel="noopener noreferrer" onClick={(e) => handleLinkClick(e)}><i className="fa fa-external-link" aria-hidden="true"></i> Visit site</a> : null}
             <button className="btn btn-closeProject" onClick={() => handleClose()}>X</button>
           </div>
-          { projectInfo.client ? <h4 className="project-meta">Client: <span>{projectInfo.client}</span></h4> : null }
-          { projectInfo.deliverables ? <h4 className="project-meta">Deliverables: <span>{projectInfo.deliverables}</span></h4> : null }
-          { projectInfo.agency ? <h4 className="project-meta">Agency: <span>{projectInfo.agency}</span></h4> : null }
+          {projectInfo.client ? <h4 className="project-meta">Client: <span>{projectInfo.client}</span></h4> : null}
+          {projectInfo.deliverables ? <h4 className="project-meta">Deliverables: <span>{projectInfo.deliverables}</span></h4> : null}
+          {projectInfo.agency ? <h4 className="project-meta">Agency: <span>{projectInfo.agency}</span></h4> : null}
           <p className="project-description">{projectInfo.description}</p>
           <div className="project-categories">
             <h5>Skills applied: </h5>
@@ -148,7 +149,7 @@ class Project extends React.Component {
         </div>
         <div className="btn-wrapper next">
           { atEnd ? null : <button className="btn-next" onClick={() => this.handleProjectNav("next")}><i className="fa fa-angle-double-right" aria-hidden="true" title="Next project"></i></button> }
-        </div>
+        </div> */}
       </div>
     )
   }

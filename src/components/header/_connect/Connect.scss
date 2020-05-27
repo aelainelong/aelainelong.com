@@ -1,23 +1,17 @@
-/* Footer */
+/* Connect */
 
-@import '../../assets/styles/settings.scss';
+@import '../../../assets/styles/settings.scss';
 
-.Footer {
+.Connect {
   width: 100%;
-  height: 30px;
-  margin-top: 10px;
+  //height: 30px;
+  //padding: 10px 0 30px;
   z-index: 999;
   transition: bottom 2s ease;
-
-  // @media screen and (min-width: $small) {
-  //   .App-home & {
-  //     // bottom: 35vh;
-  //   }
-  // }
 }
-.Footer .social {
+.Connect .social {
   margin: 0;
-  padding: 0;
+  padding: 10px 0 0;
   list-style-type: none;
   text-align: center;
 

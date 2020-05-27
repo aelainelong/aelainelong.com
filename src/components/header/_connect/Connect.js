@@ -2,10 +2,10 @@ import React from 'react';
 import Stagger from 'react-css-stagger';
 import PropTypes from 'prop-types';
 
-import utils from '../../utils/misc.js';
-import './Footer.css';
+import utils from '../../../utils/misc.js';
+import './Connect.css';
 
-class Footer extends React.Component {
+class Connect extends React.Component {
   constructor(props){
     super(props);
     
@@ -26,19 +26,20 @@ class Footer extends React.Component {
     });
     
     return(
-      <footer className="Footer">
+      <div className="Connect">
         <ul className="social">
-          {this.props.connected ? <Stagger transition={"socialIn"} delay={150} initialDelay={200}>
+          {this.props.connect ? <Stagger transition={"socialIn"} delay={125} initialDelay={200}>
             {socialList}
-          </Stagger> : ``}
+          </Stagger> : null}
+          
         </ul>
-      </footer>
+      </div>
     );
   }
 }
 
-export default Footer;
+export default Connect;
 
-Footer.propTypes = {
+Connect.propTypes = {
   socialLinks: PropTypes.array
 }

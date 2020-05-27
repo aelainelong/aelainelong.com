@@ -11,14 +11,15 @@ class ProjectFace extends THREE.Group {
     constructor(project){
         super(project);
 
+        this.active = false;
         this.projectID = project.id;
         this.name = project.title;
-        this.opacityIn = 0.7;
+        this.opacityIn = 0.8;
         this.opacityOut = 1;
-        this.sizeIn = 0.7;
+        this.sizeIn = 0.75;
         this.sizeOut = 0.9;
         this.translationIn = 0.06;
-        this.translationOut = 0.12;
+        this.translationOut = 0.10;
         this.image = require(`./../../../../assets/images/portfolio/_thumbs/${project.thumbnail}`);
         this.color = parseInt(project.color.replace("#", "0x"), 16);
 
@@ -92,7 +93,9 @@ class ProjectFace extends THREE.Group {
         
         this.translateOnAxis(this.tVector, this.translationOut);
 
-        //console.log(this);
+        // Generate and insert our orthagonal text sprite
+        const tSprite = this.getSprite(this.name);
+        this.add(tSprite);
     }
 
     // Get correct vertices from the parent dodecahedron using the project ID //
@@ -124,71 +127,80 @@ class ProjectFace extends THREE.Group {
         return parentVertices;
     }
     // Create texture using the project thumbnail //
-    getTexture = (imageURL) => {
-        const texture = new THREE.TextureLoader().load(imageURL);
+    getTexture = (projectImage) => {
+        const texture = new THREE.TextureLoader().load(projectImage);
         texture.minFilter = THREE.LinearFilter;
         texture.encoding = THREE.sRGBEncoding;
         texture.anisotropy = 16;
         return texture;
     }
-    // Create overlay text using project title //
-    getOverlay = () => {
-
+    // Create overlay text sprite using project title //
+    getSprite = (projectTitle) => {
+        const sprite = utils.generateSprite(projectTitle, {
+            fontsize: 16,
+            fontface: "Comfortaa",
+            borderColor: {r:255, g:255, b:255, a:1.0},
+            backgroundColor: {r: 0, g:0, b:0, a:0.25}
+        });
+        sprite.position.set(this.tVector);
+        return sprite;
     }
+}
+
+// Move the project face forwards (towards camera), scale it up and fade it in a little
+ProjectFace.prototype.advance = function () {
+    // OPACITY //
+    for (let i = 0; i < this.children.length; i++) {
+        const thisLayer = this.children[i];
+        if (thisLayer.material) {
+            new TWEEN.Tween(thisLayer.material)
+                .to({ opacity: this.opacityOut }, 500)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .start();
+        }
+    }
+
+    // SIZE //
+    new TWEEN.Tween(this.scale)
+        .to({ x: this.sizeOut, y: this.sizeOut, z: this.sizeOut }, 500)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start();
 }
 
 // Move the project face backwards (towards origin), scale it down and fade it out a little
 ProjectFace.prototype.retreat = function(){
     // OPACITY //
     const opacityFront = this.opacityIn;
-    const opacityBack = this.opacityIn / 3; // the back side of the project face will be a bit more transparent
+    const opacityBack = this.opacityIn / 0.95; // the back side of the project face will be a bit more transparent
     for (let i = 0; i < this.children.length; i++) {
         const thisLayer = this.children[i];
         if(thisLayer.material){
-            const opacityEnd = thisLayer.material.side == 0 ? opacityFront : opacityBack;
+            const opacityEnd = thisLayer.material.side === 0 ? opacityFront : opacityBack;
             new TWEEN.Tween(thisLayer.material)
-                .to({ opacity: opacityEnd }, 2500)
-                .delay(1000)
+                .to({ opacity: opacityEnd }, 500)
                 .easing(TWEEN.Easing.Quadratic.InOut)
                 .start();
         }
     }
 
     // SIZE //
-    const sizeStart = this.sizeOut,
-        sizeEnd = this.sizeIn;
-    // new TWEEN.Tween(cameraStart)
-    //     .to(cameraEnd, 1500)
-    //     .easing(TWEEN.Easing.Quadratic.InOut)
-    //     .start();
-
-    // TRANSLATION //
-    const translateStart = this.translationOut,
-        translateEnd = this.translationIn;
-    // new TWEEN.Tween(cameraStart)
-    //     .to(cameraEnd, 1500)
-    //     .easing(TWEEN.Easing.Quadratic.InOut)
-    //     .start();
+    new TWEEN.Tween(this.scale)
+        .to({x: this.sizeIn, y: this.sizeIn, z: this.sizeIn}, 500)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .onComplete(() => {
+            this.active = false;
+        })
+        .start();
 }
 
-// Move the project face forwards (towards camera), scale it up and fade it in a little
-ProjectFace.prototype.advance = function(){
-    const sizeStart = this.sizeIn,
-        sizeEnd = this.sizeOut;
-    const translateStart = this.translationIn,
-        translateEnd = this.translationOut;
+// Display the project's title sprite
+ProjectFace.prototype.showTitle = function(){
+    
+}
 
-    // Opacity //
-    for (let i = 0; i < this.children.length; i++) {
-        const thisLayer = this.children[i];
-        if (thisLayer.material) {
-            new TWEEN.Tween(thisLayer.material)
-                .to({ opacity: this.opacityOut }, 2500)
-                .delay(600)
-                .easing(TWEEN.Easing.Quadratic.InOut)
-                .start();
-        }
-    }
+// Hide the project's title sprite
+ProjectFace.prototype.hideTitle = function () {
+
 }
 
 export default ProjectFace;

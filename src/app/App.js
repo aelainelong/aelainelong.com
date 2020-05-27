@@ -72,7 +72,7 @@ class App extends React.Component {
         >  */}
           <div className="app-cover" style={{ background: `linear-gradient(to bottom, rgba(0, 0, 0, 0), ${this.state.bgColorBottom})` }}></div>
           <div className="app-wrapper">
-            <Header updateView={this.updateView} toggleConnect={this.toggleConnect} connect={this.state.connect} />
+            <Header updateView={this.updateView} toggleConnect={this.toggleConnect} about={this.state.about} connect={this.state.connect} />
             <Portfolio explore={this.state.explore} />
           </div>
         {/* </Preload> */}
