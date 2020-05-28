@@ -9,6 +9,7 @@
 /* Mixins */
 .Header {
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.6);
   position: relative;
   height: 100vh;
   display: flex;
@@ -17,15 +18,19 @@
   align-content: center;
   justify-content: center;
   z-index: 5;
-  background-color: rgba(0, 0, 0, 0.6);
   transition: all 1.5s ease;
   color: #FFF; }
+  .App-explore .Header {
+    background-color: rgba(0, 0, 0, 0.15); }
+  @media (max-width: 1399px) {
+    .App-about .Header,
+    .App-connect .Header {
+      background-color: rgba(0, 0, 0, 0.6); } }
   @media (min-width: 1400px) {
     .Header {
       width: 100vw; } }
   .App-explore .Header {
     height: 20vh;
-    background-color: rgba(0, 0, 0, 0.15);
     border-bottom: 1px dashed #FFF; }
     @media (min-width: 1400px) {
       .App-explore .Header {
@@ -36,7 +41,6 @@
   @media (max-width: 1399px) {
     .App-about .Header,
     .App-connect .Header {
-      background-color: rgba(0, 0, 0, 0.6);
       height: 100vh; } }
   .Header .Header__wrap {
     position: relative;
@@ -59,6 +63,7 @@
     font-family: "Chango", sans-serif;
     font-size: 1.96rem;
     letter-spacing: 2px;
+    font-weight: 400;
     margin: 0; }
     @media screen and (min-width: 1400px) and (max-width: 1599px) {
       .Title h1 {
@@ -101,7 +106,7 @@
     display: flex;
     justify-content: space-between; }
   .Menu li {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.35);
     box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
     width: 23%;
     border: 1px dashed #FFF;
@@ -127,8 +132,6 @@
       background-color: rgba(224, 190, 0, 0.5); }
   .Menu a {
     text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
-    display: block;
-    width: 100%;
     text-decoration: none;
     text-align: center;
     padding: 8px 0 6px;
@@ -138,9 +141,13 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     font-family: "Comfortaa", sans-serif;
+    display: block;
+    width: 100%;
     transition: all ease 0.5s;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px; }
+    .Menu a:hover, .Menu a:active, .Menu a:-webkit-any-link:active {
+      color: #FFF; }
 
 .Info {
   width: 100%;

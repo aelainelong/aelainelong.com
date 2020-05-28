@@ -4,6 +4,7 @@
 
 .Header {
     @include boxshadow;
+    @include backgroundPanel;
     position: relative;
     height: 100vh;
     display: flex;
@@ -12,7 +13,6 @@
     align-content: center;
     justify-content: center;
     z-index: 5;
-    background-color: rgba(0, 0, 0, 0.6);
     transition: all 1.5s ease;
     color: $white;
 
@@ -22,7 +22,6 @@
 
     .App-explore & {
       height: 20vh;
-      background-color: rgba(0, 0, 0, 0.15);
       border-bottom: 1px dashed $white;
 
       @media (min-width: $large) {
@@ -36,18 +35,17 @@
     @media (max-width: $large - 1) {
       .App-about &,
       .App-connect & {
-        background-color: rgba(0, 0, 0, 0.6);
         height: 100vh;
       }
     }
 
     .Header__wrap {
       position: relative;
-      max-width: 340px;
+      max-width: $minContentWidth;
 
       @media (min-width: $large) {
         margin-top: 30px;
-        max-width: 370px;
+        max-width: $maxContentWidth;
       }
     }
 }
@@ -68,6 +66,7 @@
       font-family: $secondaryFont;
       font-size: 1.96rem;
       letter-spacing: 2px;
+      font-weight: 400;
       margin: 0;
 
       @media screen and (min-width: $large) and (max-width: $xlarge - 1) {
@@ -141,19 +140,19 @@
 
     &.home:hover,
     .App-home &.home {
-      background-color: rgba(106, 170, 147, 0.5);
+      background-color: $green;
     }
     &.explore:hover,
     .App-explore &.explore {
-      background-color: rgba(68, 151, 203, 0.5);
+      background-color: $blue;
     }
     &.about:hover,
     .App-about &.about {
-      background-color: rgba(205, 105, 11, 0.5);
+      background-color: $orange;
     }
     &.connect:hover,
     .App-connect &.connect {
-      background-color: rgba(224, 190, 0, 0.5);
+      background-color: $yellow;
     }
     // .App:not(.App-explore) &.explore,
     // .App:not(.App-about) &.about,
@@ -167,21 +166,18 @@
   }
 
   a {
-    @include textshadow;
+    @include linkButtonStyles;
     display: block;
     width: 100%;
-    text-decoration: none;
-    text-align: center;
-    padding: 8px 0 6px;
-    color: $white;
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-family: $primaryFont;
     transition: $allTrans;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+
+    &:hover,
+    &:active,
+    &:-webkit-any-link:active {
+      color: $white;
+    }
 
     // &:hover {
     //   background-color: rgba(0, 0, 0, 0.25);

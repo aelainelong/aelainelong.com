@@ -14,14 +14,16 @@ class ProjectFace extends THREE.Group {
         this.active = false;
         this.projectID = project.id;
         this.name = project.title;
-        this.opacityIn = 0.8;
+        this.opacityIn = 0.75;
         this.opacityOut = 1;
-        this.sizeIn = 0.75;
+        this.sizeIn = 0.85;
         this.sizeOut = 0.9;
         this.translationIn = 0.06;
         this.translationOut = 0.10;
         this.image = require(`./../../../../assets/images/portfolio/_thumbs/${project.thumbnail}`);
-        this.color = parseInt(project.color.replace("#", "0x"), 16);
+        this.colorIn = parseInt(project.color.replace("#", "0x"), 16);
+        this.colorOut = 0xe3e3e3;
+        this.textSprites = [];
 
         // Build our project face as a clickable pentagon //
 
@@ -36,7 +38,7 @@ class ProjectFace extends THREE.Group {
 
         // Create pentagon's material
         const texture = this.getTexture(this.image);
-        const material = new THREE.MeshBasicMaterial({ transparent: true, opacity: this.opacityOut, color: this.color });
+        const material = new THREE.MeshBasicMaterial({ transparent: true, opacity: this.opacityOut, color: this.colorIn });
         material.color.convertSRGBToLinear();
         material.map = texture;
 
@@ -81,21 +83,28 @@ class ProjectFace extends THREE.Group {
         rMesh.material.side = THREE.BackSide;
         utils.translateMeshFromCenter(rMesh, -0.001);
 
-        // tMesh.matrix.makeTranslation(this.translation, this.translation, this.translation);
+        // Add our edge border mesh and scale it up slightly from the face
+        // const bGeometry = new THREE.EdgesGeometry(tGeometry.clone());
+        // const bMaterial = new THREE.LineBasicMaterial();
+        // const bMesh = new THREE.LineSegments(bGeometry, bMaterial);
+        // utils.translateMeshFromCenter(bMesh, -0.001);
+        //bMesh.scale.set(1.01, 1.01, 1.01);
         
         this.add(tMesh);
         this.add(rMesh);
+        //this.add(bMesh);
 
-        // Scale project pentagon down slightly
+        // Scale entire project pentagon down slightly
         this.scale.set(this.sizeOut, this.sizeOut, this.sizeOut); // same values for x, y & z
 
         // Translate the project pentagon back slightly from the dodecahedron face
         
         this.translateOnAxis(this.tVector, this.translationOut);
 
-        // Generate and insert our orthagonal text sprite
-        const tSprite = this.getSprite(this.name);
-        this.add(tSprite);
+        // Generate and insert our text sprite
+
+
+        console.log(this);
     }
 
     // Get correct vertices from the parent dodecahedron using the project ID //
@@ -104,7 +113,7 @@ class ProjectFace extends THREE.Group {
 
         // Grab a set of 3 faces (triangles) from the base polyhedron, based on the project index
         const setSize = 3;
-        const indexFloor = projectID * setSize;
+        const indexFloor = (projectID - 1) * setSize;
         const indexCeil = indexFloor + setSize;
         const parentFaces = parentGeometry.faces.slice(indexFloor, indexCeil);
 
@@ -136,13 +145,11 @@ class ProjectFace extends THREE.Group {
     }
     // Create overlay text sprite using project title //
     getSprite = (projectTitle) => {
-        const sprite = utils.generateSprite(projectTitle, {
-            fontsize: 16,
-            fontface: "Comfortaa",
-            borderColor: {r:255, g:255, b:255, a:1.0},
-            backgroundColor: {r: 0, g:0, b:0, a:0.25}
-        });
-        sprite.position.set(this.tVector);
+        const sprite = utils.generateTextSprite();
+        sprite.setHTML("label" + projectTitle);
+        sprite.setParent(this);
+        this.textSprites.push(sprite);
+        document.querySelector('canvas').appendChild(sprite.element);
         return sprite;
     }
 }

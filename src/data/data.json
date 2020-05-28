@@ -7,115 +7,27 @@
     },
     "projects": [
       {
-        "id": 0,
-        "title": "VF Corporation 2014 Online Annual Report",
-        "color": "#feffc3",
-        "categories": [
-          "web development"
-        ],
-        "thumbnail": "vf-thumb.jpg",
-        "images": [
-          "/vf-corp/vf-01.jpg",
-          "/vf-corp/vf-02.jpg",
-          "/vf-corp/vf-04.jpg",
-          "/vf-corp/vf-05.jpg",
-          "/vf-corp/vf-06.jpg"
-        ],
-        "deliverables": "Website",
-        "description": "Front-end development of an online experience for VF Corporation's 2014 Annual Report, showcasing financial charts created using FusionCharts, brand performance information and an interactive ROI case study",
-        "tools": [
-          "HTML5",
-          "CSS",
-          "JavaScript",
-          "jQuery",
-          "Fusion Charts"
-        ],
-        "client": "VF Corporation",
-        "agency": "FleishmanHillard",
-        "url": null
-      },
-      {
         "id": 1,
-        "title": "Kraftig.com",
-        "color": "#ed9362",
-        "categories": [
-          "web development"
-        ],
-        "thumbnail": "kraftig-thumb.jpg",
+        "title": "AT&T Global Supply Chain",
+        "color": "#72ddf0",
+        "categories": [],
+        "thumbnail": "att-gsc-thumb.jpg",
         "images": [],
-        "deliverables": "Wordpress site",
+        "deliverables": "Front-end templates and components for use in Adobe Experience Manager (AEM)",
         "description": "",
-        "tools": [
-          "Wordpress",
-          "JavaScript",
-          "PHP",
-          "SASS"
-        ],
-        "client": "Kraftig",
-        "agency": "FleishmanHillard",
-        "url": null
-      },
-      {
-        "id": 2,
-        "title": "Take A New Look at Foot & Ankle Surgeons",
-        "color": "#ffffff",
-        "categories": [
-          "web development"
-        ],
-        "thumbnail": "acfas-thumb.jpg",
-        "images": [
-          "/acfas/acfas-01.jpg",
-          "/acfas/acfas-02.jpg",
-          "/acfas/acfas-04.jpg",
-          "/acfas/acfas-05.jpg"
-        ],
-        "deliverables": "Wordpress site",
-        "description": "Front-end development of a responsive Wordpress child theme and physician search tool. This site promotes foot & ankle surgeons and won a 2016 Silver Anvil Award",
-        "tools": [
-          "Wordpress",
-          "JavaScript",
-          "PHP",
-          "SASS"
-        ],
-        "client": "American College of Foot & Ankle Surgeons",
-        "agency": "FleishmanHillard",
-        "url": "http://takeanewlook.org/"
-      },
-      {
-        "id": 3,
-        "title": "AT&T Latino",
-        "color": "#d1abff",
-        "categories": [
-          "web development"
-        ],
-        "thumbnail": "att-latino-thumb.jpg",
-        "images": [
-          "/att-latino/esp-01.jpg",
-          "/att-latino/esp-02.jpg",
-          "/att-latino/esp-03.jpg",
-          "/att-latino/esp-04.jpg",
-          "/att-latino/esp-05.jpg"
-        ],
-        "deliverables": "Static site",
-        "description": "Development of a news, lifestyle, sports and entertainment portal for AT&T Latino. For this site, I built a JSON-based Spanish-language newsroom with filterable articles, as well as social media integration and support documentation for AT&T products",
-        "tools": [
-          "HTML5",
-          "JavaScript",
-          "Custom JSON API",
-          "SASS"
-        ],
+        "tools": [],
         "client": "AT&T",
         "agency": "FleishmanHillard",
         "url": null
       },
       {
-        "id": 4,
+        "id": 2,
         "title": "AT&T About Us Newsroom",
         "color": "#d3d3d3",
         "categories": [],
         "thumbnail": "newsroom-thumb.jpg",
         "images": [],
-        "deliverables": "Front-end templates and components for Adobe Experience Manager (AEM)",
+        "deliverables": "Front-end templates and components for about.att.com",
         "description": "",
         "tools": [
           "HTML5",
@@ -129,7 +41,7 @@
         "url": "https://about.att.com"
       },
       {
-        "id": 5,
+        "id": 3,
         "title": "Meraki Yoga Studio Online Schedule",
         "color": "#ffffff",
         "categories": [
@@ -139,7 +51,7 @@
         "images": [
           "/meraki/meraki-01.jpg"
         ],
-        "deliverables": "Webpage",
+        "deliverables": "Dynamic class schedule driven by Karamasoft API",
         "description": "Development of a responsive online class schedule utilizing Karmasoft API.",
         "tools": [
           "Wordpress",
@@ -151,26 +63,79 @@
         "url": "http://merakiyogastudio.com/schedule/"
       },
       {
-        "id": 6,
-        "title": "AIGA Truman",
-        "color": "#ffbee9",
+        "id": 4,
+        "title": "Take A New Look",
+        "color": "#ffffff",
         "categories": [
-          "web design"
+          "web development"
         ],
-        "thumbnail": "aiga-thumb.jpg",
+        "thumbnail": "acfas-thumb.jpg",
         "images": [
-          "/modot/modot-01.jpg",
-          "/modot/modot-02.jpg",
-          "/modot/modot-03.jpg"
+          "/acfas/acfas-01.jpg",
+          "/acfas/acfas-02.jpg",
+          "/acfas/acfas-04.jpg",
+          "/acfas/acfas-05.jpg"
         ],
-        "deliverables": "Website",
-        "description": "Design and build of an interactive site for Truman State University's AIGA chapter",
+        "deliverables": "Custom Wordpress theme for Takeanewlook.org",
+        "description": "Front-end development of a responsive Wordpress child theme and physician search tool. This site promotes foot & ankle surgeons and won a 2016 Silver Anvil Award",
         "tools": [
-          "Adobe Flash"
+          "Wordpress",
+          "JavaScript",
+          "PHP",
+          "SASS"
         ],
-        "client": "Truman State University",
-        "agency": "",
-        "url": "/retro/aiga/"
+        "client": "American College of Foot & Ankle Surgeons",
+        "agency": "FleishmanHillard",
+        "url": "http://takeanewlook.org/"
+      },
+      {
+        "id": 5,
+        "title": "VF Corporation 2014 Online Annual Report",
+        "color": "#feffc3",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "vf-thumb.jpg",
+        "images": [
+          "/vf-corp/vf-01.jpg",
+          "/vf-corp/vf-02.jpg",
+          "/vf-corp/vf-04.jpg",
+          "/vf-corp/vf-05.jpg",
+          "/vf-corp/vf-06.jpg"
+        ],
+        "deliverables": "Custom interactive experience for VF Corporation",
+        "description": "Front-end development of an online experience for VF Corporation's 2014 Annual Report, showcasing financial charts created using FusionCharts, brand performance information and an interactive ROI case study",
+        "tools": [
+          "HTML5",
+          "CSS",
+          "JavaScript",
+          "jQuery",
+          "Fusion Charts"
+        ],
+        "client": "VF Corporation",
+        "agency": "FleishmanHillard",
+        "url": null
+      },
+      {
+        "id": 6,
+        "title": "Kraftig.com",
+        "color": "#ed9362",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "kraftig-thumb.jpg",
+        "images": [],
+        "deliverables": "Custom Wordpress theme for Kraftig.com",
+        "description": "",
+        "tools": [
+          "Wordpress",
+          "JavaScript",
+          "PHP",
+          "SASS"
+        ],
+        "client": "Kraftig",
+        "agency": "FleishmanHillard",
+        "url": null
       },
       {
         "id": 7,
@@ -179,7 +144,7 @@
         "categories": [],
         "thumbnail": "monsanto-thumb.jpg",
         "images": [],
-        "deliverables": "Wordpress site",
+        "deliverables": "Custom Wordpress theme for Monsanto",
         "description": "",
         "tools": [
           "Wordpress",
@@ -193,6 +158,33 @@
       },
       {
         "id": 8,
+        "title": "AT&T Español",
+        "color": "#d1abff",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "att-latino-thumb.jpg",
+        "images": [
+          "/att-latino/esp-01.jpg",
+          "/att-latino/esp-02.jpg",
+          "/att-latino/esp-03.jpg",
+          "/att-latino/esp-04.jpg",
+          "/att-latino/esp-05.jpg"
+        ],
+        "deliverables": "JSON-driven online newsroom for AT&T Latino",
+        "description": "Development of a news, lifestyle, sports and entertainment portal for AT&T Latino. For this site, I built a JSON-based Spanish-language newsroom with filterable articles, as well as social media integration and support documentation for AT&T products",
+        "tools": [
+          "HTML5",
+          "JavaScript",
+          "Custom JSON API",
+          "SASS"
+        ],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": null
+      },
+      {
+        "id": 9,
         "title": "Y98 Mistletoe Show",
         "color": "#9d96f8",
         "categories": [
@@ -205,7 +197,7 @@
           "/mistletoe-show/mistle-01.jpg",
           "/mistletoe-show/mistle-02.jpg"
         ],
-        "deliverables": "Logo, web page, web graphics, HTML email",
+        "deliverables": "Logo, webpage, web graphics & HTML email for Y98's holiday concert",
         "description": "Logo, web page and email design for Y98's annual 'Mistletoe Show' holiday concert",
         "tools": [
           "Adobe Photoshop",
@@ -216,20 +208,6 @@
         "client": "CBS Radio St. Louis",
         "agency": "",
         "url": ""
-      },
-      {
-        "id": 9,
-        "title": "AT&T Global Supply Chain",
-        "color": "#72ddf0",
-        "categories": [],
-        "thumbnail": "att-gsc-thumb.jpg",
-        "images": [],
-        "deliverables": "Front-end templates and components for AEM site",
-        "description": "",
-        "tools": [],
-        "client": "AT&T",
-        "agency": "FleishmanHillard",
-        "url": null
       },
       {
         "id": 10,
@@ -263,6 +241,28 @@
       },
       {
         "id": 11,
+        "title": "AIGA Truman",
+        "color": "#ffbee9",
+        "categories": [
+          "web design"
+        ],
+        "thumbnail": "aiga-thumb.jpg",
+        "images": [
+          "/modot/modot-01.jpg",
+          "/modot/modot-02.jpg",
+          "/modot/modot-03.jpg"
+        ],
+        "deliverables": "Custom interactive experience for AIGA Truman",
+        "description": "Design and build of an interactive site for Truman State University's AIGA chapter",
+        "tools": [
+          "Adobe Flash"
+        ],
+        "client": "Truman State University",
+        "agency": "",
+        "url": "/retro/aiga/"
+      },
+      {
+        "id": 12,
         "title": "Pastiche Magazine",
         "color": "#f5d05e",
         "categories": [
@@ -275,7 +275,7 @@
           "/pastiche/pastiche-01.jpg",
           "/pastiche/pastiche-02.jpg"
         ],
-        "deliverables": "Print spread",
+        "deliverables": "Print spread design",
         "description": "Logo, cover and table of contents illustrations for the fictional arts magazine 'Pastiche'",
         "tools": [
           "Adobe Photoshop",

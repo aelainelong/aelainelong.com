@@ -8,10 +8,9 @@
 
 .Portfolio,
 .Scene,
-.scene-wrapper,
-canvas {
-  width: 100vw !important;
-  height: 100vh !important;
+.scene-wrapper {
+  width: 100vw;
+  height: 100vh;
 }
 
 .Scene {
@@ -40,7 +39,7 @@ canvas {
 
 .Portfolio {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   box-sizing: border-box;
   display: flex;

@@ -2,59 +2,7 @@
 
 @import '../../../assets/styles/settings.scss';
 
-.ToolTip {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    bottom: 5vh;
-    color: $white;
-    transition: bottom 1.5s ease, opacity 1s ease-in-out;
-    font-weight: 700;
-    font-family: $primaryFont;
-    max-width: 80%;
-    text-align: left;
-    line-height: 1.25;
-    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
-    cursor: help;
-    z-index: 999;
-
-    .ToolTipIn,
-    .ToolTipIn-enter {
-      transition: all .4s ease-in-out;
-      transform: translate(0, -40%);
-      opacity: 0;
-    }
-    // .ToolTipIn-enter.socialIn-enter-active {
-    //   transform: translate(0, 0);
-    //   opacity: 1;
-    // }
-    // .ToolTipIn-leave {
-    //   transform: translate(0, 0);
-    //   opacity: 1;
-    // }
-    // .ToolTipIn-leave-active {
-    //   opacity:0;
-    // }
-
-    @media (min-width: $large) {
-      bottom: 8vh;
-    }
-
-    p, i {
-      transition: opacity 1.5s ease;
-      opacity: 0.35;
-    }
-
-    &:hover p,
-    &:hover i {
-      opacity: 1;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    @keyframes wiggle {
+@keyframes wiggle {
       0% { transform: rotate(0deg); }
       80% { transform: rotate(0deg) translateY(0.5px); }
       85% { transform: rotate(10deg) scale(1.25); }
@@ -62,16 +10,78 @@
       100% { transform: rotate(0deg) scale(1) translateY(0); }
     }
 
-    i {
-      @include prefixed-animation(wiggle, 4s);
-      font-size: 2rem;
-      display: block;
-      margin-right: 15px;
-      pointer-events: all;
+.ToolTip {
+    @include textshadow;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 5vh;
+    color: $white;
+    transition: bottom 1.5s ease, opacity 1s ease-in-out, color 1s ease;
+    font-weight: 700;
+    font-family: $primaryFont;
+    font-size: 0.85rem;
+    max-width: 80%;
+    text-align: left;
+    line-height: 1.45;
+    z-index: 99;
+    cursor: help;
+
+    // .App-about &,
+    // .App-connect & {
+    //   color: #99478e;
+    // }
+
+    &.ToolTip-hidden {
+      opacity: 0;
     }
 
-    &:hover i {
-      @include prefixed-animation(wiggle, 4s);
+    .ToolTipIn,
+    .ToolTipIn-enter {
+      transition: all .4s ease-in-out;
+      transform: translate(0, -40%);
+      opacity: 0;
+    }
+    .ToolTipIn-enter.socialIn-enter-active {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    .ToolTipIn-leave {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    .ToolTipIn-leave-active {
+      opacity:0;
+    }
+
+    @media (min-width: $large) {
+      bottom: auto;
+      top: 5vh;
+    }
+
+    p, i {
+      transition: opacity 1.5s ease;
+      opacity: 1;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    i {
+      @include prefixed-animation(wiggle, 4s, infinite);
+      font-size: 1.75rem;
+      display: block;
+      margin-right: 10px;
+      pointer-events: all;
+
+      @media (min-width: $large) {
+        font-size: 1.75rem;
+      }
+    }
+
+    .Scene-ready:hover & i {
+      @include prefixed-animation(wiggle, 4s, infinite);
     }
 
     .App-home & {

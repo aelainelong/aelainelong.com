@@ -109,61 +109,18 @@ class Portfolio extends React.Component {
     const portfolioOpen = this.state.portfolioOpen;
     const currentProject = this.state.currentProject;
     const projectInfo = client.getProjectByID(currentProject);
-    const handleProjectOpen = this.handleProjectOpen;
-    const handleProjectClose = this.handleProjectClose;
     const traverseProjects = this.traverseProjects;
-    const allProjectObjects = buildPortfolio(projects);
 
 
     const portfolioProgress = {
       start: this.state.portfolioStart,
       end: this.state.portfolioEnd
     }
-    
-    console.log(portfolioProgress);
-    
-    // Fetch and build our portfolio items, with all projects passed in
-    function buildPortfolio(projects){
-      const projectObjects = projects.map((object, index) => {
-        const projectID = object.id;
-        const projectThumb = {
-          backgroundImage: 'url(' + process.env.PUBLIC_URL + '/img/portfolio' + object.thumbnail + ')'
-        }
-        
-        return (
-          <div key={`item-`+ index} className="item" onClick={() => handleProjectOpen(projectID)}>
-            <div className="item-wrap">
-              <div className="item-info">
-                <div className="item-info-front">
-                  <div className="item-frame" style={projectThumb}>
-                    <div className="item-text"><span>view project</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      });
-      
-      return projectObjects;
-    }
-    
-    // Split our projects into 4 sets, one for left and right and one for top and bottom
-    function splitPortfolio(allProjectObjects){
-      const set1 = Array.from(allProjectObjects.filter((obj, index, arr) => index < (arr.length / 2) ));
-      const set2 = Array.from(allProjectObjects.filter((obj, index, arr) => index >= (arr.length / 2) ).reverse());
-      
-      // Return our split portfolio sets
-      return {
-        set1: set1,
-        set2: set2
-      }
-    }
   
     return(
       <div className={ portfolioOpen ? `Portfolio open` : `Portfolio` }>
-        <Scene explore={this.props.explore} projects={projects} />
-        { currentProject ? <Project projectInfo={projectInfo} handleProjectClose={handleProjectClose} traverseProjects={traverseProjects} portfolioProgress={portfolioProgress} /> : null }
+        <Scene explore={this.props.explore} projects={projects} closeProject={this.handleProjectClose} openProject={this.handleProjectOpen} currentProject={this.state.currentProject}/>
+        {currentProject !== null ? <Project project={projectInfo} closeProject={this.handleProjectClose} traverseProjects={this.traverseProjects} portfolioProgress={portfolioProgress} /> : null }
       </div>
     );
   }

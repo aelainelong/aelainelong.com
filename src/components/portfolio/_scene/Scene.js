@@ -21,7 +21,7 @@ class Scene extends React.Component {
         }
 
         this.minZoom = 1;
-        this.maxZoom = 4.5;
+        this.maxZoom = this.getMaxZoom();
         this.dodecaRotationSpeed = 0.0025;
         this.icosaRotationSpeed = 0.0020;
     }
@@ -72,8 +72,8 @@ class Scene extends React.Component {
         this.orbitControls.maxDistance = this.maxZoom;
 
         this.dodecahedronControls = new DragControls(this.dodecahedron, this.camera, this.canvas);
-        this.dodecahedronControls.addEventListener("dragstart", this.handleMouseDown);
-        this.dodecahedronControls.addEventListener("dragend", this.handleMouseUp);
+        // this.dodecahedronControls.addEventListener("dragstart", this.handleMouseDown);
+        // this.dodecahedronControls.addEventListener("dragend", this.handleMouseUp);
         // this.dodecahedronControls.addEventListener("hoveron", this.handleHoverOn);
         // this.dodecahedronControls.addEventListener("hoveroff", this.handlehoverOff);
 
@@ -107,6 +107,9 @@ class Scene extends React.Component {
             .onStart(() => {
                 this.turnInteractionsOff();
                 this.advanceAllProjects();
+                if(this.props.currentProject){
+                    this.props.closeProject(this.props.currentProject.id);
+                }
             })
             .onStop(() => {
                 //console.log("ANIMATION TO HOME STOPPED.");
@@ -136,7 +139,7 @@ class Scene extends React.Component {
                 //console.log("ANIMATION TO EXPLORE IS DONE.");
             });
 
-        console.log(this.dodecahedron);
+        //console.log(this.dodecahedron);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -170,30 +173,6 @@ class Scene extends React.Component {
 
     // Render method for the threeJS scene
     renderScene = () => {
-        // Get the objects which intersect the picking ray
-        // this.raycaster.setFromCamera(this.mouse, this.camera);
-        //this.intersects = this.raycaster.intersectObject(this.dodecahedron, true);
-        
-        // this.intersects = this.raycaster.intersectObjects(this.dodecahedron.children[1].children, true);
-
-        // if (this.intersects.length > 0) {
-        //     console.log("We have intersects!");
-        //     if (this.INTERSECTED != this.intersects[0].object) {
-        //         if (this.INTERSECTED) {
-        //             //this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
-        //         }
-        //         this.INTERSECTED = this.intersects[0].object;
-        //         //this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
-        //         //this.INTERSECTED.material.emissive.setHex(0xff0000);
-        //     }
-        // } else {
-        //     //console.log("No intersects.");
-        //     if (this.INTERSECTED){
-        //         //this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
-        //     }
-        //     this.INTERSECTED = null;
-        // }
-
         // Render the scene
         this.renderer.render(this.scene, this.camera);
     }
@@ -209,8 +188,8 @@ class Scene extends React.Component {
         }
 
         // Set rotation parameters
-        this.dodecahedron.rotation.y -= this.dodecaRotationSpeed; // rotate the polyhedron around the y axis
-        this.icosahedron.rotation.y += this.icosaRotationSpeed; // rotate background wireframe around the y axis
+        //this.dodecahedron.rotation.y -= this.dodecaRotationSpeed; // rotate the polyhedron around the y axis
+        //this.icosahedron.rotation.y += this.icosaRotationSpeed; // rotate background wireframe around the y axis
 
         // Render scene
         TWEEN.update();
@@ -263,16 +242,39 @@ class Scene extends React.Component {
             this.dodecahedronControls.activate();
             this.canvas.addEventListener('mousemove', this.handleMouseMove);
             this.canvas.addEventListener('click', this.handleMouseClick, false);
+            this.canvas.addEventListener('touchstart', this.handleMouseClick, false);
         } else {
             this.retreatAllProjects();
             this.dodecahedronControls.deactivate();
             this.canvas.removeEventListener('mousemove', this.handleMouseMove);
             this.canvas.removeEventListener('click', this.handleMouseClick, false);
+            this.canvas.removeEventListener('touchstart', this.handleMouseClick, false);
         }
+    }
+
+    // Get max camera zoom based on window width
+    getMaxZoom = () => {
+        let zoom;
+        if (window.innerWidth > 1200) {
+            zoom = 4.5;
+        } else if (window.innerWidth > 768) {
+            zoom = 5.5;
+        } else {
+            zoom = 6.5;
+        }
+        return zoom;
     }
 
     // Update our threeJS scene on window resize
     onWindowResize = () => {
+        const currentZoom = this.camera.position.x;
+        const newZoom = this.getMaxZoom();
+        if(this.props.explore && currentZoom !== newZoom){
+            new TWEEN.Tween(this.camera.position)
+                .to({x: newZoom}, 200)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .start();
+        }
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -281,10 +283,17 @@ class Scene extends React.Component {
     // Raycasting event handler
     handleMouseClick = e => {
         e.preventDefault();
-
-        // Update our mouse positioning for the raycaster
-        this.mouse.x = (e.clientX / this.renderer.domElement.clientWidth) * 2 - 1;
-        this.mouse.y = -(e.clientY / this.renderer.domElement.clientHeight) * 2 + 1;
+        console.log(e);
+        if(e.changedTouches.length > 0){
+            console.log("Touch device.");
+            // Update our touch positioning for the raycaster
+            this.mouse.x = (e.changedTouches[0].pageX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(e.changedTouches[0].pageY / window.innerHeight) * 2 + 1;
+        } else {
+            // Update our mouse positioning for the raycaster
+            this.mouse.x = (e.clientX / this.renderer.domElement.clientWidth) * 2 - 1;
+            this.mouse.y = -(e.clientY / this.renderer.domElement.clientHeight) * 2 + 1;
+        }
 
         // Tell our raycaster what to look for
         this.raycaster.setFromCamera(this.mouse, this.camera);
@@ -302,11 +311,13 @@ class Scene extends React.Component {
                 // Update the active project's active flag
                 clickedProject.active = true;
                 clickedProject.advance();
-                clickedProject.showTitle();  
+                clickedProject.showTitle();
+                this.props.openProject(clickedProject.projectID);
             } else {
                 clickedProject.active = false;
                 clickedProject.retreat();
                 clickedProject.hideTitle();
+                this.props.closeProject(clickedProject.projectID);
 
                 // Rotate the camera and project to face each other's directions
                 // const cameraDir = new THREE.Vector3(0, 0, -1);
@@ -350,9 +361,9 @@ class Scene extends React.Component {
 
     render(){
         return (
-            <div className={`Scene ${ this.state.ready ? `Scene-ready` : ``}`}>
+            <div className={`Scene ${this.state.ready ? `Scene-ready` : ``}`}>
                 <div className="scene-wrapper" ref={this.sceneWrapper}></div>
-                {this.state.ready ? <ToolTip ref={this.toolTip} /> : null}
+                {this.state.ready ? <ToolTip currentProject={this.props.currentProject} ref={this.toolTip} /> : null}
             </div>
         );
     }
