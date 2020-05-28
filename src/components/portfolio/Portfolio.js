@@ -41,7 +41,7 @@ class Portfolio extends React.Component {
   
   // Open selected project by passing project ID into state
   openProject = (projectID) =>{
-    console.log("Running the open project event handler.");
+    //console.log("Running the open project event handler.");
     this.setState({ currentProject: projectID }, function(){
       // Manage portfolio progress
       this.manageProgress();
@@ -51,7 +51,7 @@ class Portfolio extends React.Component {
   // Keep track of our place in the portfolio
   manageProgress = () => {
     const { currentProject, portfolioSize } = this.state;
-    console.log("Current Project is project #" + currentProject);
+    //console.log("Current Project is project #" + currentProject);
     let portfolioStart;
     let portfolioEnd;
     

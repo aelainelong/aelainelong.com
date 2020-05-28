@@ -14,13 +14,14 @@
 
 .Connect .social {
   margin: 0;
-  padding: 10px 0 0;
+  padding: 0;
   list-style-type: none;
   text-align: center; }
   .Connect .social > div {
     display: flex;
     align-items: stretch;
-    justify-content: space-between; }
+    justify-content: space-between;
+    padding: 15px 0 0; }
   .Connect .social li {
     position: relative;
     display: inline-block;

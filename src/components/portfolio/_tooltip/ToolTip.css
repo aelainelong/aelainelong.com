@@ -35,7 +35,11 @@
   line-height: 1.45;
   z-index: 99;
   cursor: help; }
-  .ToolTip.ToolTip-hidden {
+  @media (min-width: 1400px) {
+    .ToolTip {
+      font-size: 0.95rem; } }
+  .App-about .ToolTip,
+  .App-connect .ToolTip, .ToolTip.ToolTip-hidden {
     opacity: 0; }
   .ToolTip .ToolTipIn,
   .ToolTip .ToolTipIn-enter {

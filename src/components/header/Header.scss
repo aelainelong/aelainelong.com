@@ -12,8 +12,8 @@
     align-items: center;
     align-content: center;
     justify-content: center;
-    z-index: 5;
     transition: all 1.5s ease;
+    z-index: 5;
     color: $white;
 
     @media (min-width: $large) {
@@ -21,7 +21,7 @@
     }
 
     .App-explore & {
-      height: 20vh;
+      height: 15vh;
       border-bottom: 1px dashed $white;
 
       @media (min-width: $large) {

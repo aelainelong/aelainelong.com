@@ -17,8 +17,8 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  z-index: 5;
   transition: all 1.5s ease;
+  z-index: 5;
   color: #FFF; }
   .App-explore .Header {
     background-color: rgba(0, 0, 0, 0.15); }
@@ -30,7 +30,7 @@
     .Header {
       width: 100vw; } }
   .App-explore .Header {
-    height: 20vh;
+    height: 15vh;
     border-bottom: 1px dashed #FFF; }
     @media (min-width: 1400px) {
       .App-explore .Header {
@@ -120,7 +120,7 @@
       background-color: rgba(0, 0, 0, 0.55); }
     .Menu li.home:hover,
     .App-home .Menu li.home {
-      background-color: rgba(106, 170, 147, 0.5); }
+      background-color: rgba(82, 165, 107, 0.5); }
     .Menu li.explore:hover,
     .App-explore .Menu li.explore {
       background-color: rgba(68, 151, 203, 0.5); }

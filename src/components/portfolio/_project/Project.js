@@ -34,7 +34,7 @@ class Project extends React.Component {
 
     // Project meta info
     const projectImages = this.props.project.images;
-    const projImageList = projectImages.map((image, index) => {
+    this.projImageList = projectImages.map((image, index) => {
       return (
         <li key={`image-` + index}>
           <ReactFancyBox
@@ -45,7 +45,7 @@ class Project extends React.Component {
     });
 
     const projectCategories = this.props.project.categories;
-    const projCatList = projectCategories.map((category, index) => {
+    this.projCatList = projectCategories.map((category, index) => {
       return (
         <li key={`category-` + index}>
           <span>{category}</span>
@@ -54,13 +54,9 @@ class Project extends React.Component {
     });
 
     const projectTools = this.props.project.tools;
-    const projToolList = projectTools.map((tool, index) => {
-      return (
-        <li key={`tool-` + index}>
-          <span>{tool}</span>
-        </li>
-      )
-    });
+    this.projToolList = projectTools.map((tool, index) => {
+      return tool.toString();
+    }).join(", ");
   }
   
   // Update project state upon unmounting
@@ -69,9 +65,6 @@ class Project extends React.Component {
   }
   
   componentWillReceiveProps(newProps){
-    console.log("Receiving new props now. Do something.");
-    // alert("Beginning is " + newProps.portfolioProgress.start);
-    // alert("Ending is " + newProps.portfolioProgress.end);
     this.setState({
       atStart: newProps.portfolioProgress.start,
       atEnd: newProps.portfolioProgress.end
@@ -85,10 +78,14 @@ class Project extends React.Component {
   
   // Update project state upon unmounting
   handleClose = () => {
-    this.setState(() => ({ projectOpen: false, projectExpanded: false }));
-    setTimeout(function(){
-      this.props.closeProject();
-    }.bind(this), 1000);
+    if(this.state.projectExpanded){
+      this.setState(() => ({ projectExpanded: false }));
+    } else {
+      this.setState(() => ({ projectOpen: false }));
+      setTimeout(function () {
+        this.props.closeProject();
+      }.bind(this), 1000);
+    }
   }
   
   // Load previous/next project upon click of project nav
@@ -130,39 +127,29 @@ class Project extends React.Component {
             <div className="project-header">
               <h2 className="project-title">{this.props.project.title}</h2>
               {this.props.project.deliverables ? <h3 className="project-subtitle">{this.props.project.deliverables}</h3> : null}
-              {/* {projectInfo.url ? <a href={projectInfo.url} className="project-link" target="_blank" title={this.props.project.title rel="noopener noreferrer" onClick={(e) => handleLinkClick(e)}><i className="fa fa-external-link" aria-hidden="true"></i> Visit site</a> : null} */}
+              {this.props.project.url ? <a href={this.props.project.url} className="project-link" target="_blank" title={this.props.project.title} rel="noopener noreferrer" onClick={(e) => this.handleLinkClick(e)}><i className="fa fa-link" aria-hidden="true"></i> Visit site</a> : null}
             </div>
 
-            {/* <div className="project-meta">
-              <p className="project-description">{this.props.project.description}</p>
-            </div> */}
+            <div className="project-meta">
+              {this.props.project.description ? <p className="project-description">{this.props.project.description}</p> : null}
+              {this.projToolList ? <h4><span>Technologies:</span> {this.projToolList}</h4> : null}
+              {this.props.project.client ? <h4><span>Client:</span> {this.props.project.client}</h4> : null}
+              {this.props.project.agency ? <h4><span>Agency:</span> {this.props.project.agency}</h4> : null}
+            </div>
 
-            {/* <div className="project-media">
+            <div className="project-media">
               <div className="project-images">
-                <ul>{projImageList}</ul>
+                <ul>{this.projImageList}</ul>
               </div>
-            </div> */}
+            </div>
           
           </div>
-          {/* {projectInfo.client ? <h4 className="project-meta">Client: <span>{projectInfo.client}</span></h4> : null}
-          
-          {projectInfo.agency ? <h4 className="project-meta">Agency: <span>{projectInfo.agency}</span></h4> : null}
-          
-          <div className="project-categories">
-            <h5>Skills applied: </h5>
-            <ul>{projCatList}</ul>
-          </div>
-          <div className="project-tools">
-            <h5>Technologies used: </h5>
-            <ul>{projToolList}</ul>
-          </div>
-          </div>*/}
 
           <div className="project-nav">
             {this.state.projectExpanded ? null : <button className="btn btn-toggle" onClick={() => this.handleToggle()}>View</button>}
             { !this.state.projectExpanded ? null : <button className="btn btn-close" onClick={() => this.handleClose()}>close</button>}
-            { this.state.atStart ? null : <button className="btn btn-prev" onClick={() => this.handleProjectNav("prev")}>prev</button>}
             { this.state.atEnd ? null : <button className="btn btn-next" onClick={() => this.handleProjectNav("next")}>next</button> }
+            {this.state.atStart ? null : <button className="btn btn-prev" onClick={() => this.handleProjectNav("prev")}>prev</button>}
           </div>
       </div>
       </div>

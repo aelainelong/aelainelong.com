@@ -27,11 +27,16 @@
     z-index: 99;
     cursor: help;
 
+    @media (min-width: $large) {
+      font-size: 0.95rem;
+    }
+
     // .App-about &,
     // .App-connect & {
     //   color: #99478e;
     // }
-
+    .App-about &,
+    .App-connect &,
     &.ToolTip-hidden {
       opacity: 0;
     }

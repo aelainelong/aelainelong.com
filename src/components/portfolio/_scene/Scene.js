@@ -20,7 +20,7 @@ class Scene extends React.Component {
             ready: false
         }
 
-        this.minZoom = 1;
+        this.minZoom = this.getMinZoom();
         this.maxZoom = this.getMaxZoom();
         this.dodecaRotationSpeed = 0.0025;
         this.icosaRotationSpeed = 0.0020;
@@ -36,6 +36,7 @@ class Scene extends React.Component {
         // Add Camera
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
         this.camera.position.set(this.minZoom, 0, 0);
+        this.cameraZoom = this.camera.position; // store this for comparison on window resize
 
         // Add Renderer
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -50,6 +51,7 @@ class Scene extends React.Component {
         this.dodecahedron = dodecahedron(this.props.projects);
         this.icosahedron = icosahedron;
         this.scene.add(this.dodecahedron, this.icosahedron);
+        //this.dodecahedron.rotation.set(-10.15, -3.25, -2.25);
 
         // Take snapshots of our starting quaternions for reference when we run our rotational tweens later
         this.originalDodecahedronQuaternion = this.dodecahedron.quaternion.clone();
@@ -142,12 +144,28 @@ class Scene extends React.Component {
         //console.log(this.dodecahedron);
     }
 
+    // shouldComponentUpdate(nextProps, nextState){
+
+    // }
+
     componentDidUpdate(prevProps, prevState) {
         console.log("Component did update.");
 
         // Move our camera in/out if we have entered/exited 'explore' mode
         if (prevProps.explore !== this.props.explore) {
             this.updateCameraPosition(); 
+        }
+
+        // Advance/retreat project faces on the dodecahedron based on the selected project (if any)
+        if (prevProps.currentProject !== this.props.currentProject) {
+            if (prevProps.currentProject){
+                this.dodecahedron.children[1].children[prevProps.currentProject - 1].retreat();
+            }
+            if (this.props.currentProject) {
+                this.dodecahedron.children[1].children[this.props.currentProject - 1].advance();
+            }
+        } else if (!prevProps.currentProject){
+            this.retreatAllProjects();
         }
 
         // Turn our dodecahedron controls on/off if we have completed an update to the camera positioning
@@ -188,8 +206,8 @@ class Scene extends React.Component {
         }
 
         // Set rotation parameters
-        //this.dodecahedron.rotation.y -= this.dodecaRotationSpeed; // rotate the polyhedron around the y axis
-        //this.icosahedron.rotation.y += this.icosaRotationSpeed; // rotate background wireframe around the y axis
+        this.dodecahedron.rotation.y -= this.dodecaRotationSpeed; // rotate the polyhedron around the y axis
+        this.icosahedron.rotation.y += this.icosaRotationSpeed; // rotate background wireframe around the y axis
 
         // Render scene
         TWEEN.update();
@@ -252,6 +270,19 @@ class Scene extends React.Component {
         }
     }
 
+    // Get min camera zoom based on window width
+    getMinZoom = () => {
+        let zoom;
+        if (window.innerWidth > 1200) {
+            zoom = 1.25;
+        } else if (window.innerWidth > 768) {
+            zoom = 1.35;
+        } else {
+            zoom = 1.75;
+        }
+        return zoom;
+    }
+
     // Get max camera zoom based on window width
     getMaxZoom = () => {
         let zoom;
@@ -267,14 +298,22 @@ class Scene extends React.Component {
 
     // Update our threeJS scene on window resize
     onWindowResize = () => {
-        const currentZoom = this.camera.position.x;
-        const newZoom = this.getMaxZoom();
-        if(this.props.explore && currentZoom !== newZoom){
+        const currentZoom = this.cameraZoom;
+        const newMinZoom = this.getMinZoom();
+        const newMaxZoom = this.getMaxZoom();
+
+        if (this.props.explore && currentZoom !== newMaxZoom){
             new TWEEN.Tween(this.camera.position)
-                .to({x: newZoom}, 200)
+                .to({ x: newMaxZoom}, 200)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .start();
+        } else if(!this.props.explore && currentZoom !== newMinZoom) {
+            new TWEEN.Tween(this.camera.position)
+                .to({ x: newMinZoom }, 200)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start();
         }
+
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -283,9 +322,8 @@ class Scene extends React.Component {
     // Raycasting event handler
     handleMouseClick = e => {
         e.preventDefault();
-        console.log(e);
-        if(e.changedTouches.length > 0){
-            console.log("Touch device.");
+
+        if(e.changedTouches && e.changedTouches.length > 0){
             // Update our touch positioning for the raycaster
             this.mouse.x = (e.changedTouches[0].pageX / window.innerWidth) * 2 - 1;
             this.mouse.y = -(e.changedTouches[0].pageY / window.innerHeight) * 2 + 1;
@@ -301,7 +339,7 @@ class Scene extends React.Component {
 
         if (intersects.length > 0) {
             const clickedProject = intersects[0].object.parent;
-            console.log("Selected project:", clickedProject);
+            //console.log("Selected project:", clickedProject);
 
             // // Make sure all projects are retreated from dodecahedron surface
             this.retreatAllProjects();
@@ -311,12 +349,10 @@ class Scene extends React.Component {
                 // Update the active project's active flag
                 clickedProject.active = true;
                 clickedProject.advance();
-                clickedProject.showTitle();
                 this.props.openProject(clickedProject.projectID);
             } else {
                 clickedProject.active = false;
                 clickedProject.retreat();
-                clickedProject.hideTitle();
                 this.props.closeProject(clickedProject.projectID);
 
                 // Rotate the camera and project to face each other's directions

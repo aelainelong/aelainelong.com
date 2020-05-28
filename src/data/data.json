@@ -18,7 +18,7 @@
         "tools": [],
         "client": "AT&T",
         "agency": "FleishmanHillard",
-        "url": null
+        "url": ""
       },
       {
         "id": 2,
@@ -60,7 +60,7 @@
         ],
         "client": "Meraki Yoga Studio",
         "agency": "",
-        "url": "http://merakiyogastudio.com/schedule/"
+        "url": ""
       },
       {
         "id": 4,
@@ -90,7 +90,7 @@
       },
       {
         "id": 5,
-        "title": "VF Corporation 2014 Online Annual Report",
+        "title": "VF Corp 2014 Online Annual Report",
         "color": "#feffc3",
         "categories": [
           "web development"
@@ -114,7 +114,7 @@
         ],
         "client": "VF Corporation",
         "agency": "FleishmanHillard",
-        "url": null
+        "url": ""
       },
       {
         "id": 6,
@@ -135,7 +135,7 @@
         ],
         "client": "Kraftig",
         "agency": "FleishmanHillard",
-        "url": null
+        "url": ""
       },
       {
         "id": 7,
@@ -154,7 +154,7 @@
         ],
         "client": "Monsanto",
         "agency": "FleishmanHillard",
-        "url": null
+        "url": ""
       },
       {
         "id": 8,
@@ -181,7 +181,7 @@
         ],
         "client": "AT&T",
         "agency": "FleishmanHillard",
-        "url": null
+        "url": ""
       },
       {
         "id": 9,
@@ -235,14 +235,14 @@
           "Adobe InDesign",
           "Flash"
         ],
-        "client": "Student work",
+        "client": "",
         "agency": "",
-        "url": "https://www.behance.net/gallery/5657877/Chemistry-of-Milk-Print-Advertisement-Series"
+        "url": "/retro/chemistry"
       },
       {
         "id": 11,
         "title": "AIGA Truman",
-        "color": "#ffbee9",
+        "color": "#f0d1ff",
         "categories": [
           "web design"
         ],
@@ -282,7 +282,7 @@
           "Adobe Illustrator",
           "Adobe InDesign"
         ],
-        "client": "Student work",
+        "client": "",
         "agency": "",
         "url": ""
       }
