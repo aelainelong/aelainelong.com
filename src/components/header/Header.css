@@ -4,7 +4,7 @@
 /* ======== */
 /* Palette */
 /* Fonts */
-/* Transitions */
+/* Transitions & Settings */
 /* Breakpoints */
 /* Mixins */
 .Header {
@@ -80,7 +80,7 @@
     margin: 0;
     padding: 8px 0;
     border-bottom: 1px solid #FFF;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-family: "Comfortaa", sans-serif;
     font-weight: 600;
     letter-spacing: 2px; }
@@ -88,14 +88,14 @@
       letter-spacing: 1.25px; }
     @media screen and (min-width: 1400px) and (max-width: 1599px) {
       .Title h2 {
-        font-size: 0.91rem; }
+        font-size: 0.94rem; }
         .no-webanimations .Title h2 {
-          font-size: 0.905rem; } }
+          font-size: 0.908rem; } }
     @media screen and (min-width: 1600px) {
       .Title h2 {
-        font-size: 0.95rem; }
+        font-size: 0.98rem; }
         .no-webanimations .Title h2 {
-          font-size: 0.90rem; } }
+          font-size: 0.93rem; } }
 
 .Menu {
   padding: 0 3px; }

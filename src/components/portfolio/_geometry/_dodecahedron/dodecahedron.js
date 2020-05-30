@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import TWEEN from '@tweenjs/tween.js';
 import ProjectFace from './_projectFace';
 
 // ==============================
@@ -6,58 +7,76 @@ import ProjectFace from './_projectFace';
 // ==============================
 
 const geometry = new THREE.DodecahedronGeometry(2.25);
-const dodecahedron = (projects) => {
-    // Create group to hold our base geometry + custom project faces //
-    const group = new THREE.Group();
 
-    // Create base dodecahedron geometry + edge geometry
-    const edges = new THREE.EdgesGeometry(geometry);
+class Dodecahedron extends THREE.Group {
+    constructor(projects){
+        super(projects);
 
-    // Create base dodecahedron material
-    const material = new THREE.LineBasicMaterial();
+        this.name = "Dodecahedron";
+        this.rotationSpeed = 0.0025;
 
-    // Create mesh from base dodecahedron geometry and material
-    const dodecahedron = new THREE.LineSegments(edges, material);
+        // Create base dodecahedron geometry + edge geometry
+        const edges = new THREE.EdgesGeometry(geometry);
 
-    // Build the project faces to sit on top of the dodecahedron and add them to their own group
-    const projectGroup = new THREE.Group();
-    projects = projects.map(project => {
-        const projectFace = new ProjectFace(project);
-        return projectGroup.add(projectFace);
-    });
+        // Create base dodecahedron material
+        const material = new THREE.LineBasicMaterial();
 
-    // Add the dodecahedron and its custom faces to the main group
-    group.add(dodecahedron, projectGroup);
-    group.name = "Dodecahedron";
+        // Create mesh from base dodecahedron geometry and material
+        const dMesh = new THREE.LineSegments(edges, material);
 
-    // Motion
-    // rotateLeft = () => {
-    //     this.rotation.y -= this.rotationSpeed; // rotate negatively around its y-axis
-    // }
-    // rotateRight = () => {
-    //     this.rotation.y += this.rotationSpeed; // rotate positively around its y-axis
-    // }
-    // startRotation = () => {
-    //     if (!this.rotateForm) {
-    //         this.rotateForm = requestAnimationFrame(this.animate);
-    //     }
-    // }
-    // stopRotation = () => {
-    //     cancelAnimationFrame(this.rotateForm);
-    // }
-    // slowRotation = (e) => {
-    //     // this.group.rotation.x -= this.state.rotationSpeed; // rotation around the x axis
-    //     e.object.rotation.y -= this.state.rotationSpeed; // rotation around the y axis
-    // }
-    // speedRotation = (e) => {
-    //     // this.group.rotation.x += this.state.rotationSpeed * 2; // rotation around the x axis
-    //     e.object.rotation.y += this.state.rotationSpeed * 2; // rotation around the y axis
-    // }
+        // Build the project faces to sit on top of the dodecahedron and add them to their own group
+        const projectsLayer = new THREE.Group();
+        projects = projects.map(project => {
+            const projectFace = new ProjectFace(project);
+            return projectsLayer.add(projectFace);
+        });
 
-    // Interaction
+        this.add(dMesh);
+        this.add(projectsLayer);
 
-    return group;
+        //this.rotation.set(-10.15, -3.25, -2.25);
+    }
 }
 
-export default dodecahedron;
+// Start auto-rotation of the polyhedron around the y-axis
+Dodecahedron.prototype.startRotation = function() {
+    this.rotation.y -= this.rotationSpeed;
+}
+
+// Stop auto-rotation of the polyhedron around the y-axis
+Dodecahedron.prototype.stopRotation = function (){
+    if(this.rotation.y !== 0){
+        new TWEEN.Tween(this.rotation)
+            .to({ y: 0 }, 500)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start();
+    }
+}
+// Rotate a specific project to face the camera
+Dodecahedron.prototype.rotateToProject = function(projectID) {
+    this.stopRotation();
+
+    // const projectVector = this.children[1].children[projectID - 1].tVector;
+
+    // new TWEEN.Tween(?)
+    //     .to(?, 700)
+    //     .easing(TWEEN.Easing.Quadratic.Out)
+    //     .start();
+}
+// Grow and fade in our project faces
+Dodecahedron.prototype.advanceAllProjects = function() {
+    for (let i = 0; i < this.children[1].children.length; i++) {
+        const projectFace = this.children[1].children[i];
+        projectFace.advance();
+    }
+}
+// Shrink and fade out our project faces
+Dodecahedron.prototype.retreatAllProjects = function() {
+    for (let i = 0; i < this.children[1].children.length; i++) {
+        const projectFace = this.children[1].children[i];
+        projectFace.retreat();
+    }
+}
+
+export default Dodecahedron;
 export { geometry };

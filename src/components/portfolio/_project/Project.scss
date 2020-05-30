@@ -14,13 +14,23 @@
   z-index: 999;
 
   @media (min-width: $xsmall) {
-    max-width: 650px;
+    max-width: 680px;
     transform: translateX(-50%);
     left: 50%;
   }
 
   @media (min-width: $large) {
-    max-width: 30vw;
+    left: auto;
+    max-width: 35vw;
+    transform: translateX(0);
+    transform: translateY(0);
+    opacity: 0;
+    height: auto;
+    top: 60%;
+  }
+
+  @media (min-width: $xlarge) {
+    max-width: 35vw;
   }
 
   .App-explore &.Project--open {
@@ -28,26 +38,39 @@
     height: 150px;
 
     @media (min-width: $large) {
-      height: auto;
       bottom: auto;
       left: auto;
       right: 0;
-      transform: translateY(-50%);
-      top: 50%;
+      top: 10vh;
+      opacity: 1;
+      // max-width: 65vw;
+      //height: 85vh;
+      height: auto;
+
+      .project-header {
+        padding-bottom: 15px;
+        border-bottom: 1px dashed white;
+    }
+
+      .project-link,
+      .project-meta,
+      .project-media {
+        display: block;
+        top: 0;
+        opacity: 1;
+      }
     }
 
     .project-cover {
-      opacity: 0.75;
+      opacity: 0.35;
     }
   }
 
   .App-explore &.Project--expanded {
     height: 80vh;
-    max-width: 65vw;
 
     .project-cover {
-      opacity: 1;
-      background-color: rgba(0, 0, 0, 0.70);
+      opacity: 0.75;
     }
   }
 
@@ -61,13 +84,13 @@
     @media (min-width: $xsmall) and (max-width: $large - 1) {
       border-left: 1px dashed white;
       border-right: 1px dashed white;
-      border-radius: 10px;
+      border-radius: $borderRadius;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
 
     @media (min-width: $large) {
-      border-radius: 10px;
+      border-radius: $borderRadius;
       border-left: 1px dashed white;
       border-bottom: 1px dashed white;
       border-top-right-radius: 0;
@@ -77,9 +100,7 @@
   }
 
   .project-cover {
-    @include backgroundScreen;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    background-color: $black;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -87,8 +108,13 @@
     left: 0;
     opacity: 0;
 
+    @media (min-width: $xsmall) {
+      border-top-right-radius: $borderRadius;
+      border-top-left-radius: $borderRadius;
+    }
+
     @media (min-width: $large) {
-      border-radius: 10px;
+      border-radius: $borderRadius;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
@@ -101,10 +127,27 @@
     box-sizing: border-box;
     padding: 20px 30px;
     z-index: 9;
+    font-weight: 600;
 
     @media (min-width: $large) {
-      padding: 50px;
+      padding: 35px;
+      // display: flex;
+      // justify-content: space-between;
+
+      // div[class^="col-"] {
+      //     min-width: 370px;
+      // }
+
+      // div.col-1 {
+
+      // }
     }
+
+    // @media (min-width: $xlarge) {
+    //   div[class^="col-"] {
+    //       min-width: 550px;
+    //   }
+    // }
   }
 
   .project-header,
@@ -120,21 +163,19 @@
   .project-media {
     opacity: 0;
     top: 50px;
-
-    @media (min-width: $large) {
-      display: none;
-    }
   }
+
+  // &.Project--expanded .project-content div[class^="col-"] {
+  //   @media (min-width: $large) {
+  //     width: 47.5%;
+  //   }
+  // }
 
   &.Project--expanded .project-link,
   &.Project--expanded .project-meta,
   &.Project--expanded .project-media {
     top: 0;
     opacity: 1;
-
-    @media (min-width: $large) {
-      display: block;
-    }
   }
 
   .project-header {
@@ -152,6 +193,10 @@
 
       @media (max-width: $large - 1) {
           font-size: 1.25rem;
+      }
+
+      @media (min-width: $xlarge) {
+          padding-right: 70px;
       }
     }
 
@@ -171,15 +216,27 @@
     }
 
     .project-link {
-      width: 100%;
-      color: white;
-      font-size: 0.65rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      display: inline-block;
+      
+      a {
+        color: $linkBlue;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
 
-      @media (min-width: $xsmall) {
-        font-size: 0.75rem;
+        @media (min-width: $xsmall) {
+          font-size: 0.73rem;
+        }
+
+        @media (min-width: $medium) {
+          font-size: 0.78rem;
+        }
+
+        &:hover,
+        &:active {
+          color: white;
+        }
       }
 
       @media (min-width: $large) {
@@ -188,49 +245,47 @@
     }
   }
 
-  &.Project--expanded .project-header,
-  .project-meta {
+  &.Project--expanded .project-header {
       padding-bottom: 15px;
       border-bottom: 1px dashed white;
+  }
+
+  .btn {
+    @include linkButtonStyles;
+    @include boxshadow;
+    background-color: rgba(0, 0, 0, 0.45);
+    border: 1px dashed $white;
+    border-radius: $borderRadius;
+    margin-right: 6px;
+    padding: 6px 6px 4px;
+    min-width: 70px;
+    transition: $allTrans;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   .project-nav {
     position: absolute;
     bottom: 100%;
     padding: 0 30px;
-    
-    // @media (min-width: $large) {
-    //   bottom: auto;
-    //   top: 100%;
-    //   padding: 0 50px;
-    // }
 
     .btn {
-      @include linkButtonStyles;
-      @include boxshadow;
-      background-color: rgba(0, 0, 0, 0.45);
-      border: 1px dashed $white;
-      border-radius: 10px;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      margin-right: 6px;
-      padding: 6px 6px 4px;
-      min-width: 70px;
-      transition: $allTrans;
-      cursor: pointer;
-
-      // @media (min-width: $large) {
-      //   border-bottom-left-radius: 10px;
-      //   border-bottom-right-radius: 10px;
-      //   border-top-left-radius: 0;
-      //   border-top-right-radius: 0;
-      // }
-
-      &:focus {
-        outline: none;
+    }
+    .btn-toggle {
+      @media (min-width: $large) {
+        display: none;
       }
     }
-
+    .btn-close {
+      @media (max-width: $large - 1 ){
+        display: none;
+      }
+    }
     .btn-toggle:hover,
     .btn-close:hover {
       background-color: $orange;
@@ -245,7 +300,8 @@
 
   .project-meta {
     position: relative;
-    font-size: 0.85rem;
+    padding-bottom: 25px;
+    font-size: 0.95rem;
     line-height: 1.45;
     transition: $allTrans;
 
@@ -269,6 +325,117 @@
     li {
       display: inline-block;
     }
+  }
+
+  .project-media {
+
+    ul {
+      display: grid;
+      grid-gap: 15px;
+      padding-right: 20px;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      // flex-wrap: wrap;
+      // display: flex;
+      // justify-content: space-between;
+
+      @media (min-width: $small) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      // @media (min-width: $large) {
+      //   grid-template-columns: 1fr 1fr 1fr;
+      // }
+    }
+    li {
+      // width: 49%;
+    }
+    .thumbnail {
+      transition: $allTrans;
+      overflow: hidden;
+    }
+    .project-media-cover {
+      border: 1px dashed white;
+      padding: 10px;
+      cursor: pointer;
+
+      .wrapper {
+        position: relative;
+        max-height: 400px;
+        overflow: hidden;
+
+        .btn {
+          background-color: rgba(0, 0, 0, 0.7);
+          position: absolute;
+          font-size: 0.8rem;
+          line-height: 1;
+          padding: 10px 10px 8px;
+          transform: translate(-50%, -50%);
+          left: 50%;
+          top: 50%;
+          z-index: 999;
+        }
+
+        // @media (min-width: $medium) {
+        //   min-height: 400px;
+        // }
+
+        // @media (min-width: $large) {
+        //   min-height: 425px;
+        // }
+
+      }
+
+      .overlay {
+        @include boxshadow;
+        background-color: rgb(0, 0, 0);
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transition: $allTrans;
+        opacity: 0.3;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      &:hover .overlay {
+        opacity: 0.55;
+      }
+
+      // .no-touchevents & {
+      //   opacity: 0.95;
+
+      //   &:hover {
+      //     opacity: 1;
+      //   }
+      // }
+    }
+  }
+
+  .track-vertical {
+    width: 10px !important;
+    right: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 6px;
+    height: 100%;
+  }
+  .thumb-vertical {
+    background-color: $blue;
+    border-radius: 6px;
+    border: 1px dashed white;
+    box-sizing: border-box;
+  }
+
+  .react-fancybox .box {
+    width: 100vw;
+    height: 110vh;
+    z-index: 999999;
   }
 
 }

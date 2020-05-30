@@ -14,18 +14,19 @@ $yellow: rgba(224, 190, 0, 0.5);
 $orange: rgba(205, 105, 11, 0.5);
 $blue: rgba(68, 151, 203, 0.5);
 $green: rgba(82, 165, 107, 0.5);
-
+$linkBlue: #80c6ff;
 
 /* Fonts */
+
 $primaryFont: "Comfortaa", sans-serif;
 $secondaryFont: "Chango", sans-serif;
 $tertiaryFont: 'Open Sans', Arial, sans-serif;
 
-
-/* Transitions */
+/* Transitions & Settings */
 
 $allTrans: all ease .5s;
 $textOpacity: 0.8;
+$borderRadius: 10px;
 
 /* Breakpoints */
 

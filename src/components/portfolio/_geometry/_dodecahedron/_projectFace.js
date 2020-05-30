@@ -20,7 +20,7 @@ class ProjectFace extends THREE.Group {
         this.sizeOut = 0.9;
         this.translationIn = 0.06;
         this.translationOut = 0.10;
-        this.image = require(`./../../../../assets/images/portfolio/_thumbs/${project.thumbnail}`);
+        this.image = require(`./../../../../assets/media/_thumbs/${project.thumbnail}`);
         this.colorIn = parseInt(project.color.replace("#", "0x"), 16);
         this.colorOut = 0xe3e3e3;
         this.textSprites = [];
@@ -100,11 +100,6 @@ class ProjectFace extends THREE.Group {
         // Translate the project pentagon back slightly from the dodecahedron face
         
         this.translateOnAxis(this.tVector, this.translationOut);
-
-        // Generate and insert our text sprite
-
-
-        console.log(this);
     }
 
     // Get correct vertices from the parent dodecahedron using the project ID //

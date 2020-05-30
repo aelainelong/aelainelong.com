@@ -1,39 +1,59 @@
 import * as THREE from 'three';
+import TWEEN from '@tweenjs/tween.js';
 
 // ================================
 // Background icosahedron wireframe
 // ================================
 
-const icosahedron = () => {
-    const color = 0x67418a;
+class Icosahedron extends THREE.Group {
+    constructor(props){
+        super(props);
 
-    // Create base icosahedron geometry
-    this.baseGeometry = new THREE.IcosahedronGeometry(20, 3);
+        this.name = "Icosahedron";
+        this.color = 0x67418a;
+        this.opacity = 0.2;
+        this.rotationSpeed = 0.0020;
 
-    // Create base icosahedron material
-    this.baseMaterial = new THREE.MeshPhongMaterial({ color: color, wireframe: true, opacity: 0.2, transparent: true });
+        // Create base icosahedron geometry
+        const baseGeometry = new THREE.IcosahedronGeometry(20, 3);
 
-    // Create mesh from base icosahedron geometry and material
-    this.baseMesh = new THREE.Mesh(this.baseGeometry, this.baseMaterial);
+        // Create base icosahedron material
+        const baseMaterial = new THREE.MeshPhongMaterial({ color: this.color, wireframe: true, opacity: this.opacity, transparent: true });
 
-    // Derive set of vertices as framework for our points layer
-    this.baseVertices = this.baseGeometry.vertices;
-    this.pointPositions = new Float32Array(this.baseVertices.length * 3);
-    this.baseVertices.forEach((vertex, i) => vertex.toArray(this.pointPositions, i * 3));
+        // Create mesh from base icosahedron geometry and material
+        const baseMesh = new THREE.Mesh(baseGeometry, baseMaterial);
 
-    // Create points layer buffer geometry from icosahedron vertices
-    this.pointsGeometry = new THREE.BufferGeometry();
-    this.pointsGeometry.setAttribute('position', new THREE.BufferAttribute(this.pointPositions, 3));
+        // Derive set of vertices as framework for our points layer
+        const baseVertices = baseGeometry.vertices;
+        const pointPositions = new Float32Array(baseVertices.length * 3);
+        baseVertices.forEach((vertex, i) => vertex.toArray(pointPositions, i * 3));
 
-    // Create points layer material & points layer mesh
-    this.pointsMaterial = new THREE.PointsMaterial({ size: 0.2, color: color});
-    this.pointsMesh = new THREE.Points(this.pointsGeometry, this.pointsMaterial);
+        // Create points layer buffer geometry from icosahedron vertices
+        const pointsGeometry = new THREE.BufferGeometry();
+        pointsGeometry.setAttribute('position', new THREE.BufferAttribute(pointPositions, 3));
 
-    // Create new composite 3D object from base icosahedron mesh and points layer mesh
-    this.wireframe = new THREE.Group();
-    this.wireframe.add(this.baseMesh, this.pointsMesh);
+        // Create points layer material & points layer mesh
+        const pointsMaterial = new THREE.PointsMaterial({ size: 0.2, color: this.color });
+        const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
 
-    return this.wireframe;
+        // Create new composite 3D object from base icosahedron mesh and points layer mesh
+        this.add(baseMesh, pointsMesh);
+    }
 }
 
-export default icosahedron();
+// Start auto-rotation of the polyhedron around the y-axis
+Icosahedron.prototype.startRotation = function () {
+    this.rotation.y += this.rotationSpeed;
+}
+
+// Stop auto-rotation of the polyhedron around the y-axis
+Icosahedron.prototype.stopRotation = function () {
+    if (this.rotation.y !== 0) {
+        new TWEEN.Tween(this.rotation)
+            .to({ y: 0 }, 500)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start();
+    }
+}
+
+export default Icosahedron;
