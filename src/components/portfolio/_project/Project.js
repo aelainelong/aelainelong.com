@@ -1,26 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
-import { Scrollbars } from 'react-custom-scrollbars';
+
+import Carousel from 'nuka-carousel';
 import ReactFancyBox from 'react-fancybox';
 import 'react-fancybox/lib/fancybox.css';
 
 import './Project.css';
-
-class CustomScrollbar extends React.Component {
-  render(){
-    return (
-      <Scrollbars
-        autoHeight
-        autoHeightMin={500}
-        renderTrackVertical={props => <div {...props} className="track-vertical" />}
-        renderThumbVertical={props => <div {...props} className="thumb-vertical" />}
-        renderView={props => <div {...props} />}>
-        {this.props.children}
-      </Scrollbars>
-    );
-  }
-}
 
 class Project extends React.Component {
   constructor(props){
@@ -42,13 +28,13 @@ class Project extends React.Component {
     }.bind(this), 200);
   }
 
-  componentDidUpdate(prevProps, prevState){
-    console.log(prevProps, prevState);
-  }
+  // componentDidUpdate(prevProps, prevState){
+  //   console.log(prevProps, prevState);
+  // }
   
   // Update project state upon unmounting
   componentWillUnmount(){
-    this.setState({ projectOpen: false });
+    this.setState({ projectOpen: false, projectExpanded: false, galleryOpen: false });
   }
   
   componentWillReceiveProps(newProps){
@@ -59,21 +45,13 @@ class Project extends React.Component {
   }
 
   // Expand/collapse the project details
-  handleToggle = () => {
+  handleCloseMobile = () => {
     this.setState(() => ({ projectExpanded: !this.state.projectExpanded }));
   }
-  
-  // Update project state upon unmounting
-  handleClose = () => {
-    if(this.state.projectExpanded){
-      this.setState(() => ({ projectExpanded: false }));
-    } else {
-      this.setState(() => ({ projectOpen: false }));
-      this.props.closeProject();
-      // setTimeout(function () {
-        
-      // }.bind(this), 500);
-    }
+
+  handleCloseDesktop = () => {
+    this.setState(() => ({ projectOpen: false, projectExpanded: false }));
+    this.props.closeProject();
   }
   
   // Load previous/next project upon click of project nav
@@ -82,7 +60,7 @@ class Project extends React.Component {
     
     if((atStart && direction === "prev") || (atEnd && direction === "next")){
       // console.log("We are at the beginning or at the end");
-      this.setState({ projectOpen: false });
+      this.setState({ galleryOpen: false, projectOpen: false });
       setTimeout(function(){
         this.props.handleProjectClose();
       }.bind(this), 500);
@@ -121,24 +99,23 @@ class Project extends React.Component {
 
   // Pull in the project images/videos
   getProjectMedia = () => {
-    return this.props.project.media.map((item, index) => {
-      const media = require(`./../../../assets/media${item}`);
-      let thumbnail;
-
-      if (item.indexOf(".mp4") !== -1) { // If it is an image and not a video
-        thumbnail = require(`./../../../assets/media/_thumbs/${this.props.project.thumbnail}`);
-      } else { // It is a video
-        thumbnail = media;
+    const mediaList = this.props.project.media.map((item, i) => {
+      if (item.indexOf("youtube") !== -1) { // If it is a video
+        return (
+          <div className="video-wrapper"><iframe key={i} width="600" height="353" src={`${item}?theme=dark&autohide=2&modestbranding=1&rel=0`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
+          //<iframe key={i} width="600" height="353" src={`${item}?theme=dark&autohide=2&modestbranding=1&rel=0`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        )
+      } else { // If it is an image
+        const itemURL = require(`./../../../assets/media${item}`);
+        return (
+          <div className="image-wrapper"><img key={i} src={itemURL} /></div>
+          // <img key={i} src={itemURL} />
+        )
       }
-
-      return (
-        <li key={`media-` + index}>
-          <ReactFancyBox
-            thumbnail={thumbnail}
-            image={media} />
-        </li>
-      )
     });
+    return (
+      mediaList
+    )
   }
 
   getProjectTech = () => {
@@ -175,24 +152,28 @@ class Project extends React.Component {
             </div>
 
             <div className="col-2">
-              {/* <CustomScrollbar> */}
-                <div className="project-media">
-                {galleryCover}
-                  {/* <div className="project-images">
-                    <ul>{mediaList}</ul>
-                  </div> */}
-                </div>
-              {/* </CustomScrollbar> */}
+                <div className="project-media">{galleryCover}</div>
             </div>
           </div>
 
           <div className="project-nav">
-            <button className="btn btn-toggle" onClick={() => this.handleToggle()}>{!this.state.projectExpanded ? `View Project` : `Close`}</button>
-            { this.state.projectOpen ? <button className="btn btn-close" onClick={() => this.handleClose()}>close</button> : null }
-            { this.state.atEnd ? null : <button className="btn btn-next" onClick={() => this.handleProjectNav("next")}>next</button> }
-            { this.state.atStart ? null : <button className="btn btn-prev" onClick={() => this.handleProjectNav("prev")}>prev</button>}
+            {!this.state.projectOpen || this.state.galleryOpen ? null : <button className="btn btn-close" onClick={() => this.handleCloseDesktop()}>Close Project</button> }
+            { !this.state.galleryOpen ? null : <button className="btn btn-gallery" onClick={() => this.handleGallery()}>Close Gallery</button> }
+            { this.state.galleryOpen ? null : <button className="btn btn-toggle" onClick={() => this.handleCloseMobile()}>{!this.state.projectExpanded ? `View Project` : `Close Project`}</button>}
+            { this.state.atEnd || this.state.galleryOpen ? null : <button className="btn btn-next" onClick={() => this.handleProjectNav("next")}>next</button> }
+            { this.state.atStart || this.state.galleryOpen ? null : <button className="btn btn-prev" onClick={() => this.handleProjectNav("prev")}>prev</button>}
           </div>
-      </div>
+        </div>
+
+        {this.state.galleryOpen ? <div className="project-gallery">
+          <Carousel
+            cellAlign={'center'}
+            slidesToShow={1}
+            heightMode={'max'}
+            >
+            {mediaList}
+          </Carousel>
+        </div> : null }
       </div>
     )
   }

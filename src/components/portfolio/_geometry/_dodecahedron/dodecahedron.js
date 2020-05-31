@@ -14,6 +14,7 @@ class Dodecahedron extends THREE.Group {
 
         this.name = "Dodecahedron";
         this.rotationSpeed = 0.0025;
+        this.rotate = null;
 
         // Create base dodecahedron geometry + edge geometry
         const edges = new THREE.EdgesGeometry(geometry);
@@ -39,18 +40,21 @@ class Dodecahedron extends THREE.Group {
 }
 
 // Start auto-rotation of the polyhedron around the y-axis
-Dodecahedron.prototype.startRotation = function() {
-    this.rotation.y -= this.rotationSpeed;
+Dodecahedron.prototype.startRotation = () => {
+    console.log(this);
+    //this.rotation.y -= this.rotationSpeed;
 }
-
 // Stop auto-rotation of the polyhedron around the y-axis
-Dodecahedron.prototype.stopRotation = function (){
-    if(this.rotation.y !== 0){
-        new TWEEN.Tween(this.rotation)
-            .to({ y: 0 }, 500)
-            .easing(TWEEN.Easing.Quadratic.Out)
-            .start();
-    }
+Dodecahedron.prototype.stopRotation = () => {
+    // if(this.rotation.y !== 0){
+    //     new TWEEN.Tween(this.rotation)
+    //         .to({ y: 0 }, 500)
+    //         .easing(TWEEN.Easing.Quadratic.Out)
+    //         .onComplete(() => {
+    //             cancelAnimationFrame(this.rotate);
+    //         })
+    //         .start();
+    // }
 }
 // Rotate a specific project to face the camera
 Dodecahedron.prototype.rotateToProject = function(projectID) {

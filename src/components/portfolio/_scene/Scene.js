@@ -21,6 +21,7 @@ class Scene extends React.Component {
 
         this.minZoom = "";
         this.maxZoom = "";
+        this.DodecahedronRotation;
     }
 
     // Set up our threeJS portfolio scene //
@@ -134,10 +135,6 @@ class Scene extends React.Component {
         //console.log(this.Dodecahedron);
     }
 
-    // shouldComponentUpdate(nextProps, nextState){
-
-    // }
-
     componentDidUpdate(prevProps, prevState) {
         console.log("Component did update.");
 
@@ -155,7 +152,7 @@ class Scene extends React.Component {
                 this.Dodecahedron.children[1].children[this.props.currentProject - 1].advance();
             }
         } else if (!prevProps.currentProject){
-            this.Dodecahedron.retreatAllProjects();
+            //this.Dodecahedron.retreatAllProjects();
         }
 
         // Turn our Dodecahedron controls on/off if we have completed an update to the camera positioning
@@ -196,8 +193,9 @@ class Scene extends React.Component {
             this.camera.updateProjectionMatrix();
         }
 
-        // Rotate our polyhedrons around their y-axes
-        this.Dodecahedron.startRotation();
+        // Rotate the background icosahedron
+        //this.rotateDodecahedron = requestAnimationFrame(this.startDodecahedron);
+        this.startDodecahedron();
         this.Icosahedron.startRotation();
 
         // Render scene
@@ -206,6 +204,19 @@ class Scene extends React.Component {
 
         requestAnimationFrame(this.animate);
         this.renderScene();
+    }
+
+    startDodecahedron = () => {
+        if(!this.DodecahedronRotation){
+            this.DodecahedronRotation = requestAnimationFrame(this.Dodecahedron.startRotation);
+        }
+    }
+
+    stopDodecahedron = () => {
+        if (this.DodecahedronRotation) {
+            cancelAnimationFrame(this.DodecahedronRotation);
+            this.DodecahedronRotation = null;
+        }
     }
 
     // Update camera position
@@ -325,10 +336,19 @@ class Scene extends React.Component {
                 clickedProject.active = true;
                 clickedProject.advance();
                 this.props.openProject(clickedProject.projectID);
+                this.stopDodecahedron();
+
             } else {
                 clickedProject.active = false;
                 clickedProject.retreat();
                 this.props.closeProject(clickedProject.projectID);
+                this.startDodecahedron();
+                
+
+                // this.Dodecahedron.updateMatrixWorld();
+                // const childPosition = new THREE.Vector3();
+                // childPosition.setFromMatrixPosition(clickedProject.matrixWorld);
+                // this.camera.lookAt(childPosition);
 
                 // Rotate the camera and project to face each other's directions
                 // const cameraDir = new THREE.Vector3(0, 0, -1);

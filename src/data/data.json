@@ -14,7 +14,7 @@
         "thumbnail": "att-icw-thumb.jpg",
         "carouselCover": "/att-icw/att-icw-01.jpg",
         "media": [
-          "/att-icw/att-icw-capture.mp4",
+          "https://www.youtube.com/embed/sOWq-5bAnMI",
           "/att-icw/att-icw-01.jpg",
           "/att-icw/att-icw-02.jpg",
           "/att-icw/att-icw-03.jpg",
@@ -128,9 +128,16 @@
         "media": [
           "/vf-corp/vf-01.jpg",
           "/vf-corp/vf-02.jpg",
+          "/vf-corp/vf-03.jpg",
           "/vf-corp/vf-04.jpg",
           "/vf-corp/vf-05.jpg",
-          "/vf-corp/vf-06.jpg"
+          "/vf-corp/vf-06.jpg",
+          "/vf-corp/vf-07.jpg",
+          "/vf-corp/vf-08.jpg",
+          "/vf-corp/vf-09.jpg",
+          "https://www.youtube.com/embed/il03xQvzgK4",
+          "https://www.youtube.com/embed/DI7AfpdgvxY",
+          "https://www.youtube.com/embed/4G9QnjcdRGM"
         ],
         "deliverables": "Online annual report for VF Corporation",
         "description": "Developed the digital version of VF Corporation's 2014 Annual Report, showcasing financial charts created using FusionCharts, brand performance information and an interactive ROI case study infographic",
@@ -154,7 +161,7 @@
         "thumbnail": "kraftig-thumb.jpg",
         "carouselCover": "/kraftig/kraftig-04.jpg",
         "media": [
-          "/kraftig/kraftig-gate-capture.mp4",
+          "https://www.youtube.com/embed/YUDpxlTCeeM",
           "/kraftig/kraftig-01.jpg",
           "/kraftig/kraftig-02.jpg",
           "/kraftig/kraftig-03.jpg",
@@ -187,10 +194,9 @@
           "/discover-monsanto/monsanto-03.jpg",
           "/discover-monsanto/monsanto-04.jpg",
           "/discover-monsanto/monsanto-05.jpg",
+          "https://www.youtube.com/embed/Fr_fM72GliE",
           "/discover-monsanto/monsanto-06.jpg",
-          "/discover-monsanto/monsanto-07.jpg",
-          "/discover-monsanto/monsanto-capture.mp4",
-          "/discover-monsanto/monsanto-capture-2.mp4"
+          "/discover-monsanto/monsanto-07.jpg"
         ],
         "deliverables": "Custom Wordpress theme for Monsanto",
         "description": "Developed a custom Wordpress child theme for Monsanto's Discover Monsanto initiative.",
@@ -274,6 +280,7 @@
         "thumbnail": "chem-thumb.jpg",
         "carouselCover": "/chemistry-milk/chem-05.jpg",
         "media": [
+          "https://www.youtube.com/embed/PGfnH7qIgf8",
           "/chemistry-milk/chem-05.jpg",
           "/chemistry-milk/chem-06.jpg",
           "/chemistry-milk/chem-07.jpg",
@@ -296,7 +303,7 @@
       {
         "id": 11,
         "title": "AIGA Truman",
-        "color": "#f0d1ff",
+        "color": "#ffbe9b",
         "categories": [
           "web design"
         ],
@@ -307,7 +314,7 @@
           "/aiga-truman/aiga-02.jpg",
           "/aiga-truman/aiga-03.jpg",
           "/aiga-truman/aiga-04.jpg",
-          "/aiga-truman/aiga-capture.mp4"
+          "https://www.youtube.com/embed/ZPyWQwhyyVg"
         ],
         "deliverables": "Creative microsite for AIGA Truman",
         "description": "Designed and built a unique microsite for Truman State University's AIGA chapter using Adobe Flash",

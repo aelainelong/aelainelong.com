@@ -21,7 +21,7 @@
   z-index: 5;
   color: #FFF; }
   .App-explore .Header {
-    background-color: rgba(0, 0, 0, 0.15); }
+    background-color: rgba(0, 0, 0, 0.35); }
   @media (max-width: 1399px) {
     .App-about .Header,
     .App-connect .Header {

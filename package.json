@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@tweenjs/tween.js": "^18.5.0",
+    "nuka-carousel": "^4.7.0",
     "react": "^16.13.1",
     "react-css-stagger": "0.0.8",
-    "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.13.1",
     "react-fancybox": "^0.2.5",
     "react-ga": "^2.3.5",
