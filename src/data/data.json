@@ -36,18 +36,29 @@
       },
       {
         "id": 2,
-        "title": "",
-        "color": "#72ddf0",
+        "title": "AT&T Accessibility",
+        "color": "#d3d3d3",
         "categories": [],
-        "thumbnail": "att-icw-thumb.jpg",
-        "carouselCover": "",
-        "media": [],
-        "deliverables": "",
-        "description": "",
-        "tech": [],
-        "client": "",
-        "agency": "",
-        "url": ""
+        "thumbnail": "att-accessibility-thumb.jpg",
+        "carouselCover": "/att-accessibility/a11y-01.jpg",
+        "media": [
+          "/att-accessibility/a11y-01.jpg",
+          "/att-accessibility/a11y-02.jpg",
+          "/att-accessibility/a11y-03.jpg",
+          "/att-accessibility/a11y-04.jpg",
+          "/att-accessibility/a11y-05.jpg",
+          "/att-accessibility/a11y-06.jpg",
+          "/att-accessibility/a11y-07.jpg"
+        ],
+        "deliverables": "AEM microsite supporting AT&T's Accessibility initiative with an interactive element",
+        "description": "This microsite was built on top of the AT&T Newsroom in Adobe Experience Manager. Contributed the front-end templates and components and also developed the 'Do You Speak Accessibility' lanaguge exercise.",
+        "tech": [
+          "JavaScript",
+          "Adobe Experience Manager"
+        ],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": "https://att.com/accessibility"
       },
       {
         "id": 3,

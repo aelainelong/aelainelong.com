@@ -57,6 +57,7 @@ class ProjectFace extends THREE.Group {
         tMesh.geometry.faces.push(new THREE.Face3(4, 2, 5));
         tMesh.geometry.faces.push(new THREE.Face3(2, 0, 5));
         tMesh.geometry.faces.push(new THREE.Face3(0, 1, 5));
+
         tMesh.geometry.elementsNeedUpdate = true;
 
         // Merge meshes
@@ -127,6 +128,8 @@ class ProjectFace extends THREE.Group {
     // Create texture using the project thumbnail //
     getTexture = (projectImage) => {
         const texture = new THREE.TextureLoader().load(projectImage);
+        texture.wrapS = THREE.ClampToEdgeWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
         texture.minFilter = THREE.LinearFilter;
         texture.encoding = THREE.sRGBEncoding;
         texture.anisotropy = 16;

@@ -1,0 +1,45 @@
+
+> fsevents@1.2.13 install /Users/LONGAS/Desktop/7-Non-Work/aelainelong.com/node_modules/jest-haste-map/node_modules/fsevents
+> node install.js
+
+  SOLINK_MODULE(target) Release/.node
+  CXX(target) Release/obj.target/fse/fsevents.o
+  SOLINK_MODULE(target) Release/fse.node
+
+> fsevents@1.2.13 install /Users/LONGAS/Desktop/7-Non-Work/aelainelong.com/node_modules/watchpack-chokidar2/node_modules/fsevents
+> node install.js
+
+  SOLINK_MODULE(target) Release/.node
+  CXX(target) Release/obj.target/fse/fsevents.o
+  SOLINK_MODULE(target) Release/fse.node
+
+> fsevents@1.2.13 install /Users/LONGAS/Desktop/7-Non-Work/aelainelong.com/node_modules/webpack-dev-server/node_modules/fsevents
+> node install.js
+
+  SOLINK_MODULE(target) Release/.node
+  CXX(target) Release/obj.target/fse/fsevents.o
+  SOLINK_MODULE(target) Release/fse.node
+
+> core-js@2.6.11 postinstall /Users/LONGAS/Desktop/7-Non-Work/aelainelong.com/node_modules/babel-runtime/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+[96mThank you for using core-js ([94m https://github.com/zloirock/core-js [96m) for polyfilling JavaScript standard library![0m
+
+[96mThe project needs your help! Please consider supporting of core-js on Open Collective or Patreon: [0m
+[96m>[94m https://opencollective.com/core-js [0m
+[96m>[94m https://www.patreon.com/zloirock [0m
+
+[96mAlso, the author of core-js ([94m https://github.com/zloirock [96m) is looking for a good job -)[0m
+
+
+> core-js@3.6.5 postinstall /Users/LONGAS/Desktop/7-Non-Work/aelainelong.com/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+
+> core-js-pure@3.6.5 postinstall /Users/LONGAS/Desktop/7-Non-Work/aelainelong.com/node_modules/core-js-pure
+> node -e "try{require('./postinstall')}catch(e){}"
+
++ react-scripts@3.4.1
+added 1720 packages from 675 contributors and audited 2257 packages in 76.153s
+found 15714 low severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details

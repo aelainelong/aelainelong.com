@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import TWEEN from '@tweenjs/tween.js';
 import ProjectFace from './_projectFace';
 
 // ==============================
@@ -45,18 +44,6 @@ Dodecahedron.prototype.startRotation = function() {
 Dodecahedron.prototype.stopRotation = function() {
     this.rotation.y = this.rotation.y;
 }
-// Rotate a specific project to face the camera
-// Dodecahedron.prototype.rotateToProject = function(projectID) {
-//     const project = this.children[1].children[projectID - 1];
-//     const projectPosition = new THREE.Vector3();
-//     project.getWorldPosition(projectPosition);
-//     const endPosition = projectPosition.multiplyScalar(this.maxZoom * 8);
-
-//     new TWEEN.Tween(this.camera.position)
-//         .to(endPosition, 1000)
-//         .easing(TWEEN.Easing.Quadratic.Out)
-//         .start();
-// }
 // Grow and fade in our project faces
 Dodecahedron.prototype.advanceAllProjects = function() {
     for (let i = 0; i < this.children[1].children.length; i++) {

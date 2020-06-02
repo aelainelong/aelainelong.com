@@ -3,7 +3,6 @@ import React from 'react';
 import * as THREE from 'three';
 import TWEEN from '@tweenjs/tween.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { DragControls } from 'three/examples/jsm/controls/DragControls';
 
 import ToolTip from '../_tooltip/ToolTip';
 import Dodecahedron from '../_geometry/_dodecahedron/dodecahedron';
@@ -69,8 +68,6 @@ class Scene extends React.Component {
         this.orbitControls.enableKeys = true;
         this.orbitControls.maxDistance = this.getMaxZoom();
 
-        this.DodecahedronControls = new DragControls(this.Dodecahedron, this.camera, this.canvas);
-
         // Add raycaster to catch mouse click events on the project faces
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
@@ -95,17 +92,6 @@ class Scene extends React.Component {
             cameraPosEnd = new THREE.Vector3(this.minZoom, 0, 0);
 
         this.animateToHome = () => {
-            const tweenA = new TWEEN.Tween(this.Dodecahedron.rotation)
-                            .to({ x: 0, y: 0, z: 0 }, 500)
-                            .easing(TWEEN.Easing.Quadratic.Out)
-                            .onStop(() => {
-                                //console.log("ANIMATION TO HOME STOPPED.");
-                                this.Dodecahedron.retreatAllProjects();
-                            })
-                            .onComplete(() => {
-                                cancelAnimationFrame(this.rotate);
-                            });
-
             const tweenB = new TWEEN.Tween(cameraPosStart)
                             .to(cameraPosEnd, 4000)
                             .easing(TWEEN.Easing.Cubic.Out)
@@ -179,7 +165,7 @@ class Scene extends React.Component {
     // Clean up our scene controls and window event listeners when Scene unmounts
     componentWillUnmount(){
         // Remove all event listeners from the window and canvas objects
-        this.DodecahedronControls.dispose();
+        this.orbitControls.dispose();
         window.removeEventListener('resize', this.onWindowResize);
 
         // Stop the rotation animation
@@ -256,13 +242,11 @@ class Scene extends React.Component {
     // Get our scene ready for mouse interactions (dragging / hovering / clicking)
     toggleControls = () => {
         if(this.state.ready){
-            this.DodecahedronControls.activate();
             this.canvas.addEventListener('mousemove', this.handleMouseMove);
             this.canvas.addEventListener('click', this.handleMouseClick, false);
             this.canvas.addEventListener('touchstart', this.handleMouseClick, false);
         } else {
             this.Dodecahedron.retreatAllProjects();
-            this.DodecahedronControls.deactivate();
             this.canvas.removeEventListener('mousemove', this.handleMouseMove);
             this.canvas.removeEventListener('click', this.handleMouseClick, false);
             this.canvas.removeEventListener('touchstart', this.handleMouseClick, false);
@@ -354,7 +338,6 @@ class Scene extends React.Component {
                 clickedProject.advance();
 
                 // Move the camera to face the current project
-                //this.Dodecahedron.rotateToProject(clickedProject.projectID);
                 const projectPosition = new THREE.Vector3();
                 clickedProject.getWorldPosition(projectPosition);
                 const endPosition = projectPosition.multiplyScalar(this.maxZoom * 8);

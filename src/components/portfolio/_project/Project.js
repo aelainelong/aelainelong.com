@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 
 import Carousel from 'nuka-carousel';
-import ReactFancyBox from 'react-fancybox';
-import 'react-fancybox/lib/fancybox.css';
 
 import './Project.css';
 

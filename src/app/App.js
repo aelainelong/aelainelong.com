@@ -6,6 +6,7 @@ import Loading from '../components/loading/Loading';
 import Header from '../components/header/Header';
 import Portfolio from '../components/portfolio/Portfolio';
 
+import { allThumbnails } from '../data/client.js';
 import './App.css';
 
 class App extends React.Component {
@@ -61,21 +62,21 @@ class App extends React.Component {
     
     return (
       <div className="App" data-active-view={this.state.active} className={`App ${this.state.explore ? `App-explore` : `App-home`} ${this.state.connect ? `App-connect` : ``} ${this.state.about ? `App-about` : ``}`}>
-        {/* <Preload
+        <Preload
           loadingIndicator={Loading}
-          images={allImages}
+          images={allThumbnails}
           autoResolveDelay={3000}
           onError={this._handleImageLoadError}
           onSuccess={this._handleImageLoadSuccess}
           resolveOnError={true}
           mountChildren={true}
-        >  */}
+        > 
           <div className="app-cover" style={{ background: `linear-gradient(to bottom, rgba(0, 0, 0, 0), ${this.state.bgColorBottom})` }}></div>
           <div className="app-wrapper">
             <Header updateView={this.updateView} toggleConnect={this.toggleConnect} about={this.state.about} connect={this.state.connect} />
             <Portfolio explore={this.state.explore} />
           </div>
-        {/* </Preload> */}
+        </Preload>
       </div>
     );
   }

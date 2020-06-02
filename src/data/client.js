@@ -27,8 +27,8 @@ const client = {
     return Array.from(new Set(categories));
   },
   getAllImages(){
-    const imagePaths = allProjects.map(project => project.images).join(",").split(",");
-    const images = imagePaths.map(path => process.env.PUBLIC_URL + '/img/portfolio' + path);
+    const imagePaths = allProjects.map(project => project.thumbnail).join(",").split(",");
+    const images = imagePaths.map(path => './../../../../assets/media/_thumbs/' + path);
     return Array.from(new Set(images));
   },
   getSocials(){
@@ -36,4 +36,7 @@ const client = {
   }
 }
 
+const allThumbnails = client.getAllImages();
+
 export default client;
+export { allThumbnails };
