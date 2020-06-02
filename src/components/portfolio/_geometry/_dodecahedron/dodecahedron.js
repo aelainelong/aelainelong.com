@@ -14,7 +14,7 @@ class Dodecahedron extends THREE.Group {
 
         this.name = "Dodecahedron";
         this.rotationSpeed = 0.0025;
-        this.rotate = null;
+        this.rotating = null;
 
         // Create base dodecahedron geometry + edge geometry
         const edges = new THREE.EdgesGeometry(geometry);
@@ -34,39 +34,29 @@ class Dodecahedron extends THREE.Group {
 
         this.add(dMesh);
         this.add(projectsLayer);
-
-        //this.rotation.set(-10.15, -3.25, -2.25);
     }
 }
 
 // Start auto-rotation of the polyhedron around the y-axis
-Dodecahedron.prototype.startRotation = () => {
-    console.log(this);
-    //this.rotation.y -= this.rotationSpeed;
+Dodecahedron.prototype.startRotation = function() {
+    this.rotation.y -= this.rotationSpeed;
 }
 // Stop auto-rotation of the polyhedron around the y-axis
-Dodecahedron.prototype.stopRotation = () => {
-    // if(this.rotation.y !== 0){
-    //     new TWEEN.Tween(this.rotation)
-    //         .to({ y: 0 }, 500)
-    //         .easing(TWEEN.Easing.Quadratic.Out)
-    //         .onComplete(() => {
-    //             cancelAnimationFrame(this.rotate);
-    //         })
-    //         .start();
-    // }
+Dodecahedron.prototype.stopRotation = function() {
+    this.rotation.y = this.rotation.y;
 }
 // Rotate a specific project to face the camera
-Dodecahedron.prototype.rotateToProject = function(projectID) {
-    this.stopRotation();
+// Dodecahedron.prototype.rotateToProject = function(projectID) {
+//     const project = this.children[1].children[projectID - 1];
+//     const projectPosition = new THREE.Vector3();
+//     project.getWorldPosition(projectPosition);
+//     const endPosition = projectPosition.multiplyScalar(this.maxZoom * 8);
 
-    // const projectVector = this.children[1].children[projectID - 1].tVector;
-
-    // new TWEEN.Tween(?)
-    //     .to(?, 700)
-    //     .easing(TWEEN.Easing.Quadratic.Out)
-    //     .start();
-}
+//     new TWEEN.Tween(this.camera.position)
+//         .to(endPosition, 1000)
+//         .easing(TWEEN.Easing.Quadratic.Out)
+//         .start();
+// }
 // Grow and fade in our project faces
 Dodecahedron.prototype.advanceAllProjects = function() {
     for (let i = 0; i < this.children[1].children.length; i++) {

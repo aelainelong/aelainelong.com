@@ -27,10 +27,6 @@ class Project extends React.Component {
       this.setState({ projectOpen: true });
     }.bind(this), 200);
   }
-
-  // componentDidUpdate(prevProps, prevState){
-  //   console.log(prevProps, prevState);
-  // }
   
   // Update project state upon unmounting
   componentWillUnmount(){
@@ -102,14 +98,12 @@ class Project extends React.Component {
     const mediaList = this.props.project.media.map((item, i) => {
       if (item.indexOf("youtube") !== -1) { // If it is a video
         return (
-          <div className="video-wrapper"><iframe key={i} width="600" height="353" src={`${item}?theme=dark&autohide=2&modestbranding=1&rel=0`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
-          //<iframe key={i} width="600" height="353" src={`${item}?theme=dark&autohide=2&modestbranding=1&rel=0`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <div key={i} className="video-wrapper"><iframe width="600" height="353" src={`${item}?theme=dark&autohide=2&modestbranding=1&rel=0`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
         )
       } else { // If it is an image
         const itemURL = require(`./../../../assets/media${item}`);
         return (
-          <div className="image-wrapper"><img key={i} src={itemURL} /></div>
-          // <img key={i} src={itemURL} />
+          <div key={i} className="image-wrapper"><img src={itemURL} /></div>
         )
       }
     });

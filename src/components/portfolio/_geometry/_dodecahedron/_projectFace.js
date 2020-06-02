@@ -16,7 +16,7 @@ class ProjectFace extends THREE.Group {
         this.name = project.title;
         this.opacityIn = 0.75;
         this.opacityOut = 1;
-        this.sizeIn = 0.85;
+        this.sizeIn = 0.825;
         this.sizeOut = 0.9;
         this.translationIn = 0.06;
         this.translationOut = 0.10;
@@ -50,10 +50,6 @@ class ProjectFace extends THREE.Group {
         tMesh.geometry.computeBoundingBox();
         const centerVertex = utils.getCenterVertex(tMesh);
         tMesh.geometry.vertices[5] = centerVertex;
-
-        // tMesh.geometry.computeBoundingBox();
-        // const boundingBox = tMesh.geometry.boundingBox;
-        // console.log(boundingBox);
 
         // Set the correct faces on the geometry
         tMesh.geometry.faces.push(new THREE.Face3(1, 3, 5));
@@ -118,8 +114,6 @@ class ProjectFace extends THREE.Group {
             faceVertices.push(parentFaces[f].a);
             faceVertices.push(parentFaces[f].b);
             faceVertices.push(parentFaces[f].c);
-
-            //console.log(faceVertices);
 
             // Push the face's XYZ vertices (by index) into the new geometry's vertice array as Vector3s
             faceVertices

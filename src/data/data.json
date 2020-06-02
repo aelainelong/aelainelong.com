@@ -36,6 +36,21 @@
       },
       {
         "id": 2,
+        "title": "",
+        "color": "#72ddf0",
+        "categories": [],
+        "thumbnail": "att-icw-thumb.jpg",
+        "carouselCover": "",
+        "media": [],
+        "deliverables": "",
+        "description": "",
+        "tech": [],
+        "client": "",
+        "agency": "",
+        "url": ""
+      },
+      {
+        "id": 3,
         "title": "AT&T About Us Newsroom",
         "color": "#d3d3d3",
         "categories": [],
@@ -65,29 +80,6 @@
         "client": "AT&T",
         "agency": "FleishmanHillard",
         "url": "https://about.att.com"
-      },
-      {
-        "id": 3,
-        "title": "Meraki Yoga Studio Online Schedule",
-        "color": "#ffffff",
-        "categories": [
-          "web development"
-        ],
-        "thumbnail": "meraki-thumb.jpg",
-        "carouselCover": "/meraki/meraki-01.jpg",
-        "media": [
-          "/meraki/meraki-01.jpg"
-        ],
-        "deliverables": "Dynamic class schedule driven by the Karamasoft API",
-        "description": "Developed a responsive online class scheduling interface that pulled in the yoga studio's scheduling data via Karmasoft's REST API.",
-        "tech": [
-          "JavaScript",
-          "Karmasoft API",
-          "PHP"
-        ],
-        "client": "Meraki Yoga Studio",
-        "agency": "",
-        "url": ""
       },
       {
         "id": 4,
@@ -245,29 +237,6 @@
       },
       {
         "id": 9,
-        "title": "AT&T Accessibility",
-        "color": "#9d96f8",
-        "categories": [
-          "web development"
-        ],
-        "thumbnail": "att-accessibility-thumb.jpg",
-        "media": [
-          
-        ],
-        "deliverables": "AEM microsite supporting AT&T's Accessibility initiative with an interactive quiz element",
-        "description": "This was a microsite built on top of the AT&T Newsroom in Adobe Experience Manager. I provided the front-end templates and components and also developed a 'Do You Speak Accessibility?' quiz feature.",
-        "tech": [
-          "JavaScript",
-          "SASS",
-          "HTML5",
-          "Adobe Experience Manager"
-        ],
-        "client": "AT&T",
-        "agency": "FleishmanHillard",
-        "url": "https://about.att.com/sites/accessibility"
-      },
-      {
-        "id": 10,
         "title": "Chemistry of Milk",
         "color": "#ffffd7",
         "categories": [
@@ -301,7 +270,7 @@
         "url": "/retro/chemistry"
       },
       {
-        "id": 11,
+        "id": 10,
         "title": "AIGA Truman",
         "color": "#ffbe9b",
         "categories": [
@@ -326,7 +295,7 @@
         "url": "/retro/aiga/"
       },
       {
-        "id": 12,
+        "id": 11,
         "title": "Pastiche Mag",
         "color": "#f5d05e",
         "categories": [
@@ -348,6 +317,29 @@
           "Adobe InDesign"
         ],
         "client": "Student work",
+        "agency": "",
+        "url": ""
+      },
+      {
+        "id": 12,
+        "title": "Meraki Yoga Studio Online Schedule",
+        "color": "#ffffff",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "meraki-thumb.jpg",
+        "carouselCover": "/meraki/meraki-01.jpg",
+        "media": [
+          "/meraki/meraki-01.jpg"
+        ],
+        "deliverables": "Dynamic class schedule driven by the Karamasoft API",
+        "description": "Developed a responsive online class scheduling interface that pulled in the yoga studio's scheduling data via Karmasoft's REST API.",
+        "tech": [
+          "JavaScript",
+          "Karmasoft API",
+          "PHP"
+        ],
+        "client": "Meraki Yoga Studio",
         "agency": "",
         "url": ""
       }
