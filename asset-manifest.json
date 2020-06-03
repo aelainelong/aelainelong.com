@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.4d3829cd.chunk.css",
+    "main.css": "/static/css/main.831e8e61.chunk.css",
     "main.js": "/static/js/main.a291c15a.chunk.js",
     "main.js.map": "/static/js/main.a291c15a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.bff78fc3.js",
@@ -8,9 +8,9 @@
     "static/js/2.f51fef98.chunk.js": "/static/js/2.f51fef98.chunk.js",
     "static/js/2.f51fef98.chunk.js.map": "/static/js/2.f51fef98.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.e3c9770aef0539b79324934574d16e6e.js": "/precache-manifest.e3c9770aef0539b79324934574d16e6e.js",
+    "precache-manifest.024bdd0979c959f79862b4188b3c6b3a.js": "/precache-manifest.024bdd0979c959f79862b4188b3c6b3a.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.4d3829cd.chunk.css.map": "/static/css/main.4d3829cd.chunk.css.map",
+    "static/css/main.831e8e61.chunk.css.map": "/static/css/main.831e8e61.chunk.css.map",
     "static/js/2.f51fef98.chunk.js.LICENSE.txt": "/static/js/2.f51fef98.chunk.js.LICENSE.txt",
     "static/media/AT&T_Accessibility_-_2020-05-29_08.23.27.png": "/static/media/AT&T_Accessibility_-_2020-05-29_08.23.27.1dd31f50.png",
     "static/media/MistletoeShow_email_2012.jpg": "/static/media/MistletoeShow_email_2012.06c53891.jpg",
@@ -117,7 +117,7 @@
   "entrypoints": [
     "static/js/runtime-main.bff78fc3.js",
     "static/js/2.f51fef98.chunk.js",
-    "static/css/main.4d3829cd.chunk.css",
+    "static/css/main.831e8e61.chunk.css",
     "static/js/main.a291c15a.chunk.js"
   ]
 }
