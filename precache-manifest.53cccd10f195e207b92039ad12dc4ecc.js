@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7f7dba2d78067170e44813d46034152c",
+    "revision": "d45db41726185c508238dd894c23910e",
     "url": "/index.html"
   },
   {
-    "revision": "4e724f86c70784aa1e8f",
+    "revision": "179c27b7f879e00b604f",
     "url": "/static/css/main.b61c02eb.chunk.css"
   },
   {
-    "revision": "15da8ebdab2bdc649368",
-    "url": "/static/js/2.64f1aeef.chunk.js"
+    "revision": "02f076f9cecf7b663422",
+    "url": "/static/js/2.c5ac3105.chunk.js"
   },
   {
     "revision": "846e3710ca5ee3f911296f05447fe08c",
-    "url": "/static/js/2.64f1aeef.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.c5ac3105.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4e724f86c70784aa1e8f",
-    "url": "/static/js/main.29474cd9.chunk.js"
+    "revision": "179c27b7f879e00b604f",
+    "url": "/static/js/main.f6e71a6d.chunk.js"
   },
   {
     "revision": "9fe82d35a95eaa8ae0a5",
@@ -140,8 +140,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/aiga-capture.a71f5eed.mp4"
   },
   {
-    "revision": "13a77561a2dc2a27cdf0cb0256a59097",
-    "url": "/static/media/aiga-thumb.13a77561.jpg"
+    "revision": "74e9fad533fb33da81c397d7aac1e1ec",
+    "url": "/static/media/aiga-thumb.74e9fad5.jpg"
   },
   {
     "revision": "2372410911fa75f8eacd8551d5c69667",
@@ -176,12 +176,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/att-icw-capture.e14eb0b4.mp4"
   },
   {
-    "revision": "31325ef1d2c423b3d43342a4eaaee9f3",
-    "url": "/static/media/att-icw-thumb.31325ef1.jpg"
+    "revision": "0f2ddbbb790aaada68ea8a4acf3738d0",
+    "url": "/static/media/att-icw-thumb.0f2ddbbb.jpg"
   },
   {
     "revision": "8670cfa0264b6c6687bced38a360be49",
     "url": "/static/media/att-latino-thumb.8670cfa0.jpg"
+  },
+  {
+    "revision": "d9a0ec3e18046f9a8fdbbb652270eee9",
+    "url": "/static/media/att-map-01.d9a0ec3e.jpg"
+  },
+  {
+    "revision": "a12787b8a7c051a3979221d7a6477c13",
+    "url": "/static/media/att-map-02.a12787b8.jpg"
+  },
+  {
+    "revision": "40a80e766e95a08f94dc8d33d68e3589",
+    "url": "/static/media/att-map-03.40a80e76.jpg"
+  },
+  {
+    "revision": "08f9c5d62c6aa9527f06ae88293d47fe",
+    "url": "/static/media/att-map-04.08f9c5d6.jpg"
+  },
+  {
+    "revision": "0e366d95f0c2ece67ac63fa451738aca",
+    "url": "/static/media/att-map-thumb.0e366d95.jpg"
   },
   {
     "revision": "bc72a09d2b1383d752ca95d42358885c",
@@ -216,8 +236,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/chem-capture.4e4b0717.mp4"
   },
   {
-    "revision": "64b01b0366d41bc48e8ce43adf5defee",
-    "url": "/static/media/chem-thumb.64b01b03.jpg"
+    "revision": "4a3843d41945b108a1ab6671979da60c",
+    "url": "/static/media/chem-thumb.4a3843d4.jpg"
   },
   {
     "revision": "f7415fffed272a0a6538308bcf7262fa",
@@ -284,16 +304,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/kraftig-home-capture.3b7a39d9.mp4"
   },
   {
-    "revision": "6ee82c0c51f5aefa8a9b6ed990a52c1e",
-    "url": "/static/media/kraftig-thumb.6ee82c0c.jpg"
+    "revision": "5e4c6f7ff82e7b88e14dd78f884c2d9a",
+    "url": "/static/media/kraftig-thumb.5e4c6f7f.jpg"
   },
   {
     "revision": "bbfa9ef175f5f72036f9c342c0190bc2",
     "url": "/static/media/meraki-01.bbfa9ef1.jpg"
   },
   {
-    "revision": "31b818ceafc23513ac74abf273ca0314",
-    "url": "/static/media/meraki-thumb.31b818ce.jpg"
+    "revision": "0af7f141d4ce5da5ecddbb32cf3828cb",
+    "url": "/static/media/meraki-thumb.0af7f141.jpg"
   },
   {
     "revision": "426bdfc44682b65f77fb991ddbef8596",
@@ -336,8 +356,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/monsanto-capture.f433cb95.mp4"
   },
   {
-    "revision": "3e84067cde2f0db1653c01a83718c96e",
-    "url": "/static/media/monsanto-thumb.3e84067c.jpg"
+    "revision": "86beea1320ba7de8532fa22f8f5712c8",
+    "url": "/static/media/monsanto-thumb.86beea13.jpg"
   },
   {
     "revision": "aa3daa88e48cc83939776139922d215a",
@@ -352,8 +372,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/pastiche-02.e61c8694.jpg"
   },
   {
-    "revision": "8f521488a54daa7568f34ca16cff5bfe",
-    "url": "/static/media/pastiche-thumb.8f521488.jpg"
+    "revision": "0bb1e5e5b2c91aff7851efff0e04bd00",
+    "url": "/static/media/pastiche-thumb.0bb1e5e5.jpg"
   },
   {
     "revision": "0479add6f62433664ee52b50c99789f6",
@@ -404,7 +424,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/vf-corp-timberland-roi-capture.484aabf8.mp4"
   },
   {
-    "revision": "71355e2324387597decbd9e876d9f642",
-    "url": "/static/media/vf-thumb.71355e23.jpg"
+    "revision": "597057c378b65c4def97d3dc43a768e4",
+    "url": "/static/media/vf-thumb.597057c3.jpg"
   }
 ]);
