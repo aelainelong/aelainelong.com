@@ -1,0 +1,383 @@
+/* Project */
+/* ======== */
+/* SETTINGS */
+/* ======== */
+/* Palette */
+/* Fonts */
+/* Transitions & Settings */
+/* Breakpoints */
+/* Mixins */
+.Project {
+  position: absolute;
+  bottom: -30vh;
+  right: 0;
+  height: 0;
+  width: 100vw;
+  transition: all ease 0.5s;
+  font-family: "Open Sans", Arial, sans-serif;
+  color: #000;
+  z-index: 999; }
+  @media (min-width: 768px) {
+    .Project {
+      max-width: 680px;
+      transform: translateX(-50%);
+      left: 50%; } }
+  @media (min-width: 1400px) {
+    .Project {
+      left: auto;
+      right: -30vw;
+      max-width: 70vw;
+      transform: translateX(0);
+      transform: translateY(0);
+      opacity: 0;
+      height: auto;
+      top: 60%; } }
+  @media (min-width: 1600px) {
+    .Project {
+      right: -35vw; } }
+  .App-explore .Project.Project--open {
+    bottom: 0;
+    height: 300px; }
+    @media (min-width: 1400px) {
+      .App-explore .Project.Project--open {
+        bottom: auto;
+        left: auto;
+        opacity: 1;
+        top: 10vh;
+        height: auto; }
+        .App-explore .Project.Project--open .project-header {
+          padding-bottom: 15px;
+          border-bottom: 1px dashed white; }
+        .App-explore .Project.Project--open .project-link,
+        .App-explore .Project.Project--open .project-meta,
+        .App-explore .Project.Project--open .project-media {
+          display: block;
+          top: 0;
+          opacity: 1; } }
+    .App-explore .Project.Project--open .project-cover {
+      opacity: 0.35; }
+  .App-explore .Project.Project--expanded {
+    height: 80vh; }
+    @media (min-width: 1400px) {
+      .App-explore .Project.Project--expanded {
+        height: auto; } }
+    .App-explore .Project.Project--expanded .project-cover {
+      opacity: 0.75; }
+  @media (min-width: 1400px) {
+    .App-explore .Project.Project--gallery {
+      right: 0; } }
+  .App-explore .Project.Project--gallery .slider-control-centerleft,
+  .App-explore .Project.Project--gallery .slider-control-centerright {
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 1px dashed white;
+    overflow: hidden; }
+    .App-home .App-explore .Project.Project--gallery .slider-control-centerleft, .App-home
+    .App-explore .Project.Project--gallery .slider-control-centerright {
+      background-color: rgba(0, 0, 0, 0.55); }
+  .App-explore .Project.Project--gallery .slider-control-centerleft {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: 0; }
+  .App-explore .Project.Project--gallery .slider-control-centerright {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right: 0; }
+  .Project .project-wrapper {
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
+    position: relative;
+    transition: all ease 0.5s;
+    border-top: 1px dashed white;
+    height: 100%; }
+    @media (min-width: 768px) and (max-width: 1399px) {
+      .Project .project-wrapper {
+        border-left: 1px dashed white;
+        border-right: 1px dashed white;
+        border-radius: 10px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0; } }
+    @media (min-width: 1400px) {
+      .Project .project-wrapper {
+        border-radius: 10px;
+        border-left: 1px dashed white;
+        border-bottom: 1px dashed white;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0; } }
+  .Project .project-cover {
+    background-color: #000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0; }
+    @media (min-width: 768px) {
+      .Project .project-cover {
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px; } }
+    @media (min-width: 1400px) {
+      .Project .project-cover {
+        border-radius: 10px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0; } }
+  .Project .project-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    font-weight: 600;
+    z-index: 9; }
+    @media (min-width: 1400px) {
+      .Project .project-content {
+        padding: 35px;
+        max-width: 40vw; } }
+    @media (min-width: 1600px) {
+      .Project .project-content {
+        max-width: 35vw; } }
+  .Project .project-header,
+  .Project .project-meta,
+  .Project .project-media {
+    color: #FFF;
+    font-family: "Comfortaa", sans-serif;
+    line-height: 1.25; }
+  .Project .project-link,
+  .Project .project-meta,
+  .Project .project-media {
+    opacity: 0;
+    top: 50px; }
+  @media (max-width: 1399px) {
+    .Project.Project--expanded .project-content {
+      overflow-y: scroll;
+      padding-bottom: 150px; } }
+  .Project.Project--expanded .project-link,
+  .Project.Project--expanded .project-meta,
+  .Project.Project--expanded .project-media {
+    top: 0;
+    opacity: 1; }
+  .Project .project-header {
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25); }
+    .Project .project-header h2 {
+      font-family: "Chango", sans-serif;
+      letter-spacing: 2px;
+      margin: 0 0 5px;
+      font-weight: 400; }
+      @media (max-width: 767px) {
+        .Project .project-header h2 {
+          font-size: 1.2rem; } }
+      @media (max-width: 1399px) {
+        .Project .project-header h2 {
+          font-size: 1.25rem; } }
+      @media (min-width: 1600px) {
+        .Project .project-header h2 {
+          padding-right: 70px; } }
+    .Project .project-header h3 {
+      margin: 0 0 5px;
+      font-size: 0.87rem;
+      line-height: 1.45;
+      letter-spacing: 1px; }
+      @media (min-width: 768px) {
+        .Project .project-header h3 {
+          font-size: 1rem; } }
+      @media (min-width: 1400px) {
+        .Project .project-header h3 {
+          margin-bottom: 0; } }
+    .Project .project-header .project-link {
+      display: inline-block; }
+      .Project .project-header .project-link a {
+        color: #80c6ff;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px; }
+        @media (min-width: 768px) {
+          .Project .project-header .project-link a {
+            font-size: 0.73rem; } }
+        @media (min-width: 1200px) {
+          .Project .project-header .project-link a {
+            font-size: 0.78rem; } }
+        .Project .project-header .project-link a:hover, .Project .project-header .project-link a:active {
+          color: white; }
+      @media (min-width: 1400px) {
+        .Project .project-header .project-link {
+          margin: 10px 0; } }
+      .touchevents .Project .project-header .project-link.project-flash-site {
+        display: none; }
+  .Project.Project--expanded .project-header {
+    padding-bottom: 15px;
+    border-bottom: 1px dashed white; }
+  .Project .btn {
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    text-align: center;
+    padding: 8px 0 6px;
+    color: #FFF;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: "Comfortaa", sans-serif;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.45);
+    border: 1px dashed #FFF;
+    border-radius: 10px;
+    margin-right: 6px;
+    padding: 6px 6px 4px;
+    min-width: 70px;
+    transition: all ease 0.5s;
+    cursor: pointer; }
+    .Project .btn:focus {
+      outline: none; }
+  .Project .project-nav {
+    position: absolute;
+    bottom: 100%;
+    padding: 0 30px; }
+    .Project .project-nav .btn {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0; }
+    @media (min-width: 1400px) {
+      .Project .project-nav .btn-toggle {
+        display: none; } }
+    @media (max-width: 1399px) {
+      .Project .project-nav .btn-close {
+        display: none; } }
+    .Project .project-nav .btn-toggle:hover,
+    .Project .project-nav .btn-close:hover,
+    .Project .project-nav .btn-gallery:hover {
+      background-color: rgba(205, 105, 11, 0.5); }
+    .Project .project-nav .btn-prev:not(:disabled):hover {
+      background-color: rgba(82, 165, 107, 0.5); }
+    .Project .project-nav .btn-next:not(:disabled):hover {
+      background-color: rgba(68, 151, 203, 0.5); }
+    .Project .project-nav .btn:disabled {
+      color: gray; }
+  .Project .project-meta {
+    position: relative;
+    padding-bottom: 25px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    transition: all ease 0.5s; }
+    .Project .project-meta h4 {
+      margin: 0;
+      padding: 0;
+      font-weight: 400; }
+      .Project .project-meta h4:first-child {
+        margin-top: 10px; }
+      .Project .project-meta h4 span {
+        font-weight: 600; }
+    .Project .project-meta ul {
+      margin: 0;
+      padding: 0; }
+    .Project .project-meta li {
+      display: inline-block; }
+  .Project .project-media ul {
+    display: grid;
+    grid-gap: 15px;
+    padding-right: 20px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    @media (min-width: 1000px) {
+      .Project .project-media ul {
+        grid-template-columns: 1fr 1fr; } }
+  .Project .project-media .thumbnail {
+    transition: all ease 0.5s;
+    overflow: hidden; }
+  .Project .project-media .project-media-cover {
+    border: 1px dashed white;
+    padding: 10px;
+    cursor: pointer; }
+    .Project .project-media .project-media-cover .wrapper {
+      position: relative;
+      max-height: 140px;
+      overflow: hidden; }
+      @media (min-height: 760px) {
+        .Project .project-media .project-media-cover .wrapper {
+          max-height: 180px; } }
+      @media (min-height: 900px) {
+        .Project .project-media .project-media-cover .wrapper {
+          max-height: 400px; } }
+      .Project .project-media .project-media-cover .wrapper .btn-wrap {
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: transparent; }
+      .Project .project-media .project-media-cover .wrapper .btn-wrap .btn {
+        display: inline-block;
+        background-color: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        font-size: 0.8rem;
+        line-height: 1;
+        padding: 10px 10px 8px;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        z-index: 999; }
+    .Project .project-media .project-media-cover .overlay {
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
+      background-color: black;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      transition: all ease 0.5s;
+      opacity: 0.3; }
+    .Project .project-media .project-media-cover img {
+      display: block;
+      max-width: 100%;
+      width: 100%; }
+    .Project .project-media .project-media-cover:hover .overlay {
+      opacity: 0.55; }
+  .Project.Project--gallery .project-media-cover .btn {
+    display: none; }
+  .Project .project-gallery {
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9; }
+    .Project .project-gallery .slider-list,
+    .Project .project-gallery .slider-slide {
+      width: 100% !important;
+      height: 100% !important; }
+    .Project .project-gallery .video-wrapper,
+    .Project .project-gallery .image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .Project .project-gallery .image-wrapper > img,
+    .Project .project-gallery .video-wrapper > iframe {
+      display: block;
+      margin: 0 auto; }
+    .Project .project-gallery .image-wrapper > img {
+      max-width: 100% !important;
+      width: 100%;
+      height: auto; }
+      @media (min-width: 1400px) {
+        .Project .project-gallery .image-wrapper > img {
+          max-width: none !important;
+          width: auto !important;
+          max-height: 100%; } }
+  .Project .track-vertical {
+    width: 10px !important;
+    right: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 6px;
+    height: 100%; }
+  .Project .thumb-vertical {
+    background-color: rgba(68, 151, 203, 0.5);
+    border-radius: 6px;
+    border: 1px dashed white;
+    box-sizing: border-box; }
+  .Project .react-fancybox .box {
+    width: 100vw;
+    height: 110vh;
+    z-index: 999999; }

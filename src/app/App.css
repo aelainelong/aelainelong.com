@@ -1,0 +1,37 @@
+/* App */
+/* ======== */
+/* SETTINGS */
+/* ======== */
+/* Palette */
+/* Fonts */
+/* Transitions & Settings */
+/* Breakpoints */
+/* Mixins */
+html, body {
+  background-color: #352f39; }
+
+body {
+  overflow-x: hidden; }
+
+.App {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  transition: background 0.5s ease-in-out; }
+  .App.App-home, .App[data-active-view="home"] {
+    background-color: #95dcc0; }
+  .App.App-explore, .App.App-explore[data-active-view="explore"] {
+    background-color: #70bce3; }
+  .App.App-about.App-connect[data-active-view="about"], .App.App-about[data-active-view="connect"], .App.App-about[data-active-view="about"] {
+    background-color: #e39f4d; }
+  .App.App-connect.App-about[data-active-view="connect"], .App.App-connect[data-active-view="about"], .App.App-connect[data-active-view="connect"] {
+    background-color: #eae96d; }
+
+.App .app-cover {
+  position: absolute;
+  min-height: 100vh;
+  width: 100vw; }
+
+.App .app-wrapper {
+  position: relative;
+  height: 100%; }

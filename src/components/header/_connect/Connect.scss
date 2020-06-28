@@ -1,0 +1,78 @@
+/* Connect */
+
+@import '../../../assets/styles/settings.scss';
+
+.Connect {
+  width: 100%;
+  z-index: 999;
+  transition: bottom 2s ease;
+}
+.Connect .social {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+
+  & > div {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 15px 0 0;
+  }
+
+  li {
+    position: relative;
+    display: inline-block;
+    transition: all .4s ease-in-out;
+    transform: translate(0, 0);
+    padding: 0 .5rem;
+
+    @media screen and (min-width: $small) {
+      margin: .25rem 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &.socialIn-enter {
+      transition: all .4s ease-in-out;
+      transform: translate(0, -40%);
+      opacity: 0;
+    }
+    &.socialIn-enter.socialIn-enter-active {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    &.socialIn-exit {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    &.socialIn-exit-done {
+      opacity:0;
+    }
+  }
+  a {
+    @include textshadow;
+    position: relative;
+    font-size: 1.5rem;
+    color: #FFF;
+    transition: $allTrans;
+    top: 0;
+
+    .App-home & {
+      opacity: $textOpacity;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    span {
+      display: none;
+    }
+
+    i {
+      pointer-events: none;
+      height: 0;
+    }
+  }
+}

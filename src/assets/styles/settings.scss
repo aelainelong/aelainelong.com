@@ -1,0 +1,91 @@
+/* ======== */
+/* SETTINGS */
+/* ======== */
+
+/* Palette */
+$secondaryColor: rgb(80, 20, 20);
+$tertiaryColor: #000;
+$accentColor: rgb(80,20,20);
+$white: #FFF;
+$lgtGray: #DDD;
+$gray: #333;
+$black: #000;
+
+$yellow: rgba(224, 190, 0, 0.5);
+$orange: rgba(205, 105, 11, 0.5);
+$blue: rgba(68, 151, 203, 0.5);
+$green: rgba(82, 165, 107, 0.5);
+$linkBlue: #80c6ff;
+
+/* Fonts */
+
+$primaryFont: "Comfortaa", sans-serif;
+$secondaryFont: "Chango", sans-serif;
+$tertiaryFont: 'Open Sans', Arial, sans-serif;
+
+/* Transitions & Settings */
+
+$allTrans: all ease .5s;
+$textOpacity: 0.8;
+$borderRadius: 10px;
+
+/* Breakpoints */
+
+$xsmall: 768px;
+$small: 1000px;
+$medium: 1200px;
+$large: 1400px;
+$xlarge: 1600px;
+
+$minContentWidth: 340px;
+$maxContentWidth: 370px;
+
+/* Mixins */
+@mixin linkButtonStyles {
+    @include textshadow;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px 0 6px;
+    color: $white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: $primaryFont;
+}
+@mixin backgroundScreen {
+    background-color: rgba(0, 0, 0, 0.35);
+
+    .App-home & {
+        background-color: rgba(0, 0, 0, 0.55);
+    }
+}
+@mixin backgroundPanel {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .App-explore & {
+        background-color: rgba(0, 0, 0, 0.35);
+    }
+
+    @media (max-width: $large - 1) {
+      .App-about &,
+      .App-connect & {
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+    }
+}
+@mixin boxshadow {
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
+}
+@mixin textshadow {
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
+}
+@mixin prefixed-animation($animation, $duration, $loop){
+       -webkit-animation: $animation $duration $loop;
+       -moz-animation: $animation $duration $loop;
+        -ms-animation: $animation $duration $loop;
+         -o-animation: $animation $duration $loop;
+            animation: $animation $duration $loop;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+}

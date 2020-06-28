@@ -1,0 +1,389 @@
+{
+  "portfolio": {
+    "info": {
+      "name": "Ashley Long",
+      "title": "Front-end Developer & Designer",
+      "bio": "Hi. I'm a St. Louis-based front-end developer with 8 years of experience building neat stuff for the web. Have a look around to see what I've been up to, and if you'd like to make neat stuff together, drop me a line!"
+    },
+    "projects": [
+      {
+        "id": 1,
+        "title": "AT&T It Can Wait",
+        "color": "#72ddf0",
+        "categories": [],
+        "thumbnail": "att-icw-thumb.jpg",
+        "carouselCover": "/att-icw/att-icw-01.jpg",
+        "media": [
+          "https://www.youtube.com/embed/sOWq-5bAnMI",
+          "/att-icw/att-icw-01.jpg",
+          "/att-icw/att-icw-02.jpg",
+          "/att-icw/att-icw-03.jpg",
+          "/att-icw/att-icw-04.jpg",
+          "/att-icw/att-icw-05.jpg"
+        ],
+        "deliverables": "AEM microsite supporting AT&T's It Can Wait campaign with a custom animated pledge counter",
+        "description": "This microsite was built on top of the AT&T Newsroom in Adobe Experience Manager. Contributed the front-end templates and components and also developed a custom animated pledge counter for the homepage. The pledge counter uses CSS-based animation.",
+        "tech": [
+          "JavaScript",
+          "JSON",
+          "SASS",
+          "HTML5",
+          "Adobe Experience Manager"
+        ],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": "https://www.itcanwait.com/"
+      },
+      {
+        "id": 2,
+        "title": "AT&T Disaster Recovery Map",
+        "color": "#d3d3d3",
+        "categories": [],
+        "thumbnail": "att-map-thumb.jpg",
+        "carouselCover": "/att-recovery/att-map-01.jpg",
+        "media": [
+          "/att-recovery/att-map-01.jpg",
+          "/att-recovery/att-map-02.jpg",
+          "/att-recovery/att-map-03.jpg",
+          "/att-recovery/att-map-04.jpg"
+        ],
+        "deliverables": "An interactive map for AT&T's Disaster Recovery efforts",
+        "description": "Delivered an interactive map that displayed information on AT&T's natural disaster response efforts in North America. The map styling and data-population was handled via Mapbox Studio, and the map marker pop-ups and animation were implemented using Mapboxgl.js.",
+        "tech": [
+          "Mapboxgl.js",
+          "Mapbox Studio"
+        ],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": "https://about.att.com/pages/disaster_recovery"
+      },
+      {
+        "id": 3,
+        "title": "AT&T About Us Newsroom",
+        "color": "#d3d3d3",
+        "categories": [],
+        "thumbnail": "newsroom-thumb.jpg",
+        "carouselCover": "/aem-newsroom/aem-newsroom-04.jpg",
+        "media": [
+          "/aem-newsroom/aem-newsroom-01.jpg",
+          "/aem-newsroom/aem-newsroom-03.jpg",
+          "/aem-newsroom/aem-newsroom-04.jpg",
+          "/aem-newsroom/aem-newsroom-11.jpg",
+          "/aem-newsroom/aem-newsroom-07.jpg",
+          "/aem-newsroom/aem-newsroom-08.jpg",
+          "/aem-newsroom/aem-newsroom-09.jpg",
+          "/aem-newsroom/aem-newsroom-10.jpg",
+          "/aem-newsroom/aem-newsroom-05.jpg",
+          "/aem-newsroom/aem-newsroom-06.jpg"
+        ],
+        "deliverables": "Front-end templates and components for about.att.com",
+        "description": "In 2018, AT&T's About Us newsroom was migrated to Adobe Experience Manager (AEM). Contributed all front-end code for 6 templates and 31 reusable components, and provided technical strategy, and content author documentation and training throughout the 2-year project",
+        "tech": [
+          "JavaScript",
+          "JSON",
+          "SASS",
+          "HTML5",
+          "Adobe Experience Manager"
+        ],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": "https://about.att.com"
+      },
+      {
+        "id": 4,
+        "title": "Take A New Look",
+        "color": "#ffffff",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "acfas-thumb.jpg",
+        "carouselCover": "/acfas/acfas-02.jpg",
+        "media": [
+          "/acfas/acfas-01.jpg",
+          "/acfas/acfas-02.jpg",
+          "/acfas/acfas-03.jpg",
+          "/acfas/acfas-04.jpg"
+        ],
+        "deliverables": "Custom Wordpress theme for Takeanewlook.org",
+        "description": "Developed the custom Wordpress theme and physician search tool front-end for this 2016 Silver Anvil Award-winning website.",
+        "tech": [
+          "Wordpress",
+          "JavaScript",
+          "PHP",
+          "SASS"
+        ],
+        "client": "American College of Foot & Ankle Surgeons",
+        "agency": "FleishmanHillard",
+        "url": "http://takeanewlook.org/"
+      },
+      {
+        "id": 5,
+        "title": "VF Corp Annual Report",
+        "color": "#feffc3",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "vf-thumb.jpg",
+        "carouselCover": "/vf-corp/vf-04.jpg",
+        "media": [
+          "/vf-corp/vf-01.jpg",
+          "/vf-corp/vf-02.jpg",
+          "/vf-corp/vf-03.jpg",
+          "/vf-corp/vf-04.jpg",
+          "/vf-corp/vf-05.jpg",
+          "/vf-corp/vf-06.jpg",
+          "/vf-corp/vf-07.jpg",
+          "/vf-corp/vf-08.jpg",
+          "/vf-corp/vf-09.jpg",
+          "https://www.youtube.com/embed/il03xQvzgK4",
+          "https://www.youtube.com/embed/DI7AfpdgvxY",
+          "https://www.youtube.com/embed/4G9QnjcdRGM"
+        ],
+        "deliverables": "Online annual report for VF Corporation",
+        "description": "Developed the digital version of VF Corporation's 2014 Annual Report, showcasing financial charts created using FusionCharts, brand performance information and an interactive ROI case study infographic",
+        "tech": [
+          "HTML5",
+          "SASS",
+          "jQuery",
+          "Fusion Charts"
+        ],
+        "client": "VF Corporation",
+        "agency": "FleishmanHillard",
+        "url": ""
+      },
+      {
+        "id": 6,
+        "title": "Kraftig.com",
+        "color": "#f2a93c",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "kraftig-thumb.jpg",
+        "carouselCover": "/kraftig/kraftig-04.jpg",
+        "media": [
+          "https://www.youtube.com/embed/YUDpxlTCeeM",
+          "/kraftig/kraftig-01.jpg",
+          "/kraftig/kraftig-02.jpg",
+          "/kraftig/kraftig-03.jpg",
+          "/kraftig/kraftig-04.jpg",
+          "/kraftig/kraftig-05.jpg"
+        ],
+        "deliverables": "Custom Wordpress theme for Kraftig.com",
+        "description": "Developed the custom Wordpress theme, and also built an age-gate that responds with video.",
+        "tech": [
+          "Wordpress",
+          "JavaScript",
+          "PHP",
+          "SASS"
+        ],
+        "client": "Kräftig",
+        "agency": "FleishmanHillard",
+        "url": ""
+      },
+      {
+        "id": 7,
+        "title": "Discover Monsanto",
+        "color": "#bfd06e",
+        "categories": [],
+        "thumbnail": "monsanto-thumb.jpg",
+        "carouselCover": "/discover-monsanto/monsanto-05.jpg",
+        "media": [
+          "/discover-monsanto/monsanto-01.jpg",
+          "/discover-monsanto/monsanto-08.jpg",
+          "/discover-monsanto/monsanto-02.jpg",
+          "/discover-monsanto/monsanto-03.jpg",
+          "/discover-monsanto/monsanto-04.jpg",
+          "/discover-monsanto/monsanto-05.jpg",
+          "https://www.youtube.com/embed/Fr_fM72GliE",
+          "/discover-monsanto/monsanto-06.jpg",
+          "/discover-monsanto/monsanto-07.jpg"
+        ],
+        "deliverables": "Custom Wordpress theme for Monsanto",
+        "description": "Developed a custom Wordpress child theme for Monsanto's Discover Monsanto initiative.",
+        "tech": [
+          "Wordpress",
+          "PHP",
+          "SASS",
+          "jQuery"
+        ],
+        "client": "Monsanto",
+        "agency": "FleishmanHillard",
+        "url": ""
+      },
+      {
+        "id": 8,
+        "title": "AT&T Español",
+        "color": "#b6d2ea",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "att-latino-thumb.jpg",
+        "carouselCover": "/att-latino/esp-01.jpg",
+        "media": [
+          "/att-latino/esp-01.jpg",
+          "/att-latino/esp-02.jpg",
+          "/att-latino/esp-03.jpg",
+          "/att-latino/esp-09.jpg",
+          "/att-latino/esp-04.jpg",
+          "/att-latino/esp-05.jpg",
+          "/att-latino/esp-06.jpg",
+          "/att-latino/esp-07.jpg",
+          "/att-latino/esp-08.jpg"
+        ],
+        "deliverables": "JSON-driven news, lifestyle, sports and entertainment portal for AT&T Latino",
+        "description": "Developed a JSON-based Spanish-language newsroom with filterable articles, as well as social media integration and support documentation for AT&T products",
+        "tech": [
+          "jQuery",
+          "JavaScript",
+          "SASS",
+          "HTML5",
+          "JSON"
+        ],
+        "client": "AT&T",
+        "agency": "FleishmanHillard",
+        "url": ""
+      },
+      {
+        "id": 9,
+        "title": "Chemistry of Milk",
+        "color": "#ffffd7",
+        "categories": [
+          "branding/identity",
+          "illustration",
+          "print design",
+          "web design",
+          "web development"
+        ],
+        "thumbnail": "chem-thumb.jpg",
+        "carouselCover": "/chemistry-milk/chem-05.jpg",
+        "media": [
+          "https://www.youtube.com/embed/PGfnH7qIgf8",
+          "/chemistry-milk/chem-05.jpg",
+          "/chemistry-milk/chem-06.jpg",
+          "/chemistry-milk/chem-07.jpg",
+          "/chemistry-milk/chem-01.jpg",
+          "/chemistry-milk/chem-02.jpg",
+          "/chemistry-milk/chem-04.jpg"
+        ],
+        "deliverables": "Logo, website, annual report, print ads & packaging design",
+        "description": "Produced print and digital brand collateral for a fictional creamery called 'Chemistry of Milk', including a microsite built using Adobe Flash",
+        "tech": [
+          "Adobe Photoshop",
+          "Adobe Illustrator",
+          "Adobe InDesign",
+          "Adobe Flash"
+        ],
+        "client": "Student work",
+        "agency": "",
+        "url": "/retro/chemistry",
+        "flash": true
+      },
+      {
+        "id": 10,
+        "title": "AIGA Truman",
+        "color": "#e0ddb2",
+        "categories": [
+          "web design"
+        ],
+        "thumbnail": "aiga-thumb.jpg",
+        "carouselCover": "/aiga-truman/aiga-03.jpg",
+        "media": [
+          "/aiga-truman/aiga-01.jpg",
+          "/aiga-truman/aiga-02.jpg",
+          "/aiga-truman/aiga-03.jpg",
+          "/aiga-truman/aiga-04.jpg",
+          "https://www.youtube.com/embed/ZPyWQwhyyVg"
+        ],
+        "deliverables": "Creative microsite for AIGA Truman",
+        "description": "Designed and built a unique microsite for Truman State University's AIGA chapter using Adobe Flash",
+        "tech": [
+          "Adobe Flash"
+        ],
+        "client": "Truman State University",
+        "agency": "",
+        "url": "/retro/aiga/",
+        "flash": true
+      },
+      {
+        "id": 11,
+        "title": "Pastiche Mag",
+        "color": "#f5d05e",
+        "categories": [
+          "branding/identity",
+          "illustration",
+          "print design"
+        ],
+        "thumbnail": "pastiche-thumb.jpg",
+        "carouselCover": "/pastiche/pastiche-01.jpg",
+        "media": [
+          "/pastiche/pastiche-01.jpg",
+          "/pastiche/pastiche-02.jpg"
+        ],
+        "deliverables": "Print spread design",
+        "description": "Produced logo, cover and table of contents illustrations for the fictional arts magazine 'Pastiche'",
+        "tech": [
+          "Adobe Photoshop",
+          "Adobe Illustrator",
+          "Adobe InDesign"
+        ],
+        "client": "Student work",
+        "agency": "",
+        "url": ""
+      },
+      {
+        "id": 12,
+        "title": "Meraki Yoga Studio Online Schedule",
+        "color": "#ffffff",
+        "categories": [
+          "web development"
+        ],
+        "thumbnail": "meraki-thumb.jpg",
+        "carouselCover": "/meraki/meraki-01.jpg",
+        "media": [
+          "/meraki/meraki-01.jpg"
+        ],
+        "deliverables": "Dynamic class schedule driven by the Karamasoft API",
+        "description": "Developed a responsive online class scheduling interface that pulled in the yoga studio's scheduling data via Karmasoft's REST API.",
+        "tech": [
+          "JavaScript",
+          "Karmasoft API",
+          "PHP"
+        ],
+        "client": "Meraki Yoga Studio",
+        "agency": "",
+        "url": ""
+      }
+    ]
+  },
+  "social_links": [
+    {
+      "channel": "Email",
+      "icon": "envelope",
+      "url": "mailto:a.elainelong@gmail.com",
+      "target": ""
+    },
+    {
+      "channel": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://www.linkedin.com/in/ashleyelong/",
+      "target": "_blank"
+    },
+    {
+      "channel": "Codepen",
+      "icon": "codepen",
+      "url": "https://codepen.io/aelong/",
+      "target": "_blank"
+    },
+    {
+      "channel": "Github",
+      "icon": "github",
+      "url": "https://github.com/aelainelong",
+      "target": "_blank"
+    },
+    {
+      "channel": "Behance",
+      "icon": "behance",
+      "url": "https://www.behance.net/AshleyLong"
+    }
+  ]
+}

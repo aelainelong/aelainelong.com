@@ -1,0 +1,233 @@
+/* Header */
+
+@import '../../assets/styles/settings.scss';
+
+.Header {
+    @include boxshadow;
+    @include backgroundPanel;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    transition: all 1.5s ease;
+    z-index: 5;
+    color: $white;
+
+    @media (min-width: $large) {
+      width: 100vw;
+    }
+
+    .App-explore & {
+      height: 15vh;
+      border-bottom: 1px dashed $white;
+
+      @media (min-width: $large) {
+        border-bottom: 0;
+        border-right: 1px dashed $white;
+        height: 100vh;
+        width: 30vw;
+      }
+    }
+
+    @media (max-width: $large - 1) {
+      .App-about &,
+      .App-connect & {
+        height: 100vh;
+      }
+    }
+
+    .Header__wrap {
+      position: relative;
+      max-width: $minContentWidth;
+
+      .touchevents & {
+        margin-bottom: 75px;
+      }
+
+      .touchevents .App-explore & {
+        margin-bottom: 0;
+      }
+
+      @media (min-width: $large) {
+        margin-top: 30px;
+        max-width: $maxContentWidth;
+
+        .touchevents & {
+          margin-bottom: 0;
+        }
+      }
+    }
+}
+
+.Title {
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.25;
+    -webkit-font-smoothing: antialiased;
+
+    h1, h2 {
+      @include textshadow;
+      line-height: 1;
+      transition: all 0.5s ease-in-out;
+    }
+
+    h1 {
+      font-family: $secondaryFont;
+      font-size: 1.96rem;
+      letter-spacing: 2px;
+      font-weight: 400;
+      margin: 0;
+
+      .no-webanimations & {
+        font-size: 2rem;
+      }
+
+      @media screen and (min-width: $large) and (max-width: $xlarge - 1) {
+        margin: 0;
+        font-size: 2.15rem;
+
+        .no-webanimations & {
+          font-size: 2.2rem;
+        }
+      }
+
+      @media screen and (min-width: $xlarge) {
+        font-size: 2.22rem;
+
+        .no-webanimations & {
+          font-size: 2.2rem;
+        }
+      }
+    }
+    h2 {
+      display: inline-block;
+      width: 100%;
+      margin: 0;
+      padding: 8px 0;
+      border-bottom: 1px solid $white;
+      font-size: 0.85rem;
+      font-family: $primaryFont;
+      font-weight: 600;
+      letter-spacing: 2px;
+      
+      .touchevents &,
+      .no-webanimations & {
+        letter-spacing: 1.25px;
+      }
+
+      .touchevents & {
+        font-size: 0.8rem;
+      }
+
+      @media screen and (min-width: $large) and (max-width: $xlarge - 1) {
+        font-size: 0.94rem;
+
+        .no-webanimations & {
+          font-size: 0.908rem;
+        }
+      }
+
+      @media screen and (min-width: $xlarge) {
+        font-size: 0.99rem;
+
+        .no-webanimations & {
+          font-size: 0.93rem;
+        }
+      }
+    }
+}
+
+.Menu {
+  padding: 0 3px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: stretch;
+  }
+
+  li {
+    @include backgroundScreen;
+    @include boxshadow;
+    flex-grow: 1;
+    padding: 0 3px;
+    overflow: hidden;
+    cursor: pointer;
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+
+    &:first-child {
+      padding-left: 0;
+    }
+    // &:last-child {
+    //   padding-right: 0;
+    // }
+
+    &.home:hover a,
+    .App-home &.home a {
+      background-color: $green;
+    }
+    &.explore:hover a,
+    .App-explore &.explore a {
+      background-color: $blue;
+    }
+    &.about:hover a,
+    .App-about &.about a {
+      background-color: $orange;
+    }
+    &.connect:hover a,
+    .App-connect &.connect a {
+      background-color: $yellow;
+    }
+    // .App:not(.App-explore) &.explore,
+    // .App:not(.App-about) &.about,
+    // .App:not(.App-connect) &.connect {
+    //   background-color: transparent !important;
+    // }
+
+    // .App-home & {
+    //   background-color: rgba(0, 0, 0, 0.25);
+    // }
+  }
+
+  a {
+    @include linkButtonStyles;
+    display: block;
+    width: 100%;
+    transition: $allTrans;
+
+    border: 1px dashed $white;
+    border-top: 0;
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+    //transition: background-color 0.25s ease;
+
+    &:hover,
+    &:active,
+    &:-webkit-any-link:active {
+      color: $white;
+    }
+
+    // &:hover {
+    //   background-color: rgba(0, 0, 0, 0.25);
+    // }
+  }
+}
+
+.Info {
+  width: 100%;
+  box-sizing: border-box;
+
+  .App-home & {
+    position: absolute;
+  }
+
+  @media (min-width: $large) {
+    position: absolute;
+  }
+}

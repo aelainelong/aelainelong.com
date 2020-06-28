@@ -1,0 +1,98 @@
+/* TOOL TIP */
+/* ======== */
+/* SETTINGS */
+/* ======== */
+/* Palette */
+/* Fonts */
+/* Transitions & Settings */
+/* Breakpoints */
+/* Mixins */
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg); }
+  80% {
+    transform: rotate(0deg) translateY(0.5px); }
+  85% {
+    transform: rotate(10deg) scale(1.25); }
+  95% {
+    transform: rotate(-10deg); }
+  100% {
+    transform: rotate(0deg) scale(1) translateY(0); } }
+
+.ToolTip {
+  text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  bottom: 5vh;
+  color: #FFF;
+  transition: bottom 1.5s ease, opacity 1s ease-in-out, color 1s ease;
+  font-weight: 700;
+  font-family: "Comfortaa", sans-serif;
+  font-size: 0.85rem;
+  max-width: 80%;
+  text-align: left;
+  line-height: 1.45;
+  z-index: 99;
+  cursor: help; }
+  @media (max-width: 1399px) {
+    .touchevents .ToolTip {
+      bottom: 20vh; } }
+  @media (min-width: 1400px) {
+    .ToolTip {
+      font-size: 0.95rem; } }
+  .App-about .ToolTip,
+  .App-connect .ToolTip, .ToolTip.ToolTip-hidden {
+    opacity: 0; }
+  .ToolTip .ToolTipIn,
+  .ToolTip .ToolTipIn-enter {
+    transition: all .4s ease-in-out;
+    transform: translate(0, -40%);
+    opacity: 0; }
+  .ToolTip .ToolTipIn-enter.socialIn-enter-active {
+    transform: translate(0, 0);
+    opacity: 1; }
+  .ToolTip .ToolTipIn-leave {
+    transform: translate(0, 0);
+    opacity: 1; }
+  .ToolTip .ToolTipIn-leave-active {
+    opacity: 0; }
+  @media (min-width: 1400px) {
+    .ToolTip {
+      bottom: auto;
+      top: 5vh; } }
+  .App-home .ToolTip {
+    bottom: -5vh;
+    opacity: 0; }
+    @media (min-width: 1400px) {
+      .App-home .ToolTip {
+        bottom: auto;
+        top: -5vh; } }
+  .ToolTip p, .ToolTip i {
+    transition: opacity 1.5s ease;
+    opacity: 1; }
+  .ToolTip p {
+    margin: 0; }
+  .ToolTip i {
+    -webkit-animation: wiggle 4s infinite;
+    -moz-animation: wiggle 4s infinite;
+    -ms-animation: wiggle 4s infinite;
+    -o-animation: wiggle 4s infinite;
+    animation: wiggle 4s infinite;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    font-size: 1.75rem;
+    display: block;
+    margin-right: 10px;
+    pointer-events: all; }
+    @media (min-width: 1400px) {
+      .ToolTip i {
+        font-size: 1.75rem; } }
+  .Scene-ready:hover .ToolTip i {
+    -webkit-animation: wiggle 4s infinite;
+    -moz-animation: wiggle 4s infinite;
+    -ms-animation: wiggle 4s infinite;
+    -o-animation: wiggle 4s infinite;
+    animation: wiggle 4s infinite;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards; }

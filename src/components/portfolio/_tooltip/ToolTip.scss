@@ -1,0 +1,107 @@
+/* TOOL TIP */
+
+@import '../../../assets/styles/settings.scss';
+
+@keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      80% { transform: rotate(0deg) translateY(0.5px); }
+      85% { transform: rotate(10deg) scale(1.25); }
+      95% { transform: rotate(-10deg); }
+      100% { transform: rotate(0deg) scale(1) translateY(0); }
+    }
+
+.ToolTip {
+    @include textshadow;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 5vh;
+    color: $white;
+    transition: bottom 1.5s ease, opacity 1s ease-in-out, color 1s ease;
+    font-weight: 700;
+    font-family: $primaryFont;
+    font-size: 0.85rem;
+    max-width: 80%;
+    text-align: left;
+    line-height: 1.45;
+    z-index: 99;
+    cursor: help;
+
+    @media (max-width: $large - 1) {
+      .touchevents & {
+        bottom: 20vh;
+      }
+    }
+
+    @media (min-width: $large) {
+      font-size: 0.95rem;
+    }
+
+    // .App-about &,
+    // .App-connect & {
+    //   color: #99478e;
+    // }
+    .App-about &,
+    .App-connect &,
+    &.ToolTip-hidden {
+      opacity: 0;
+    }
+
+    .ToolTipIn,
+    .ToolTipIn-enter {
+      transition: all .4s ease-in-out;
+      transform: translate(0, -40%);
+      opacity: 0;
+    }
+    .ToolTipIn-enter.socialIn-enter-active {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    .ToolTipIn-leave {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    .ToolTipIn-leave-active {
+      opacity:0;
+    }
+
+    @media (min-width: $large) {
+      bottom: auto;
+      top: 5vh;
+    }
+
+    .App-home & {
+      bottom: -5vh;
+      opacity: 0;
+
+      @media (min-width: $large) {
+        bottom: auto;
+        top: -5vh;
+      }
+    }
+
+    p, i {
+      transition: opacity 1.5s ease;
+      opacity: 1;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    i {
+      @include prefixed-animation(wiggle, 4s, infinite);
+      font-size: 1.75rem;
+      display: block;
+      margin-right: 10px;
+      pointer-events: all;
+
+      @media (min-width: $large) {
+        font-size: 1.75rem;
+      }
+    }
+
+    .Scene-ready:hover & i {
+      @include prefixed-animation(wiggle, 4s, infinite);
+    }
+  }

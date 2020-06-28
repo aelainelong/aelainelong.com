@@ -1,0 +1,46 @@
+{
+  "name": "aelainelong.com",
+  "homepage": "http://aelainelong.github.io/",
+  "version": "2.0.0",
+  "private": true,
+  "dependencies": {
+    "@tweenjs/tween.js": "^18.5.0",
+    "nuka-carousel": "^4.7.0",
+    "react": "^16.13.1",
+    "react-css-stagger": "0.0.8",
+    "react-dom": "^16.13.1",
+    "react-ga": "^2.3.5",
+    "react-preloaded": "^1.0.0",
+    "react-scripts": "^3.4.1",
+    "three": "^0.116.1"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "deploy": "npm run build && gh-pages -d build -b master",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint-config-google": "^0.9.1",
+    "fsevents": "^2.1.2",
+    "gh-pages": "^2.2.0",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
