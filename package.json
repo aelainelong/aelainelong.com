@@ -21,7 +21,7 @@
     "start": "npm-run-all -p watch-css start-js",
     "deploy-preview": "netlify deploy",
     "deploy-prod": "netlify deploy --prod",
-    "build-local": "npm run build-css && react-scripts build",
+    "build-app": "CI='' npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
