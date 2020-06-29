@@ -293,7 +293,7 @@
       @media (min-height: 760px) {
         .Project .project-media .project-media-cover .wrapper {
           max-height: 180px; } }
-      @media (min-height: 900px) {
+      @media (min-height: 850px) {
         .Project .project-media .project-media-cover .wrapper {
           max-height: 400px; } }
       .Project .project-media .project-media-cover .wrapper .btn-wrap {
