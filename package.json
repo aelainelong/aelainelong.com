@@ -19,7 +19,8 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
-    "deploy": "npm run build && gh-pages -d build -b master",
+    "deploy-preview": "netlify deploy",
+    "deploy-prod": "netlify deploy --prod",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
