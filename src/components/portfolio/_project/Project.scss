@@ -504,6 +504,17 @@
         max-height: 100%;
       }
     }
+    .slider-control-centerleft,
+    .slider-control-centerright {
+      z-index: 999;
+
+      button {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        height: 32px;
+        line-height: 32px;
+      }
+    }
   }
 
   .track-vertical {

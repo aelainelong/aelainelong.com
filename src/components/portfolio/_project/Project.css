@@ -365,6 +365,15 @@
           max-width: none !important;
           width: auto !important;
           max-height: 100%; } }
+    .Project .project-gallery .slider-control-centerleft,
+    .Project .project-gallery .slider-control-centerright {
+      z-index: 999; }
+      .Project .project-gallery .slider-control-centerleft button,
+      .Project .project-gallery .slider-control-centerright button {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        height: 32px;
+        line-height: 32px; }
   .Project .track-vertical {
     width: 10px !important;
     right: 0;

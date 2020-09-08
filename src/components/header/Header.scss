@@ -155,18 +155,18 @@
     @include backgroundScreen;
     @include boxshadow;
     flex-grow: 1;
-    padding: 0 3px;
+    margin: 0 3px;
     overflow: hidden;
     cursor: pointer;
     border-bottom-left-radius: $borderRadius;
     border-bottom-right-radius: $borderRadius;
 
     &:first-child {
-      padding-left: 0;
+      margin-left: 0;
     }
-    // &:last-child {
-    //   padding-right: 0;
-    // }
+    &:last-child {
+      margin-right: 0;
+    }
 
     &.home:hover a,
     .App-home &.home a {
@@ -201,6 +201,7 @@
     width: 100%;
     transition: $allTrans;
 
+    box-sizing: border-box;
     border: 1px dashed $white;
     border-top: 0;
     border-bottom-left-radius: $borderRadius;

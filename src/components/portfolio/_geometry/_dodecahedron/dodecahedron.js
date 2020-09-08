@@ -42,7 +42,8 @@ Dodecahedron.prototype.startRotation = function() {
 }
 // Stop auto-rotation of the polyhedron around the y-axis
 Dodecahedron.prototype.stopRotation = function() {
-    this.rotation.y = this.rotation.y;
+    const currentRotation = this.rotation.y;
+    this.rotation.y = currentRotation;
 }
 // Grow and fade in our project faces
 Dodecahedron.prototype.advanceAllProjects = function() {
