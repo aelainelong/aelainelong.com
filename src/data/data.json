@@ -369,15 +369,15 @@
       "target": "_blank"
     },
     {
-      "channel": "Codepen",
-      "icon": "codepen",
-      "url": "https://codepen.io/aelong/",
-      "target": "_blank"
-    },
-    {
       "channel": "Github",
       "icon": "github",
       "url": "https://github.com/aelainelong",
+      "target": "_blank"
+    },
+    {
+      "channel": "Codepen",
+      "icon": "codepen",
+      "url": "https://codepen.io/aelong/",
       "target": "_blank"
     },
     {
