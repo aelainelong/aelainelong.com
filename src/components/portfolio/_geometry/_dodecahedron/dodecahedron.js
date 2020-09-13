@@ -31,6 +31,7 @@ class Dodecahedron extends THREE.Group {
             return projectsLayer.add(projectFace);
         });
 
+        // Add both the base mesh and the project layer to the group
         this.add(dMesh);
         this.add(projectsLayer);
     }

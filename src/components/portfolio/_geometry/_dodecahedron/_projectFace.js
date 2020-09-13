@@ -33,7 +33,7 @@ class ProjectFace extends THREE.Group {
         tGeometry.setFromPoints(tVertices);
         tGeometry.mergeVertices();
 
-        // Create a sister pentagon geometry to impart correct UV mapping - replace this later, you should not need it!
+        // Create a sister pentagon geometry to impart correct UV mapping - replace this later!
         const pGeometry = new THREE.CircleGeometry(2, 5);
 
         // Create pentagon's material
@@ -193,13 +193,9 @@ ProjectFace.prototype.retreat = function(){
 }
 
 // Display the project's title sprite
-ProjectFace.prototype.showTitle = function(){
-    
-}
+// ProjectFace.prototype.showTitle = function(){}
 
 // Hide the project's title sprite
-ProjectFace.prototype.hideTitle = function () {
-
-}
+// ProjectFace.prototype.hideTitle = function(){}
 
 export default ProjectFace;
