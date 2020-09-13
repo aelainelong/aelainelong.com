@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app/App';
-import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -13,5 +12,3 @@ if(module.hot){
     ReactDOM.render(<NextApp />, document.getElementById('root'));
   });
 }
-
-registerServiceWorker();
