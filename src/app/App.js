@@ -44,17 +44,10 @@ class App extends React.Component {
     }
 
     if (view !== "home") {
-      this.setState(() => ({ [view]: !this.state[view] }));
+      this.setState(prevState => ({ [view]: !prevState[view] }));
     } else if(this.state.explore) {
       this.setState(() => ({ explore: false }));
     }
-    // if (view === "home" && !this.state.explore){
-    //   //
-    // } else if(view === "home") {
-    //   this.setState(() => ({ explore: !this.state.explore }));
-    // } else {
-      
-    // }
   }
   
   render() {

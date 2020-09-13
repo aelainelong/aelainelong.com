@@ -3,9 +3,13 @@
 @import '../../../assets/styles/settings.scss';
 
 .About {
-    padding-top: 15px;
+    overflow: hidden;
 
     .about-wrapper {
+        padding-top: 15px;
+    }
+
+    .about-inner {
         @include backgroundScreen;
         @include boxshadow;
         margin: 0 3px;
@@ -18,15 +22,6 @@
         border-radius: 10px;
         border: 1px dashed white;
         transition: all .4s ease-in-out;
-        //height: 1;
-        opacity: 0;
-        //transform: translateY(-20%);
-
-        &.aboutIn {
-            //height: 130px;
-            opacity: 1;
-            //transform: translateY(0%);
-        }
     }
 
     p {

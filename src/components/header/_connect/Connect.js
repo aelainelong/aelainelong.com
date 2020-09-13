@@ -1,6 +1,6 @@
 import React from 'react';
-import Stagger from 'react-css-stagger';
 import PropTypes from 'prop-types';
+import Fade from 'react-reveal/Fade';
 
 import utils from '../../../utils/misc.js';
 import './Connect.css';
@@ -27,12 +27,15 @@ class Connect extends React.Component {
     
     return(
       <div className="Connect">
-        <ul className="social">
-          {this.props.connect ? <Stagger transition={"socialIn"} delay={125} initialDelay={200}>
-            {socialList}
-          </Stagger> : null}
-          
-        </ul>
+        {
+          this.props.connect ? 
+            <Fade top cascade duration={1000}>
+              <ul className="social">
+                {socialList}
+              </ul>
+            </Fade>
+            : null
+        }
       </div>
     );
   }

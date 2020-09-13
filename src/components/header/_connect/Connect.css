@@ -13,15 +13,13 @@
   transition: bottom 2s ease; }
 
 .Connect .social {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 15px 0 0;
   margin: 0;
-  padding: 0;
   list-style-type: none;
   text-align: center; }
-  .Connect .social > div {
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    padding: 15px 0 0; }
   .Connect .social li {
     position: relative;
     display: inline-block;
@@ -33,18 +31,6 @@
         margin: .25rem 0; } }
     .Connect .social li:last-child {
       margin-bottom: 0; }
-    .Connect .social li.socialIn-enter {
-      transition: all .4s ease-in-out;
-      transform: translate(0, -40%);
-      opacity: 0; }
-    .Connect .social li.socialIn-enter.socialIn-enter-active {
-      transform: translate(0, 0);
-      opacity: 1; }
-    .Connect .social li.socialIn-exit {
-      transform: translate(0, 0);
-      opacity: 1; }
-    .Connect .social li.socialIn-exit-done {
-      opacity: 0; }
   .Connect .social a {
     text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
     position: relative;
