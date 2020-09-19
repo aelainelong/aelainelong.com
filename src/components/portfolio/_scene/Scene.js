@@ -240,10 +240,9 @@ class Scene extends React.Component {
     }
 
     stopDodecahedron = () => {
-        if (this.DodecahedronRotation) {
-            this.Dodecahedron.stopRotation();
-            this.DodecahedronRotation = false;
-        }
+        if (!this.DodecahedronRotation) return;
+        this.Dodecahedron.stopRotation();
+        this.DodecahedronRotation = false;
     }
 
     // Update camera position
@@ -258,7 +257,7 @@ class Scene extends React.Component {
     }
 
     // Rotate the camera to the active project
-    rotateToProject = (project) => {
+    rotateToProject = project => {
         const projectPosition = new THREE.Vector3();
         const zoomFactor = this.maxZoom;
         project.getWorldPosition(projectPosition);
@@ -271,14 +270,10 @@ class Scene extends React.Component {
     }
 
     // Turn on the scene's ready state to enable mouse interactions
-    turnInteractionsOn = () => {
-        this.setState(() => ({ ready: true }));
-    }
+    turnInteractionsOn = () => this.setState({ ready: true });
 
     // Turn off the scene's ready state to disable mouse interactions
-    turnInteractionsOff = () => {
-        this.setState(() => ({ ready: false }));
-    }
+    turnInteractionsOff = () => this.setState({ ready: false });
 
     // Get our scene ready for mouse interactions (dragging / hovering / clicking)
     toggleControls = () => {
@@ -296,35 +291,23 @@ class Scene extends React.Component {
 
     // Get min camera zoom based on window width
     getMinZoom = () => {
-        let zoom;
-        if (window.innerWidth > 1200) {
-            zoom = 1.25;
-        } else if (window.innerWidth > 768) {
-            zoom = 1.35;
-        } else {
-            zoom = 1.75;
-        }
-        return zoom;
+        if (window.innerWidth > 1200) return 1.25;
+        if (window.innerWidth > 768) return 1.35;
+        return 1.75;
     }
 
     // Get max camera zoom based on window width
     getMaxZoom = () => {
-        let zoom;
-        if (window.innerWidth > 1200) {
-            zoom = 4.5;
-        } else if (window.innerWidth > 768) {
-            zoom = 5.5;
-        } else {
-            zoom = 5.75;
-        }
-        return zoom;
+        if (window.innerWidth > 1200) return 4.5;
+        if (window.innerWidth > 768) return 5.5;
+        return 5.75;
     }
 
     // Update our threeJS scene on window resize
     onWindowResize = () => {
-        const currentZoom = this.cameraZoom;
-        const newMinZoom = this.getMinZoom();
-        const newMaxZoom = this.getMaxZoom();
+        const currentZoom = this.cameraZoom,
+              newMinZoom = this.getMinZoom(),
+              newMaxZoom = this.getMaxZoom();
 
         if (this.props.explore && currentZoom !== newMaxZoom){
             new TWEEN.Tween(this.camera.position)
@@ -346,6 +329,7 @@ class Scene extends React.Component {
     // Raycasting event handler
     handleMouseClick = e => {
         e.preventDefault();
+        e.stopPropagation();
 
         if(e.changedTouches && e.changedTouches.length > 0){
             // Update our touch positioning for the raycaster

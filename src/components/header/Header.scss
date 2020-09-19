@@ -168,20 +168,20 @@
       margin-right: 0;
     }
 
-    &.home:hover a,
-    .App-home &.home a {
+    &.home:hover button,
+    .App-home &.home button {
       background-color: $green;
     }
-    &.explore:hover a,
-    .App-explore &.explore a {
+    &.explore:hover button,
+    .App-explore &.explore button {
       background-color: $blue;
     }
-    &.about:hover a,
-    .App-about &.about a {
+    &.about:hover button,
+    .App-about &.about button {
       background-color: $orange;
     }
-    &.connect:hover a,
-    .App-connect &.connect a {
+    &.connect:hover button,
+    .App-connect &.connect button {
       background-color: $yellow;
     }
     // .App:not(.App-explore) &.explore,
@@ -195,11 +195,12 @@
     // }
   }
 
-  a {
+  button {
     @include linkButtonStyles;
     display: block;
     width: 100%;
     transition: $allTrans;
+    cursor: pointer;
 
     box-sizing: border-box;
     border: 1px dashed $white;

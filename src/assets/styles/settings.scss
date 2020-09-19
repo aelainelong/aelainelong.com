@@ -43,6 +43,7 @@ $maxContentWidth: 370px;
 /* Mixins */
 @mixin linkButtonStyles {
     @include textshadow;
+    background-color: transparent;
     text-decoration: none;
     text-align: center;
     padding: 8px 0 6px;

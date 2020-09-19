@@ -6,7 +6,7 @@ import Loading from '../components/loading/Loading';
 import Header from '../components/header/Header';
 import Portfolio from '../components/portfolio/Portfolio';
 
-import { allThumbnails } from '../data/client.js';
+import client from '../data/client.js';
 import './App.css';
 
 class App extends React.Component {
@@ -39,22 +39,20 @@ class App extends React.Component {
   }
 
   updateView = view => {
-    if (view !== this.state.active) {
-      this.setState(() => ({ active: view }));
-    }
-
-    if (view !== "home") {
-      this.setState(prevState => ({ [view]: !prevState[view] }));
-    } else if(this.state.explore) {
-      this.setState(() => ({ explore: false }));
-    }
+    if (view !== this.state.active) this.setState(() => ({ active: view }));
+    if (view !== "home") this.setState(prevState => ({ [view]: !prevState[view] }));
+    if (view === "home" && this.state.explore) this.setState(() => ({ explore: false }));
   }
   
   render() {
     const Preload = Preloader.Preload;
+    const allThumbnails = client.getAllImages();
     
     return (
-      <div className="App" data-active-view={this.state.active} className={`App ${this.state.explore ? `App-explore` : `App-home`} ${this.state.connect ? `App-connect` : ``} ${this.state.about ? `App-about` : ``}`}>
+      <div 
+        data-active-view={this.state.active} 
+        className={`App ${this.state.explore ? `App-explore` : `App-home`} ${this.state.connect ? `App-connect` : ``} ${this.state.about ? `App-about` : ``}`}
+        >
         <Preload
           loadingIndicator={Loading}
           images={allThumbnails}
@@ -64,7 +62,7 @@ class App extends React.Component {
           resolveOnError={true}
           mountChildren={true}
         > 
-          <div className="app-cover" style={{ background: `linear-gradient(to bottom, rgba(0, 0, 0, 0), ${this.state.bgColorBottom})` }}></div>
+          {/* <div className="app-cover" style={{ background: `linear-gradient(to bottom, rgba(0, 0, 0, 0), ${this.state.bgColorBottom})` }}></div> */}
           <div className="app-wrapper">
             <Header updateView={this.updateView} toggleConnect={this.toggleConnect} about={this.state.about} connect={this.state.connect} />
             <Portfolio explore={this.state.explore} />

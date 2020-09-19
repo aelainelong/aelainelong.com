@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Scene from './_scene/Scene';
 import Project from './_project/Project';
@@ -14,7 +13,7 @@ class Portfolio extends React.Component {
     
     this.state = {
       portfolioOpen: false,
-      portfolioSize: client.getAllProjects().length,
+      portfolioSize: client.allProjects.length,
       portfolioStart: false,
       portfolioEnd: false,
       activeCategory: null, 
@@ -29,23 +28,20 @@ class Portfolio extends React.Component {
   }
 
   // Trigger open event upon project selection
-  handleProjectOpen = (projectID) => {
-    this.openProject(projectID);
-  }
+  handleProjectOpen = projectID => this.openProject(projectID);
   
   // Trigger close event upon project close
-  handleProjectClose = () => {
-    this.closeProject();
-  }
+  handleProjectClose = () => this.closeProject();
   
   // Open selected project by passing project ID into state
-  openProject = (projectID) =>{
-    //console.log("Running the open project event handler.");
+  openProject = projectID => {
     this.setState({ currentProject: projectID }, function(){
-      // Manage portfolio progress
       this.manageProgress();
     });
   }
+
+  // Close current project by clearing project ID from state
+  closeProject = () => this.setState({ currentProject: null });
   
   // Keep track of our place in the portfolio
   manageProgress = () => {
@@ -66,20 +62,15 @@ class Portfolio extends React.Component {
     }
     
     this.setState({
-      portfolioStart: portfolioStart,
-      portfolioEnd: portfolioEnd
+      portfolioStart,
+      portfolioEnd
     });
-    
-    // console.log("Beginning is " + portfolioStart);
-    // console.log("Ending is " + portfolioEnd);
   }
   
   // Navigate between projects by incrementing/decrimenting project ID in state
-  traverseProjects = (direction) => {
+  traverseProjects = direction => {
     let currProject = this.state.currentProject;
     let newProject;
-    
-    // alert("At click, current project is project #" + currProject);
     
     // Check if we have hit the beginning or end of portfolio
     if(direction === "prev" && currProject !== 1){
@@ -91,47 +82,37 @@ class Portfolio extends React.Component {
       this.closeProject();
       this.openProject(newProject);
     } else {
-      setTimeout(function(){
-        this.closeProject();
-      }.bind(this), 500);
+      setTimeout(() => this.closeProject(), 500);
     }
   }
   
-  // Close current project by clearing project ID from state
-  closeProject = () => {
-    this.setState({ currentProject: null });
-  }
-  
   render(){
-    
-    const projects = client.getAllProjects();
-    const portfolioOpen = this.state.portfolioOpen;
-    const currentProject = this.state.currentProject;
-    const projectInfo = client.getProjectByID(currentProject);
-    const traverseProjects = this.traverseProjects;
-
-
     const portfolioProgress = {
       start: this.state.portfolioStart,
       end: this.state.portfolioEnd
     }
   
-    return(
-      <div className={ portfolioOpen ? `Portfolio open` : `Portfolio` }>
-        <Scene explore={this.props.explore} projects={projects} closeProject={this.handleProjectClose} openProject={this.handleProjectOpen} currentProject={this.state.currentProject}/>
-        {currentProject !== null ? <Project project={projectInfo} closeProject={this.handleProjectClose} traverseProjects={this.traverseProjects} portfolioProgress={portfolioProgress} /> : null }
+    return (
+      <div className={this.state.portfolioOpen ? `Portfolio open` : `Portfolio` }>
+        <Scene 
+          explore={this.props.explore} 
+          projects={client.allProjects} 
+          closeProject={this.handleProjectClose} 
+          openProject={this.handleProjectOpen} 
+          currentProject={this.state.currentProject}
+        />
+        { this.state.currentProject ? 
+          <Project 
+            project={client.getProjectByID(this.state.currentProject)} 
+            closeProject={this.handleProjectClose} 
+            traverseProjects={this.traverseProjects} 
+            portfolioProgress={portfolioProgress} 
+        />
+         : null }
       </div>
     );
   }
 }
 
 export default Portfolio;
-
-// Portfolio.propTypes = {
-//   projects: PropTypes.array,
-//   getCategories: PropTypes.array,
-//   getProjectByID: PropTypes.func,
-//   getCategoryProjects: PropTypes.func, 
-//   portfolioInfo: PropTypes.object
-// }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 
 import Carousel from 'nuka-carousel';
@@ -13,9 +12,7 @@ class Project extends React.Component {
     this.state = {
       projectOpen: false,
       projectExpanded: false,
-      galleryOpen: false,
-      atStart: this.props.portfolioProgress.start,
-      atEnd: this.props.portfolioProgress.end
+      galleryOpen: false
     }
   }
   
@@ -30,17 +27,10 @@ class Project extends React.Component {
   componentWillUnmount(){
     this.setState({ projectOpen: false, projectExpanded: false, galleryOpen: false });
   }
-  
-  componentWillReceiveProps(newProps){
-    this.setState({
-      atStart: newProps.portfolioProgress.start,
-      atEnd: newProps.portfolioProgress.end
-    });
-  }
 
   // Expand/collapse the project details
   handleCloseMobile = () => {
-    this.setState(() => ({ projectExpanded: !this.state.projectExpanded }));
+    this.setState(state => ({ projectExpanded: !state.projectExpanded }));
   }
 
   handleCloseDesktop = () => {
@@ -50,14 +40,12 @@ class Project extends React.Component {
   
   // Load previous/next project upon click of project nav
   handleProjectNav = (direction) => {
-    const { atStart, atEnd } = this.state;
+    const { start, end } = this.props.portfolioProgress;
     
-    if((atStart && direction === "prev") || (atEnd && direction === "next")){
+    if ((start && direction === "prev") || (end && direction === "next")){
       // console.log("We are at the beginning or at the end");
       this.setState({ galleryOpen: false, projectOpen: false });
-      setTimeout(function(){
-        this.props.handleProjectClose();
-      }.bind(this), 500);
+      setTimeout(() => this.props.handleProjectClose(), 500);
     } else {
       this.props.traverseProjects(direction);
     }
@@ -73,8 +61,8 @@ class Project extends React.Component {
     });
   }
 
-  handleGallery = e => {
-    this.setState(() => ({ galleryOpen: !this.state.galleryOpen }));
+  handleGallery = () => {
+    this.setState(state => ({ galleryOpen: !state.galleryOpen }));
   }
 
   // Pull in media gallery cover image
@@ -85,7 +73,9 @@ class Project extends React.Component {
         <div className="wrapper">
           <img src={coverImage} alt="View Gallery" />
           <div className="overlay"></div>
-          <button className="btn-wrap" onClick={() => this.handleGallery()}><span className="btn btn-gallery">View Gallery</span></button>
+          <button className="btn-wrap" onClick={() => this.handleGallery()}>
+            <span className="btn btn-gallery">View Gallery</span>
+          </button>
         </div>
       </div>
     )
@@ -96,27 +86,36 @@ class Project extends React.Component {
     const mediaList = this.props.project.media.map((item, i) => {
       if (item.indexOf("youtube") !== -1) { // If it is a video
         return (
-          <div key={i} className="video-wrapper"><iframe width="600" height="353" src={`${item}?theme=dark&autohide=2&modestbranding=1&rel=0`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>
+          <div key={i} className="video-wrapper">
+            <iframe 
+              width="600" 
+              height="353" 
+              title={`${item.title}: Project Video`}
+              src={`${item}?theme=dark&autohide=2&modestbranding=1&rel=0`} 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
         )
       } else { // If it is an image
         const itemURL = require(`./../../../assets/media${item}`);
         return (
-          <div key={i} className="image-wrapper"><img src={itemURL} /></div>
+          <div key={i} className="image-wrapper">
+            <img src={itemURL} alt={item.title} />
+          </div>
         )
       }
     });
-    return (
-      mediaList
-    )
+    return ( mediaList )
   }
 
   getProjectTech = () => {
-    return this.props.project.tech.map(tech => {
-      return tech.toString();
-    }).join(", ");
+    return this.props.project.tech.map(tech => tech.toString()).join(", ");
   }
   
   render(){
+    const { start: atStart, end: atEnd } = this.props.portfolioProgress;
     const galleryCover = this.getCoverImage();
     const mediaList = this.getProjectMedia();
     const techList = this.getProjectTech();
@@ -132,7 +131,12 @@ class Project extends React.Component {
               <div className="project-header">
                 <h2 className="project-title">{this.props.project.title}</h2>
                 {this.props.project.deliverables ? <h3 className="project-subtitle">{this.props.project.deliverables}</h3> : null}
-                {this.props.project.url ? <div className={`project-link ${this.props.project.flash ? `project-flash-site` : null }`}><a href={this.props.project.url} target="_blank" title={this.props.project.title} rel="noopener noreferrer" onClick={(e) => this.handleLinkClick(e)}><i className="fa fa-link" aria-hidden="true"></i> Visit site</a></div> : null}
+                {this.props.project.url ? 
+                  <div className={`project-link ${this.props.project.flash ? `project-flash-site` : null }`}>
+                    <a href={this.props.project.url} target="_blank" title={this.props.project.title} rel="noopener noreferrer" onClick={e => this.handleLinkClick(e)}>
+                    <i className="fa fa-link" aria-hidden="true"></i> Visit site</a>
+                  </div> : null
+                }
               </div>
 
               <div className="project-meta">
@@ -151,9 +155,9 @@ class Project extends React.Component {
           <div className="project-nav">
             {!this.state.projectOpen || this.state.galleryOpen ? null : <button className="btn btn-close" onClick={() => this.handleCloseDesktop()}>Close Project</button> }
             { !this.state.galleryOpen ? null : <button className="btn btn-gallery" onClick={() => this.handleGallery()}>Close Gallery</button> }
-            { this.state.galleryOpen ? null : <button className="btn btn-toggle" onClick={() => this.handleCloseMobile()}>{!this.state.projectExpanded ? `View Project` : `Close Project`}</button>}
-            {this.state.atEnd || this.state.galleryOpen ? <button className="btn btn-next" aria-disabled="true" disabled>next</button> : <button className="btn btn-next" onClick={() => this.handleProjectNav("next")}>next</button> }
-            {this.state.atStart || this.state.galleryOpen ? <button className="btn btn-prev" aria-disabled="true" disabled>prev</button> : <button className="btn btn-prev" onClick={() => this.handleProjectNav("prev")}>prev</button>}
+            { this.state.galleryOpen ? null : <button className="btn btn-toggle" onClick={() => this.handleCloseMobile()}>{!this.state.projectExpanded ? `View Project` : `Close `}</button>}
+            { atEnd || this.state.galleryOpen ? <button className="btn btn-next" aria-disabled="true" disabled>next</button> : <button className="btn btn-next" onClick={() => this.handleProjectNav("next")}>next</button> }
+            { atStart || this.state.galleryOpen ? <button className="btn btn-prev" aria-disabled="true" disabled>prev</button> : <button className="btn btn-prev" onClick={() => this.handleProjectNav("prev")}>prev</button>}
           </div>
         </div>
 
@@ -172,10 +176,3 @@ class Project extends React.Component {
 }
 
 export default Project;
-
-Project.propTypes = {
-  project: PropTypes.object,
-  handleProjectClose: PropTypes.func,
-  traverseProjects: PropTypes.func,
-  portfolioProgress: PropTypes.object
-}

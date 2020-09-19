@@ -24,15 +24,12 @@ const utils = {
     },
     getTransitionRotation(rotationTarget){
         // Set a constant quaternion for our explore/home mode transitions
+        const default_Yaxis_angle = -3.107499999999945;
         const rotation1 = new THREE.Euler(0, 0, 0),
-            rotation2 = new THREE.Euler(0, -3.107499999999945, 0);
-        let transitionRotation;
+              rotation2 = new THREE.Euler(0, default_Yaxis_angle, 0);
 
-        if (rotationTarget < 0 && rotationTarget > -3) {
-            transitionRotation = rotation1;
-        } else {
-            transitionRotation = rotation2;
-        }
+        let transitionRotation; // the ending Euler (amount of rotation) that will rotate our object to face the rotationTarget
+        transitionRotation = rotationTarget < 0 && rotationTarget > -3 ? rotation1 : rotation2;
 
         return transitionRotation;
     }
