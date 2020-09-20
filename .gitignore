@@ -1,5 +1,6 @@
 scenes/
 build/
+static/docs
 
 # Logs
 logs
