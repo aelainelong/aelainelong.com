@@ -1,14 +1,15 @@
 import React from 'react';
+import Fade from 'react-reveal/Fade';
 import './ToolTip.css';
 
-class ToolTip extends React.Component {
-    render(){
-        return (
-            <div className={`ToolTip ${this.props.currentProject ? `ToolTip-hidden` : ``}`}>
+const ToolTip = props => {
+    return (
+        <div className="ToolTip">
+            <Fade opposite when={props.showTooltip}>
                 <i className="fas fa-dice-d20"></i><p>Rotate the polyhedron to view different projects</p>
-          </div>  
-        );
-    }
+            </Fade>
+        </div>
+    );
 }
 
 export default ToolTip;

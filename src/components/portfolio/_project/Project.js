@@ -35,14 +35,15 @@ class Project extends React.Component {
 
   handleCloseDesktop = () => {
     this.setState(() => ({ projectOpen: false, projectExpanded: false }));
-    this.props.closeProject();
+    this.props.handleProjectClose();
   }
   
   // Load previous/next project upon click of project nav
   handleProjectNav = (direction) => {
-    const { start, end } = this.props.portfolioProgress;
+    const atStart = this.props.project.id === 1;
+    const atEnd = this.props.project.id >= this.props.portfolioSize;
     
-    if ((start && direction === "prev") || (end && direction === "next")){
+    if ((atStart && direction === "prev") || (atEnd && direction === "next")){
       // console.log("We are at the beginning or at the end");
       this.setState({ galleryOpen: false, projectOpen: false });
       setTimeout(() => this.props.handleProjectClose(), 500);
@@ -115,7 +116,8 @@ class Project extends React.Component {
   }
   
   render(){
-    const { start: atStart, end: atEnd } = this.props.portfolioProgress;
+    const atStart = this.props.project.id === 1;
+    const atEnd = this.props.project.id >= this.props.portfolioSize;
     const galleryCover = this.getCoverImage();
     const mediaList = this.getProjectMedia();
     const techList = this.getProjectTech();

@@ -53,6 +53,10 @@ $maxContentWidth: 370px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-family: $primaryFont;
+
+    &:focus {
+        outline: 0;
+    }
 }
 @mixin backgroundScreen {
     background-color: rgba(0, 0, 0, 0.35);

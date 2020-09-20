@@ -227,6 +227,8 @@
     transition: all ease 0.5s;
     cursor: pointer; }
     .Project .btn:focus {
+      outline: 0; }
+    .Project .btn:focus {
       outline: none; }
   .Project .project-nav {
     position: absolute;

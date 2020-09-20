@@ -166,6 +166,8 @@
     border-top: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px; }
+    .Menu button:focus {
+      outline: 0; }
     .Menu button:hover, .Menu button:active, .Menu button:-webkit-any-link:active {
       color: #FFF; }
 

@@ -41,22 +41,6 @@
   @media (min-width: 1400px) {
     .ToolTip {
       font-size: 0.95rem; } }
-  .App-about .ToolTip,
-  .App-connect .ToolTip, .ToolTip.ToolTip-hidden {
-    opacity: 0; }
-  .ToolTip .ToolTipIn,
-  .ToolTip .ToolTipIn-enter {
-    transition: all .4s ease-in-out;
-    transform: translate(0, -40%);
-    opacity: 0; }
-  .ToolTip .ToolTipIn-enter.socialIn-enter-active {
-    transform: translate(0, 0);
-    opacity: 1; }
-  .ToolTip .ToolTipIn-leave {
-    transform: translate(0, 0);
-    opacity: 1; }
-  .ToolTip .ToolTipIn-leave-active {
-    opacity: 0; }
   @media (min-width: 1400px) {
     .ToolTip {
       bottom: auto;

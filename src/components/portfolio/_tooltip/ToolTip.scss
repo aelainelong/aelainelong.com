@@ -37,34 +37,6 @@
       font-size: 0.95rem;
     }
 
-    // .App-about &,
-    // .App-connect & {
-    //   color: #99478e;
-    // }
-    .App-about &,
-    .App-connect &,
-    &.ToolTip-hidden {
-      opacity: 0;
-    }
-
-    .ToolTipIn,
-    .ToolTipIn-enter {
-      transition: all .4s ease-in-out;
-      transform: translate(0, -40%);
-      opacity: 0;
-    }
-    .ToolTipIn-enter.socialIn-enter-active {
-      transform: translate(0, 0);
-      opacity: 1;
-    }
-    .ToolTipIn-leave {
-      transform: translate(0, 0);
-      opacity: 1;
-    }
-    .ToolTipIn-leave-active {
-      opacity:0;
-    }
-
     @media (min-width: $large) {
       bottom: auto;
       top: 5vh;

@@ -104,9 +104,7 @@ class Scene extends React.Component {
                 .onStart(() => {
                     this.turnInteractionsOff();
                     this.Dodecahedron.advanceAllProjects();
-                    if (this.props.currentProject) {
-                        this.props.closeProject(this.props.currentProject.id);
-                    }
+                    if (this.props.currentProject) this.props.handleProjectClose();
                 })
                 .onStop(() => {
                     //console.log("ANIMATION TO HOME STOPPED.");
@@ -160,33 +158,26 @@ class Scene extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        //console.log("Component did update.");
+        // If we have entered/exited 'explore' mode, move our camera in/out accordingly
+        if (prevProps.explore !== this.props.explore) this.updateCameraPosition(); 
 
-        // Move our camera in/out if we have entered/exited 'explore' mode
-        if (prevProps.explore !== this.props.explore) {
-            this.updateCameraPosition(); 
-        }
+        // If we have completed an update to the camera positioning, turn our Dodecahedron controls on/off accordingly
+        if (prevState.ready !== this.state.ready) this.toggleControls();
 
-        // Advance/retreat project faces on the Dodecahedron based on the selected project (if any)
+        // If there is no selected project, restart the Dodecahedron rotation
+        if (!this.props.currentProject) this.startDodecahedron();
+
+        // If our selected project has changed, advance/retreat project faces on the Dodecahedron based on the selected project
         if (prevProps.currentProject !== this.props.currentProject) {
-            // Restart Dodecahedron rotation when there is no selected project.
-            if(!this.props.currentProject){
-                this.startDodecahedron();
-            }
-            if (prevProps.currentProject){
-                this.Dodecahedron.children[1].children[prevProps.currentProject - 1].retreat();
+            if (prevProps.currentProject) {
+                this.Dodecahedron.children[1].children[prevProps.currentProject.id - 1].retreat();
             }
             if (this.props.currentProject) {
-                this.Dodecahedron.children[1].children[this.props.currentProject - 1].advance();
+                this.Dodecahedron.children[1].children[this.props.currentProject.id - 1].advance();
 
                 // Move the camera to face the current project
-                this.rotateToProject(this.Dodecahedron.children[1].children[this.props.currentProject - 1]);
+                this.rotateToProject(this.Dodecahedron.children[1].children[this.props.currentProject.id - 1]);
             }
-        }
-
-        // Turn our Dodecahedron controls on/off if we have completed an update to the camera positioning
-        if(prevState.ready !== this.state.ready){
-            this.toggleControls();
         }
     }
 
@@ -366,10 +357,10 @@ class Scene extends React.Component {
                 this.rotateToProject(clickedProject);
 
                 // Open the project details panel
-                this.props.openProject(clickedProject.projectID);
+                this.props.handleProjectOpen(clickedProject.projectID);
             } else {
                 // Close the project details panel
-                this.props.closeProject(clickedProject.projectID);
+                this.props.handleProjectClose(clickedProject.projectID);
 
                 // Move the inactive project's face back
                 clickedProject.retreat();
@@ -405,10 +396,11 @@ class Scene extends React.Component {
     }
 
     render(){
+        const showTooltip = this.state.ready && !this.props.currentProject;
         return (
             <div className={`Scene ${this.state.ready ? `Scene-ready` : ``}`}>
                 <div className="scene-wrapper" ref={this.sceneWrapper}></div>
-                {this.state.ready ? <ToolTip currentProject={this.props.currentProject} ref={this.toolTip} /> : null}
+                <ToolTip showTooltip={showTooltip} ref={this.toolTip} />
             </div>
         );
     }
