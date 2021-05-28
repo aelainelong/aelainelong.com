@@ -25,7 +25,6 @@
         "description": "This microsite was built on top of the AT&T Newsroom in Adobe Experience Manager. Contributed the front-end templates and components and also developed a custom animated pledge counter for the homepage. The pledge counter uses CSS-based animation.",
         "tech": [
           "JavaScript",
-          "JSON",
           "SASS",
           "HTML5",
           "Adobe Experience Manager"
@@ -80,7 +79,6 @@
         "description": "In 2018, AT&T's About Us newsroom was migrated to Adobe Experience Manager (AEM). Contributed all front-end code for 6 templates and 31 reusable components, and provided technical strategy, and content author documentation and training throughout the 2-year project",
         "tech": [
           "JavaScript",
-          "JSON",
           "SASS",
           "HTML5",
           "Adobe Experience Manager"
@@ -230,14 +228,13 @@
           "/att-latino/esp-07.jpg",
           "/att-latino/esp-08.jpg"
         ],
-        "deliverables": "JSON-driven news, lifestyle, sports and entertainment portal for AT&T Latino",
-        "description": "Developed a JSON-based Spanish-language newsroom with filterable articles, as well as social media integration and support documentation for AT&T products",
+        "deliverables": "News, lifestyle, sports and entertainment portal for AT&T Latino",
+        "description": "Developed a Spanish-language newsroom with filterable articles, as well as social media integration and support documentation for AT&T products",
         "tech": [
           "jQuery",
           "JavaScript",
           "SASS",
           "HTML5",
-          "JSON"
         ],
         "client": "AT&T",
         "agency": "FleishmanHillard",
