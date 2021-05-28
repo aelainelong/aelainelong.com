@@ -230,8 +230,8 @@
           "/att-latino/esp-07.jpg",
           "/att-latino/esp-08.jpg"
         ],
-        "deliverables": "JSON-driven news, lifestyle, sports and entertainment portal for AT&T Latino",
-        "description": "Developed a JSON-based Spanish-language newsroom with filterable articles, as well as social media integration and support documentation for AT&T products",
+        "deliverables": "News, lifestyle, sports and entertainment portal for AT&T Latino",
+        "description": "Developed a Spanish-language newsroom with filterable articles, as well as social media integration and support documentation for AT&T products",
         "tech": [
           "jQuery",
           "JavaScript",
